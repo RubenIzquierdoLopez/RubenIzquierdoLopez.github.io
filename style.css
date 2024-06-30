@@ -1,0 +1,62 @@
+
+/* Header/logo Title */
+.header {
+    padding: 20px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+  }
+/* CUERPO DE LA PÁGINA
+/*
+/* Determina el estilo del cuerpo principal de la página web*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #1abc9c;
+    /*background-color:#b4b0f5;*/
+    margin: 0;
+  }
+
+/* BARRA DE NAVEGACIÓN
+/*
+/* Barra de navegación */
+/* Determina el estilo del bloque (topbar), fondo negro */
+.topbar {
+  overflow: hidden;
+  /* Overflow determina el comportamiento cuando el texto no cabe, hidden hace que se corte el texto */
+  background-color: white;
+  display: flex;
+  margin: 0 auto;
+}
+/* Determina el estilo de los bloques en los enlaces */
+.topbar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 20px 70px;
+  text-decoration: none;
+  font-size: 17px;
+}
+/* Determina el estilo de los enlaces al pasar por ellos*/
+.topbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+/*Crea la clase "a.active" que simula cuando un enlace está activo*/
+.topbar a.active {
+  background-color: black;
+  color: white;
+}
+
+/* ESTILO DEL "PERSONAL INFORMAFION"*/ 
+.container{
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    margin-top: 50px;
+    width: 800px;
+    column-gap: 80px;
+}
+
+
+
+
