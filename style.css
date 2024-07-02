@@ -1,10 +1,11 @@
 
 /* Header/logo Title */
 .header {
-    padding: 10px;
     text-align: center;
     background-image: url(Images/BlackBoard.jpg);
     color: white;
+    overflow: hidden;
+    width: 100%;
   }
 /* CUERPO DE LA PÁGINA
 /*
@@ -24,14 +25,14 @@ body {
   overflow: hidden;
   /* Overflow determina el comportamiento cuando el texto no cabe, hidden hace que se corte el texto */
   background-color: white;
-  margin: 0 auto;
+  width: 100%;
 }
 /* Determina el estilo de los bloques en los enlaces */
 .topbar a {
   float: left;
   color: black;
   text-align: center;
-  padding: 20px 30px;
+  padding: 1.5% 1.5%;
   text-decoration: none;
   font-size: 15px;
 }
@@ -55,9 +56,9 @@ body {
     display: flex;
     margin: 0 auto;
     flex-wrap: nowrap;
-    margin-top: 50px;
-    width: 1300px;
-    column-gap: 80px;
+    margin-top: 5%;
+    width: 90%;
+    column-gap: 10%;
 }
 
 /* ESTILO DEL "PUBLICATIONS"*/
@@ -65,9 +66,9 @@ body {
   display: flex;
   margin: 0 auto;
   flex-wrap: nowrap;
-  margin-top: 50px;
-  width: 1300px;
-  column-gap: 80px;
+  margin-top: 5%;
+  width: 90%;
+  column-gap: 10%;
 }
 
 
