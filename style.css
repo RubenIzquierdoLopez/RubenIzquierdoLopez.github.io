@@ -24,7 +24,6 @@ body {
   overflow: hidden;
   /* Overflow determina el comportamiento cuando el texto no cabe, hidden hace que se corte el texto */
   background-color: white;
-  display: flex;
   margin: 0 auto;
 }
 /* Determina el estilo de los bloques en los enlaces */
@@ -45,6 +44,10 @@ body {
 .topbar a.active {
   background-color: black;
   color: white;
+}
+
+.topbar-right{
+  float: right;
 }
 
 /* ESTILO DEL "PERSONAL INFORMAFION"*/ 
