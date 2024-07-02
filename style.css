@@ -63,12 +63,9 @@ body {
 
 /* ESTILO DEL "PUBLICATIONS"*/
 .Publications{
-  display: flex;
-  margin: 0 auto;
-  flex-wrap: nowrap;
+  margin:0 auto;
   margin-top: 5%;
-  width: 80%;
-  column-gap: 10%;
+  width: 90%;
 }
 
 
