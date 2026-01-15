@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
+<script type="text/javascript" src="script.js"></script>
 
 <body style="overflow: scroll;">
 <!-- Header -->
@@ -31,7 +32,7 @@
     <!--</div>-->
   </div>
 
-  <div class = "PersonalInfo" id = "Home" style="padding-bottom: 40px; margin-top: 0%;">
+  <div class = "PersonalInfo" id = "Home" style="padding-bottom: 3%px; margin-top: 0%;">
     <!--Imagen-->
     <div style=" width: 30%; margin-top: 5%;">
       <img loading="lazy" src="Images/RubenIzquierdo_Profile.webp" alt="Foto_Ruben" style = "width: 100%; border: 2px solid black;">
@@ -42,54 +43,56 @@
     <div style="width: 70%; overflow:auto; text-align: justify;">
       <h1><b>About me</b></h1>
 
-Welcome to my personal webpage! I am currently a PhD student at 
+Welcome to my personal webpage! <span style = "color: rgb(66,66,66);">This page was last modified on  <span id = "last-modified"></span>.</span>
+
+<br><br>
+
+I am currently a PhD student at 
 <a href="https://www.icmat.es/es/" target="_blank">ICMAT</a> with an 
 <a href="https://www.ciencia.gob.es/Convocatorias/2024/FPU2024.html" target="_blank">FPU2024</a> fellowship,
 under the supervision of <a href="https://www.manueldeleon.es/" target="_blank">Manuel de León</a>.
 To check my research interests, you may click the “Research” button above.
-My personal interests include playing the piano, cooking, and video games.
+My personal interests include playing the piano, cooking, and video games. Below you can find a summary of my (so far short) academic career:
 
 <br><br>
 
-Below you can find a short summary of my (so far short) academic career:
+<div style="margin-left: 3%;">
+  I obtained my undergraduate degree in <a href="https://matematicas.ucm.es/estudios/2025-26/grado-matematicas" target="_blank">Mathematics</a> at the 
+  <a href="https://www.ucm.es/" target="_blank">Universidad Complutense de Madrid</a> in 2023, with an average grade
+  of 9.44/10. If you wish, you can check my bachelor’s thesis (in Spanish):
 
-<br><br>
+  <div style="margin-left: 30px;">
+    <ul>
+      <li>
+        Homología Singular y Celular: <i>Text:</i>
+        <a href="Documents/RubenIzquierdo_BachelorThesis.pdf" target="_blank">
+          <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
+        <i>Slides:</i>
+        <a href="Documents/Slides/Bachelor_Thesis_slides.pdf" target="_blank">
+          <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
+      </li>
+    </ul>
+  </div>
 
-I obtained my undergraduate degree in <a href="https://matematicas.ucm.es/estudios/2025-26/grado-matematicas" target="_blank">Mathematics</a> at the 
-<a href="https://www.ucm.es/" target="_blank">Universidad Complutense de Madrid</a> in 2023, with an average grade
-of 9.44/10. If you wish, you can check my bachelor’s thesis (in Spanish):
+  I then completed my master’s degree in <a href="https://www.ucm.es/estudios/master-matematicasavanzadas" target="_blank">Advanced Mathematics<a>
+  at the same university in 2024 with
+  an average grade of 9.77/10. You can check my master’s thesis here:
 
-<div style="margin-left: 30px;">
-  <ul>
-    <li>
-      Homología Singular y Celular: <i>Text:</i>
-      <a href="Documents/RubenIzquierdo_BachelorThesis.pdf" target="_blank">
-        <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>, 
-      <i>Slides:</i>
-      <a href="Documents/Slides/Bachelor_Thesis_slides.pdf" target="_blank">
-        <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
-    </li>
-  </ul>
+  <div style="margin-left: 30px;">
+    <ul>
+      <li>
+        Coisotropic Reduction in Multisymplectic Geometry: <i>Text:</i>
+        <a href="Documents/RubenIzquierdo_MasterThesis.pdf" target="_blank">
+          <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
+        <i>Slides:</i>
+        <a href="Documents/Slides/Master_Thesis_slides.pdf" target="_blank">
+          <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
+      </li>
+    </ul>
+  </div>
+
+  I am currently pursuing my PhD at ICMAT and <a href="https://www.uam.es/uam/inicio" target="_blank">UAM</a>, hopefully there will be a PDF here soon enough.
 </div>
-
-I then completed my master’s degree in <a href="https://www.ucm.es/estudios/master-matematicasavanzadas" target="_blank">Advanced Mathematics<a>
-at the same university in 2024 with
-an average grade of 9.77/10. You can check my master’s thesis here:
-
-<div style="margin-left: 30px;">
-  <ul>
-    <li>
-      Coisotropic Reduction in Multisymplectic Geometry: <i>Text:</i>
-      <a href="Documents/RubenIzquierdo_MasterThesis.pdf" target="_blank">
-        <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>, 
-      <i>Slides:</i>
-      <a href="Documents/Slides/Master_Thesis_slides.pdf" target="_blank">
-        <img loading="lazy" style="max-height:1em;max-width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
-    </li>
-  </ul>
-</div>
-
-I am currently pursuing my PhD at ICMAT, hopefully there will be a PDF here soon enough.
 
       <br>
       <h1><b>Relevant links:</b></h1>
@@ -111,6 +114,6 @@ I am currently pursuing my PhD at ICMAT, hopefully there will be a PDF here soon
       </a>
     </div>
   </div>
-  
+
 </body>
 </html>

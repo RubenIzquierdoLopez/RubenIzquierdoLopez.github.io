@@ -1,3 +1,4 @@
+//Code for the accordion
 document.addEventListener("DOMContentLoaded", function () {
   const accordionHeaders = document.querySelectorAll(".accordion-header");
 
@@ -13,4 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+});
+
+//Last modified date code:
+document.addEventListener("DOMContentLoaded", function() {
+  const d = new Date(document.lastModified);
+  
+  // Format the date in English (US)
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById("last-modified").textContent = d.toLocaleDateString('en-US', options);
 });
