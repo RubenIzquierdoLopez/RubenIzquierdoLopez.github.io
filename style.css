@@ -87,6 +87,7 @@ body {
   font-weight: bold;
   transition: background-color 0.3s;
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .accordion-header:hover {
@@ -107,6 +108,3 @@ body {
   margin: 10px 0;
   padding-left: 20px;
 }
-
-
-
