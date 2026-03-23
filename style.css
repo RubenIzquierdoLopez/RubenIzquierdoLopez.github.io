@@ -27,7 +27,7 @@ body {
        spans the full width. Choose 100% auto for this specific graphic. */
     background-size: 100% auto;
     
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     
     /* Centers the serpent horizontally */
     background-position: center top; 
