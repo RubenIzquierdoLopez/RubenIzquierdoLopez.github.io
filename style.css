@@ -58,23 +58,19 @@ body {
     font-size: 15px;
     font-weight: 500;
     transition: all 0.2s ease;
-    
-    /* REMOVE THE BOTTOM BAR/UNDERLINE */
-    border-bottom: none !important; 
 }
 
 /* Hover effect: just change the text color, no bars or glows */
 .topbar a:hover {
     background-color: rgba(141, 169, 196, 0.1);
     color: #ffffff;
-    border-bottom: none !important;
 }
 
 /* Active state: subtle background change only */
 .topbar a.active {
     background-color: rgba(141, 169, 196, 0.2);
     color: #ffffff;
-    border-bottom: none !important;
+    border-color: #ccc;
 }
 
 .topbar-right {
@@ -174,6 +170,6 @@ a, a:link, a:visited {
 }
 
 a:hover {
-    color: #b4c5d6;
-    border-bottom: 2px solid #b4c5d6;
+    color: #ccc;
+    border-bottom: 2px solid #ccc;
 }
