@@ -14,7 +14,7 @@
 /* Determina el estilo del cuerpo principal de la página web*/
 body {
     margin: 0;
-    padding: 0;
+    padding-top: 80px;
     /* Use the same midnight blue from your Python code for seamless blending */
     background-color: #000b1e; 
     
@@ -25,7 +25,7 @@ body {
     
     /* 'cover' ensures no gaps, '100% auto' ensures the serpent 
        spans the full width. Choose 100% auto for this specific graphic. */
-    background-size: 100% auto;
+    background-size: auto 100%;
     
     background-repeat: repeat-y;
     
@@ -43,10 +43,9 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    overflow: hidden;
-    background-color: rgba(0, 11, 30, 0.9); 
+    background-color: rgba(0, 11, 30, 0.9);
     border-bottom: 5px solid #ccc;
-    backdrop-filter: blur(8px); 
+    backdrop-filter: blur(8px);
 }
 
 .topbar a {
@@ -75,16 +74,6 @@ body {
 
 .topbar-right {
     float: right;
-}
-
-/* Ensure body starts below the bar */
-body {
-    padding-top: 60px; 
-}
-
-/* Adjust body padding so content doesn't hide under the fixed bar */
-body {
-    padding-top: 60px; 
 }
 
 /* ESTILO DEL "PERSONAL INFORMAFION"*/ 
@@ -172,4 +161,10 @@ a, a:link, a:visited {
 a:hover {
     color: #ccc;
     border-bottom: 2px solid #ccc;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 120px; /* navbar wraps into multiple lines */
+    }
 }

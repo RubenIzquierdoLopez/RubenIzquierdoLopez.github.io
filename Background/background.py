@@ -14,11 +14,11 @@ def generate_thicker_thinner_serpent(output_file="serpent_thick_thin.png"):
     n_longitudinal = 50   # More lines to fill the increased width cleanly
     n_transversal = 60    
     points_per_line = 600 
-    serpent_width = 0.55  # Increased width for a thicker serpent
+    serpent_width = 0.45  # Increased width for a thicker serpent
     
     y_spine = np.linspace(0, 1, points_per_line)
     # Adjusted x_spine center slightly for the new width
-    x_spine = 0.3 * np.sin(2 * np.pi * y_spine) + 0.55 
+    x_spine = 0.3 * np.sin(2 * np.pi * y_spine) + 0.77
 
     # --- 1. Longitudinal Lines (Lengthwise) ---
     offsets = np.linspace(-serpent_width, serpent_width, n_longitudinal)
