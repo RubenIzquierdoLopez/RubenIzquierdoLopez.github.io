@@ -80,6 +80,7 @@ body {
 .PersonalInfo{
     display: flex;
     margin: 0 auto;
+    padding-top: 20px;
     flex-wrap: nowrap;
     margin-top: 5%;
     width: 90%;

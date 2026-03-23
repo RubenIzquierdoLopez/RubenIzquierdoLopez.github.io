@@ -24,3 +24,13 @@ document.addEventListener("DOMContentLoaded", function() {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById("last-modified").textContent = d.toLocaleDateString('en-US', options);
 });
+
+
+//Adds variable padding for mobile phone
+function updateTopPadding() {
+  const topbar = document.querySelector(".topbar");
+  document.body.style.paddingTop = topbar.offsetHeight + "px";
+}
+
+window.addEventListener("load", updateTopPadding);
+window.addEventListener("resize", updateTopPadding);
