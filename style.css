@@ -2,7 +2,7 @@
 /* Header/logo Title */
 .header {
     text-align: center;
-    background-image: url(Images/BlackBoard.webp);
+    /*background-image: url(Images/BlackBoard.webp);*/
     color: white;
     overflow: hidden;
     width: 100%;
@@ -12,47 +12,82 @@
 /*
 /* Determina el estilo del cuerpo principal de la página web*/
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #1abc9c;
-    /*background-color:#b4b0f5;*/
     margin: 0;
-  }
+    padding: 0;
+    /* Use the same midnight blue from your Python code for seamless blending */
+    background-color: #000b1e; 
+    
+    background-image: url('Background/background.png');
+    
+    /* Ensures the image stays put while you scroll */
+    background-attachment: fixed; 
+    
+    /* 'cover' ensures no gaps, '100% auto' ensures the serpent 
+       spans the full width. Choose 100% auto for this specific graphic. */
+    background-size: 100% auto;
+    
+    background-repeat: no-repeat;
+    
+    /* Centers the serpent horizontally */
+    background-position: center top; 
 
-/* BARRA DE NAVEGACIÓN
-/*
-/* Barra de navegación */
-/* Determina el estilo del bloque (topbar), fondo negro */
+    /* Standard web typography defaults to pair with the tech look */
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+/* BARRA SUPERIOR SIN SUBRAYADO */
 .topbar {
-  overflow: hidden;
-  /* Overflow determina el comportamiento cuando el texto no cabe, hidden hace que se corte el texto */
-  background-color: white;
-  width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    overflow: hidden;
+    background-color: rgba(0, 11, 30, 0.9); 
+    border-bottom: 5px solid #ccc;
+    backdrop-filter: blur(8px); 
 }
 
-/* Determina el estilo de los bloques en los enlaces */
 .topbar a {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 1.5% 1.5%;
-  text-decoration: none;
-  font-size: 15px;
+    float: left;
+    color: #8da9c4; 
+    text-align: center;
+    padding: 18px 25px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    
+    /* REMOVE THE BOTTOM BAR/UNDERLINE */
+    border-bottom: none !important; 
 }
 
-/* Determina el estilo de los enlaces al pasar por ellos*/
+/* Hover effect: just change the text color, no bars or glows */
 .topbar a:hover {
-  background-color: white;
-  color: #ccc;
+    background-color: rgba(141, 169, 196, 0.1);
+    color: #ffffff;
+    border-bottom: none !important;
 }
 
-/*Crea la clase "a.active" que simula cuando un enlace está activo*/
+/* Active state: subtle background change only */
 .topbar a.active {
-  background-color: black;
-  color: #ccc;
+    background-color: rgba(141, 169, 196, 0.2);
+    color: #ffffff;
+    border-bottom: none !important;
 }
 
-.topbar-right{
-  float: right;
+.topbar-right {
+    float: right;
+}
+
+/* Ensure body starts below the bar */
+body {
+    padding-top: 60px; 
+}
+
+/* Adjust body padding so content doesn't hide under the fixed bar */
+body {
+    padding-top: 60px; 
 }
 
 /* ESTILO DEL "PERSONAL INFORMAFION"*/ 
@@ -63,7 +98,7 @@ body {
     margin-top: 5%;
     width: 90%;
     column-gap: 10%;
-    color: black;
+    color: white;
 }
 
 /* ESTILO DEL "PUBLICATIONS"*/
@@ -73,38 +108,88 @@ body {
   width: 90%;
 }
 
-/*ESTILO DEL ACORDEÓN*/
+/* ESTILO DEL ACORDEÓN REESCRITO */
 .accordion-header {
-  background-color: #16a085;
-  color: black;
+  /* Semi-transparent dark blue to match the theme */
+  background-color: rgba(0, 11, 30, 0.85); 
+  color: #00d4ff; /* Electric Cyan from your Python ribs */
   cursor: pointer;
-  padding: 14px 20px;
+  padding: 16px 20px;
   width: 100%;
-  border: none;
   text-align: left;
   outline: none;
   font-size: 18px;
   font-weight: bold;
-  transition: background-color 0.3s;
-  border: 1px solid black;
+  transition: all 0.3s ease;
+  /* Thinner, themed border */
+  border: 1px solid rgba(74, 158, 255, 0.3); 
+  border-bottom: 1px solid rgba(74, 158, 255, 0.1);
   box-sizing: border-box;
+  backdrop-filter: blur(5px); /* Optional: blurs the serpent behind the header */
 }
 
 .accordion-header:hover {
-  background-color: #16a085;
-  color: #ccc;
+  background-color: rgba(74, 158, 255, 0.15); /* Subtle blue glow on hover */
+  color: #ffffff;
+  border-color: #00d4ff;
+}
+
+/* Active state for when the accordion is open */
+.accordion-header.active {
+  background-color: rgba(0, 20, 50, 0.95);
+  color: #ffffff;
+  border-bottom: 1px solid transparent;
 }
 
 .accordion-content {
   padding: 0 20px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
-  background-color: #1abc9c;
+  transition: max-height 0.3s ease-out;
+  /* Slightly lighter blue to distinguish content area */
+  background-color: rgba(255, 255, 255, 0.03); 
+  border-left: 1px solid rgba(0, 212, 255, 0.5);
+  border-right: 1px solid rgba(0, 212, 255, 0.1);
 }
 
 .accordion-content ul {
   list-style: disc;
-  margin: 10px 0;
-  padding-left: 20px;
+  margin: 15px 0;
+  padding-left: 25px;
+  color: #ccd6f6; /* Soft silver-blue for readability */
+  line-height: 1.6;
+}
+
+.accordion-content li::marker {
+  color: #00d4ff; /* Cyan bullet points */
+}
+
+
+/* ESTILO DE ENLACES ATENUADO */
+a {
+    /* A muted, grayish-blue instead of neon cyan */
+    color: #8da9c4; 
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    /* Very subtle underline using a darker shade */
+    border-bottom: 1px solid rgba(141, 169, 196, 0.3);
+}
+
+a:hover, a:focus {
+    /* Brightens slightly to indicate interactivity, but no glow */
+    color: #b4c5d6; 
+    border-bottom: 1px solid #b4c5d6;
+    text-shadow: none; /* Removed the glow for visual clarity */
+    outline: none;
+}
+
+a:visited {
+    /* Slightly darker so you know you've been there, but still legible */
+    color: #6a7f93;
+}
+
+/* For links inside the accordion, keeping them simple */
+.accordion-content a {
+    border-bottom: 1px solid rgba(141, 169, 196, 0.5);
 }

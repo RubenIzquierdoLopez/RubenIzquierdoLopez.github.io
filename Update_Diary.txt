@@ -1,3 +1,4 @@
+23/03/2026: Added new background
 19/03/2026: Added Reading Groupoid 17th lecture
 09/03/2026: Added publication of "Brackets in Multicontact Geometry and Multisymplectization". Also added talk at "Gamma Seminar", "The graded Jacobi bracket in dissipative field theories".
 24/02/2026: Added Hoja2_Ejercicio 14.png in "Geometría Lineal". Also fixed some typos.
