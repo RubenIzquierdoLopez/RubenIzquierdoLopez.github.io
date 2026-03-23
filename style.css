@@ -8,6 +8,7 @@
     width: 100%;
   }
 
+
 /* CUERPO DE LA PÁGINA
 /*
 /* Determina el estilo del cuerpo principal de la página web*/
@@ -138,7 +139,6 @@ body {
 .accordion-header.active {
   background-color: rgba(0, 20, 50, 0.95);
   color: #ffffff;
-  border-bottom: 1px solid transparent;
 }
 
 .accordion-content {
@@ -148,15 +148,16 @@ body {
   transition: max-height 0.3s ease-out;
   /* Slightly lighter blue to distinguish content area */
   background-color: rgba(255, 255, 255, 0.03); 
-  border-left: 1px solid rgba(0, 212, 255, 0.5);
-  border-right: 1px solid rgba(0, 212, 255, 0.1);
+  border-left: 2px solid rgba(0, 212, 255, 0.1);
+  border-right: 2px solid rgba(0, 212, 255, 0.1);
+  border-bottom: 2px solid rgba(0, 212, 255, 0.1);
 }
 
 .accordion-content ul {
   list-style: disc;
   margin: 15px 0;
   padding-left: 25px;
-  color: #ccd6f6; /* Soft silver-blue for readability */
+  color: white; /* Soft silver-blue for readability */
   line-height: 1.6;
 }
 
@@ -164,32 +165,15 @@ body {
   color: #00d4ff; /* Cyan bullet points */
 }
 
-
-/* ESTILO DE ENLACES ATENUADO */
-a {
-    /* A muted, grayish-blue instead of neon cyan */
-    color: #8da9c4; 
+/* FORCE ALL LINKS TO BE IDENTICAL */
+a, a:link, a:visited {
+    color: #8da9c4;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease-in-out;
-    /* Very subtle underline using a darker shade */
-    border-bottom: 1px solid rgba(141, 169, 196, 0.3);
+    border-bottom: 2px solid rgba(141, 169, 196, 0.3);
+    transition: all 0.2s ease-in-out;
 }
 
-a:hover, a:focus {
-    /* Brightens slightly to indicate interactivity, but no glow */
-    color: #b4c5d6; 
-    border-bottom: 1px solid #b4c5d6;
-    text-shadow: none; /* Removed the glow for visual clarity */
-    outline: none;
-}
-
-a:visited {
-    /* Slightly darker so you know you've been there, but still legible */
-    color: #6a7f93;
-}
-
-/* For links inside the accordion, keeping them simple */
-.accordion-content a {
-    border-bottom: 1px solid rgba(141, 169, 196, 0.5);
+a:hover {
+    color: #b4c5d6;
+    border-bottom: 2px solid #b4c5d6;
 }
