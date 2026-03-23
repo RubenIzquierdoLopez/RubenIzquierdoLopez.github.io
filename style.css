@@ -14,7 +14,7 @@
 /* Determina el estilo del cuerpo principal de la página web*/
 body {
     margin: 0;
-    padding-top: 80px;
+    padding-top: 50px;
     /* Use the same midnight blue from your Python code for seamless blending */
     background-color: #000b1e; 
     
