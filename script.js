@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
 //Adds variable padding for mobile phone
 function updateTopPadding() {
   const topbar = document.querySelector(".topbar");
-  document.body.style.paddingTop = topbar.offsetHeight + "px";
+  document.PersonalInfo.style.paddingTop = topbar.offsetHeight + "px";
+  document.Publications.style.paddingTop = topbar.offsetHeight + "px";
+  document.header.style.paddingTop = topbar.offsetHeight + "px";
 }
 
 window.addEventListener("load", updateTopPadding);
