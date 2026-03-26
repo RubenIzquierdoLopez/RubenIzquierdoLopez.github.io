@@ -1,3 +1,4 @@
+26/03/2026: Added pre-print arXiv:2603.24308
 23/03/2026: Added new background and major visual update
 19/03/2026: Added Reading Groupoid 17th lecture
 09/03/2026: Added publication of "Brackets in Multicontact Geometry and Multisymplectization". Also added talk at "Gamma Seminar", "The graded Jacobi bracket in dissipative field theories".
