@@ -3,4 +3,4 @@ exclude:
 url: https://rubenizquierdolopez.xyz
 baseurl: ""
 markdown: kramdown
-maptiler_api_key: "uhjE6IBrjbYpTs7PFZ1u"
+maptiler_api_key: ""

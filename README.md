@@ -73,6 +73,8 @@ maptiler_api_key: "your-key-here"
 
 MapTiler keys are public browser keys, so restrict them to the website domain in the MapTiler dashboard. If the key is blank, the map uses the dark CARTO fallback style. Keep the MapTiler and OpenStreetMap attribution visible.
 
+If a key has been committed or exposed publicly, revoke it and create a replacement before using it again. The current repository intentionally leaves `maptiler_api_key` blank until a valid restricted key is available.
+
 ## Editing templates and styles
 
 - Keep shared navigation in `_includes/navigation.html`.

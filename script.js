@@ -33,9 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const mapTilerKey = mapTilerKeyElement ? JSON.parse(mapTilerKeyElement.textContent) : "";
   if (mapElement && window.L && tripData.length) {
     const map = L.map(mapElement, { scrollWheelZoom: false, preferCanvas: true });
+    const fallbackTileUrl = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+    const fallbackTileOptions = {
+      attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
+      subdomains: "abcd",
+      maxZoom: 20,
+      detectRetina: true
+    };
     const tileUrl = mapTilerKey
       ? `https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${encodeURIComponent(mapTilerKey)}`
-      : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+      : fallbackTileUrl;
     const tileOptions = mapTilerKey
       ? {
           attribution: "&copy; MapTiler &copy; OpenStreetMap contributors",
@@ -43,13 +50,14 @@ document.addEventListener("DOMContentLoaded", function () {
           zoomOffset: -1,
           maxZoom: 20
         }
-      : {
-          attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
-          subdomains: "abcd",
-          maxZoom: 20,
-          detectRetina: true
-        };
-    L.tileLayer(tileUrl, tileOptions).addTo(map);
+      : fallbackTileOptions;
+    let tileLayer = L.tileLayer(tileUrl, tileOptions).addTo(map);
+    if (mapTilerKey) {
+      tileLayer.once("tileerror", () => {
+        map.removeLayer(tileLayer);
+        tileLayer = L.tileLayer(fallbackTileUrl, fallbackTileOptions).addTo(map);
+      });
+    }
 
     const bounds = [];
     tripData.forEach((trip) => {
