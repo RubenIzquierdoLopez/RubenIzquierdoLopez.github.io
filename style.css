@@ -8,13 +8,18 @@
     width: 100%;
   }
 
+  .header h1 {
+    margin: 0;
+  }
+
 
 /* CUERPO DE LA PÁGINA
 /*
 /* Determina el estilo del cuerpo principal de la página web*/
 body {
     margin: 0;
-    padding-top: 50px;
+  padding-top: 78px;
+  padding-bottom: 3rem;
     /* Use the same midnight blue from your Python code for seamless blending */
     background-color: #000b1e; 
     
@@ -46,16 +51,21 @@ body {
     background-color: rgba(0, 11, 30, 0.9);
     border-bottom: 5px solid #ccc;
     backdrop-filter: blur(8px);
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .topbar a {
-    float: left;
+    float: none;
     color: #8da9c4; 
     text-align: center;
-    padding: 18px 25px;
+    padding: 16px 20px;
     text-decoration: none;
     font-size: 15px;
     font-weight: 500;
+    line-height: 1.2;
     transition: all 0.2s ease;
 }
 
@@ -72,6 +82,20 @@ body {
     border-color: #ccc;
 }
 
+  .topbar .nav-icon {
+    display: inline-block;
+    width: 1.15em;
+    height: 1.15em;
+    margin-right: 0.35em;
+    vertical-align: -0.2em;
+    object-fit: contain;
+  }
+
+  .topbar .cv-link {
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
 .topbar-right {
     float: right;
 }
@@ -80,9 +104,9 @@ body {
 .PersonalInfo{
     display: flex;
     margin: 0 auto;
-    padding-top: 20px;
+  padding-top: 0;
     flex-wrap: nowrap;
-    margin-top: 5%;
+  margin-top: 0;
     width: 90%;
     column-gap: 10%;
     color: white;
@@ -91,9 +115,206 @@ body {
 /* ESTILO DEL "PUBLICATIONS"*/
 .Publications{
   margin:0 auto;
-  margin-top: 5%;
-  padding-top: 20px;
+  margin-top: 0;
+  padding-top: 0;
   width: 90%;
+}
+
+.home-header {
+  padding-bottom: 20px;
+}
+
+.research-page,
+.home-page,
+.teaching-page,
+.miscellany-page {
+  align-items: flex-start;
+}
+
+.talks-content,
+.research-content,
+.teaching-content,
+.miscellany-content {
+  display: block;
+  width: 100%;
+}
+
+.home-content,
+.research-content,
+.talks-content,
+.teaching-content,
+.miscellany-content {
+  width: 70%;
+  overflow: auto;
+  text-align: justify;
+}
+
+.research-content,
+.talks-content,
+.teaching-content,
+.miscellany-content,
+.home-content {
+  width: 100%;
+}
+
+.research-content h1,
+.home-content h1,
+.teaching-content h1,
+.miscellany-content h1 {
+  margin-top: 0;
+}
+
+.home-content h2:first-child {
+  margin-top: 0;
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+
+.about-portrait {
+  margin: 0;
+}
+
+.about-portrait img {
+  display: block;
+  width: 100%;
+  border: 2px solid black;
+}
+
+.about-portrait figcaption {
+  margin-top: 0.4rem;
+}
+
+.about-intro-copy p:first-child {
+  margin-top: 0;
+}
+
+.muted {
+  color: #ccc;
+}
+
+.publication-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.publication-item p {
+  margin: 0;
+}
+
+.publication-pdf {
+  flex: 0 0 1.2rem;
+  border-bottom: 0;
+}
+
+.publication-pdf img {
+  max-width: 1.2rem;
+  max-height: 1.4rem;
+}
+
+.course-item {
+  margin: 1rem 0 1.5rem;
+}
+
+.course-item h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+}
+
+.course-item ul {
+  margin-top: 0;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.social-links a {
+  border-bottom: 0;
+}
+
+.social-links img {
+  height: 3em;
+  width: auto;
+}
+
+.trip-map-section {
+  margin-top: 2.5rem;
+}
+
+.trip-map-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.trip-map {
+  min-height: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  border: 2px solid rgba(0, 212, 255, 0.55);
+  border-radius: 14px;
+  background: rgba(0, 11, 30, 0.55);
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.trip-map .leaflet-top.leaflet-left {
+  top: auto;
+  bottom: 22px;
+}
+
+.leaflet-container {
+  font: inherit;
+  color: #000b1e;
+}
+
+.leaflet-popup-content strong,
+.leaflet-popup-content span,
+.leaflet-popup-content small {
+  display: inline-block;
+}
+
+.leaflet-popup-content p {
+  margin: 0.5rem 0 0;
+}
+
+.trip-popup {
+  min-width: 190px;
+}
+
+.trip-popup img {
+  display: block;
+  width: 100%;
+  max-height: 130px;
+  margin-top: 0.65rem;
+  object-fit: cover;
+}
+
+.trip-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #00182b;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.22), 0 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+.trip-marker span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00182b;
 }
 
 /* ESTILO DEL ACORDEÓN REESCRITO */
@@ -130,14 +351,66 @@ body {
 
 .accordion-content {
   padding: 0 20px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  max-height: none;
+  overflow: visible;
   /* Slightly lighter blue to distinguish content area */
   background-color: rgba(255, 255, 255, 0.03); 
   border-left: 2px solid rgba(0, 212, 255, 0.1);
   border-right: 2px solid rgba(0, 212, 255, 0.1);
   border-bottom: 2px solid rgba(0, 212, 255, 0.1);
+}
+
+.accordion-content[hidden] {
+  display: none;
+}
+
+.talks-page {
+  margin-top: 0;
+  align-items: flex-start;
+}
+
+.talks-content h1 {
+  margin-top: 0;
+}
+
+.talk-year h2 {
+  margin: 1.5rem 0 0;
+}
+
+.accordion-header {
+  font-family: inherit;
+}
+
+.talk-list {
+  margin: 0;
+  padding: 0.5rem 1.5rem 0.5rem 2.5rem;
+}
+
+.talk-item {
+  padding: 0.7rem 0;
+}
+
+.talk-item p {
+  margin: 0;
+}
+
+.talk-resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.45rem !important;
+  padding-left: 1rem;
+}
+
+.talk-resources img {
+  max-width: 1.2em;
+  max-height: 1.2em;
+  vertical-align: middle;
+}
+
+.talk-note {
+  padding-left: 1rem;
+  font-style: italic;
 }
 
 .accordion-content ul {
@@ -167,6 +440,41 @@ a:hover {
 
 @media (max-width: 768px) {
     body {
-        padding-top: 120px; /* navbar wraps into multiple lines */
+    padding-top: 112px; /* navbar wraps into multiple lines */
     }
+
+  .topbar a {
+    padding: 13px 14px;
+  }
+
+  .topbar .cv-link {
+    margin-left: 0;
+  }
+
+  .PersonalInfo {
+    width: 90%;
+    flex-direction: column;
+    row-gap: 1.5rem;
+  }
+
+  .talks-content,
+  .research-content,
+  .home-content,
+  .teaching-content,
+  .miscellany-content {
+    width: 100%;
+  }
+
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .about-portrait {
+    max-width: 260px;
+  }
+
+  .trip-map {
+    min-height: 390px;
+  }
 }

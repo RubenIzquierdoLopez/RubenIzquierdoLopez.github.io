@@ -1,0 +1,6 @@
+exclude:
+  - Background/background.py
+url: https://rubenizquierdolopez.xyz
+baseurl: ""
+markdown: kramdown
+maptiler_api_key: "uhjE6IBrjbYpTs7PFZ1u"

@@ -1,149 +1,49 @@
-<!DOCTYPE html>
+---
+layout: null
+---
+<!doctype html>
 <html lang="en">
 <head>
-  <title>Rubén Izquierdo López</title>
+  <title>Teaching | Rubén Izquierdo López</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../style.css">
 </head>
-
-<script type="text/javascript" src="../script.js"></script>
-
-
 <body>
-<!-- Header -->
+  {% include navigation.html active='teaching' %}
 
-  <!--Barra de navegación superior-->
-  <div class="topbar">
-    <a href="../index.html">Home</a>
-    <a href="../Research/index.html" >Research</a>
-    <a href="../Talks/index.html">Talks</a>
-    <a class = "active" href="index.html">Teaching</a>
-    <a href="../Miscellany/index.html">Miscellany</a>
-    
-    <!--Curriculum Vitae-->
-    <!--<div class = "topbar-right">-->
-      <a href="../Documents/Curriculum_Vitae.pdf" target="_blank"> 
-        <img loading="lazy" style="max-height:1.3em;max-width:1.3em; float: left;" src="../Images/External_Link.webp" alt="External_Link">
-        &nbsp; Curriculum Vitae
-      </a>
-    <!--</div>-->
-  </div>
+  <main class="PersonalInfo teaching-page" id="Teaching">
+    <section class="teaching-content" aria-labelledby="teaching-title">
+      <h1 id="teaching-title">Teaching</h1>
+      <p>I have taught throughout my academic career. In the academic year 2024-25 and the first semester of 2025-26, I was a professor at <a href="https://www.unir.net/" target="_blank" rel="noopener">UNIR</a>, mainly teaching in the degrees of Physics and Computational Mathematics. I am currently an <a href="https://www.ciencia.gob.es/Convocatorias/2024/FPU2024.html" target="_blank" rel="noopener">FPU2024</a> fellow assisting with classes at <a href="https://www.uam.es/uam/inicio" target="_blank" rel="noopener">UAM</a>.</p>
 
-    <!--Main body-->
-  <div class = "PersonalInfo" id = "Talks" style="margin-top: 0%;">
-    <!--Imagen-->
-    <div style=" width: 20%; margin-top: 5%;">
-      <img loading="lazy"  src="../Images/B_Monomon.webp" alt="Foto_Ruben" style = "width: 100%;">
-      <div>This is <a href="https://hollowknight.wiki/w/Monomon_the_Teacher" target="_blank">Monomon the Teacher</a>, a placeholder until I find some more meaningful picture to place here.</div> <br>
-    </div>
-    
-    <!--Texto-->
-    <div style="width: 70%; overflow:auto; text-align: justify;">
-      <h2><b>Teaching</b></h2> 
-      You can find here my teaching experience throughout my academic career. In the academic year 2024-25 and in the first semester of
-      academic year 2025-26, I have been a professor in <a href="https://www.unir.net/" target="_blank">UNIR</a>, mainly teaching in the degrees of Physics and Computational Mathematics. Right now I am a 
-      <a href="https://www.ciencia.gob.es/Convocatorias/2024/FPU2024.html" target="_blank">FPU2024</a> fellow, assisting in the classes taking place in <a href="https://www.uam.es/uam/inicio" target="_blank">UAM</a>.
-      <br> <br>
-        <!--Talks-->
-        <div>
-
-          <div class="talks-section">
-            <div class="accordion">
-
-              <!-----------------------------------
-              Teaching of 2025--2026
-              ------------------------------------>
-              <button class = "accordion-header">Teaching of 2025-26</button>
-              <div class = "accordion-content">
-                  <br>
-                  <!--Geometría lineal 711-->
-                  <div style="margin-left: 30px; text-align: justify;">
-                    <b><a href = "https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs?entradaPublica=true&idiomaPais=es.ES&_anoAcademico=2025&_codAsignatura=20564" target = "_blank">Geometría lineal:</a> Grupo 711</b>
-                    (<b><a href = "https://www.uam.es/uam/matematicas" target = "_blank">Grado en Matemáticas UAM</a></b>)
-                    <div style="margin-left: 1em;">
-                      <ul>
-                        <!--Profesor de toería-->
-                        <li>
-                          <i>Profesor de teoría: </i> iason(dot)efraimidis(at)uam(dot)es  
-                        </li>
-                        <!--Horario-->
-                        <li>
-                          <i>Horario: </i> Miércoles de 9:30 a 11:30.
-                        </li>
-                        <!--Lugar-->
-                        <li>
-                          <i>Lugar:</i> Aula 101-4 módulo 16.
-                        </li>
-                        <!--Tutorías-->
-                        <li>
-                          <i>Tutorías:</i> Consultadme.
-                        </li>
-                        <br>
-                        <!--Documentos asociados-->
-                        <li>
-                          <i>Documentos:</i>
-                          <ol style="font-size: medium;">
-                            <li>
-                              GeoGebra del Ejercicio 6 de la Hoja 0: <a href="../Documents/Teaching/Geometría_Lineal_25/Hoja0_Ejercicio6.ggb" target="_blank">Descargar</a>
-                            </li>
-                            <li>
-                              Imagen representando el Ejercicio 14 de la Hoja 2: <a href="../Documents/Teaching/Geometría_Lineal_25/Hoja2_Ejercicio14.png" target="_blank">Descargar</a>
-                            </li>
-                          </ol>
-                        </li>
-                      </ul>
-                    </div> 
-                  </div>
-
-                  <br>
-
-                  <!--Geometría lineal 220-->
-                  <div style="margin-left: 30px; text-align: justify;">
-                    <b><a href = "https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs?entradaPublica=true&idiomaPais=es.ES&_anoAcademico=2025&_codAsignatura=20564" target = "_blank">Geometría lineal:</a> Grupo 220</b>
-                    (<b><a href = "https://www.uam.es/uam/informatica-matematicas" target = "_blank">Grado en Ingeniería Informática y Matemáticas UAM</a></b>)
-                    <div style="margin-left: 1em;">
-                      <ul>
-                        <!--Profesor de toería-->
-                        <li>
-                          <i>Profesor de teoría: </i> daniel(dot)ortega(at)uam(dot)es
-                        </li>
-                        <!--Horario-->
-                        <li>
-                          <i>Horario: </i> Miércoles de 11:30 a 13:30
-                        </li>
-                        <!--Lugar-->
-                        <li>
-                          <i>Lugar:</i> Aula 101-5 módulo 16.
-                        </li>
-                        <!--Tutorías-->
-                        <li>
-                          <i>Tutorías:</i> Consultadme.
-                        </li>
-                        <!--Documentos asociados-->
-                        <br>
-                        <li>
-                          <i>Documentos:</i>
-                          <ol style="font-size: medium;">
-                            <li>
-                              GeoGebra del Ejercicio 6 de la Hoja 0: <a href="../Documents/Teaching/Geometría_Lineal_25/Hoja0_Ejercicio6.ggb" target="_blank">Descargar</a>
-                            </li>
-                            <li>
-                              Imagen representando el Ejercicio 14 de la Hoja 2: <a href="../Documents/Teaching/Geometría_Lineal_25/Hoja2_Ejercicio14.png" target="_blank">Descargar</a>
-                            </li>
-                          </ol>
-                        </li>
-                      </ul>
-                    </div> 
-                  </div> 
-              </div>
-              <br><br>
-
+      <div class="accordion">
+        {% for year in site.data.teaching %}
+        <section class="talk-year">
+          <h2><button class="accordion-header" type="button" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="teaching-{{ year.year | slugify }}">Teaching of {{ year.year }}</button></h2>
+          <div class="accordion-content" id="teaching-{{ year.year | slugify }}" {% unless forloop.first %}hidden{% endunless %}>
+            <div class="course-list">
+              {% for course in year.courses %}
+              <article class="course-item">
+                <h3><a href="{{ course.course_url }}" target="_blank" rel="noopener">{{ course.name }}</a> (<a href="{{ course.degree_url }}" target="_blank" rel="noopener">{{ course.degree }}</a>)</h3>
+                <ul>
+                  <li><i>Professor of theory:</i> {{ course.theory_teacher }}</li>
+                  <li><i>Schedule:</i> {{ course.schedule }}</li>
+                  <li><i>Room:</i> {{ course.room }}</li>
+                  <li><i>Tutorials:</i> Consultadme.</li>
+                  <li><i>Documents:</i>
+                    <ul>{% for document in course.documents %}<li><a href="{{ document.url }}" target="_blank" rel="noopener">{{ document.name }}</a></li>{% endfor %}</ul>
+                  </li>
+                </ul>
+              </article>
+              {% endfor %}
             </div>
-        </div>
+          </div>
+        </section>
+        {% endfor %}
       </div>
-    </div>
-  </div>
-  
+    </section>
+  </main>
+  <script src="../script.js"></script>
 </body>
 </html>

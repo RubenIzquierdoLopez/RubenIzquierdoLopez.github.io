@@ -1,0 +1,50 @@
+- place: Madrid
+  country: Spain
+  coordinates: [40.4168, -3.7038]
+  date: Ongoing
+  title: ICMAT, UAM, and home base
+  description: PhD research and teaching in Madrid.
+
+- place: Miraflores de la Sierra
+  country: Spain
+  coordinates: [40.8156, -3.7628]
+  date: June 2024-2025
+  title: La Cristalera
+  description: Geometry and field theory activities at La Cristalera.
+  image: Images/RubenIzquierdo_talk_2.webp
+  image_alt: Rubén Izquierdo López giving a talk at La Cristalera
+
+- place: Córdoba
+  country: Spain
+  coordinates: [37.8882, -4.7794]
+  date: September 2025
+  title: International Fall Workshop on Geometry and Physics
+  description: Talk on graded brackets in classical field theory.
+
+- place: Verona
+  country: Italy
+  coordinates: [45.4384, 10.9916]
+  date: January 2025
+  title: Young Researchers Workshop
+  description: Talk on graded structures of classical field theory.
+
+- place: La Laguna
+  country: Spain
+  coordinates: [28.4874, -16.3159]
+  date: January 2026
+  title: Iberoamerican Meeting on Geometry, Dynamics, and Field Theory
+  description: Talk on graded Poisson brackets and conservation laws.
+
+- place: Wroclaw
+  country: Poland
+  coordinates: [51.1079, 17.0385]
+  date: March 2026
+  title: Gamma Seminar
+  description: Talk on the graded Jacobi bracket in dissipative field theories.
+
+- place: Loughborough
+  country: United Kingdom
+  coordinates: [52.7650, -1.2320]
+  date: June 2026
+  title: OAK2
+  description: Talk on G-structures applied to multisymplectic manifolds.

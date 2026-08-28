@@ -1,47 +1,24 @@
-<!DOCTYPE html>
+---
+layout: null
+---
+<!doctype html>
 <html lang="en">
 <head>
-  <title>Rubén Izquierdo López</title>
+  <title>Miscellany | Rubén Izquierdo López</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../style.css">
 </head>
-
-<script type="text/javascript" src="script.js"></script>
-
 <body>
-<!-- Header -->
+  {% include navigation.html active='miscellany' %}
 
-  <!--Barra de navegación superior-->
-  <div class="topbar">
-    <a href="../index.html">Home</a>
-    <a href="../Research/index.html" >Research</a>
-    <a href="../Talks/index.html">Talks</a>
-    <a href="../Teaching/index.html">Teaching</a>
-    <a class = "active" href="index.html">Miscellany</a>
-    
-    <!--Curriculum Vitae-->
-    <!--<div class = "topbar-right">-->
-      <a href="../Documents/Curriculum_Vitae.pdf" target="_blank"> 
-        <img loading="lazy"  style="max-height:1.3em;max-width:1.3em; float: left;" src="../Images/External_Link.webp" alt="External_Link">
-        &nbsp; Curriculum Vitae
-      </a>
-    <!--</div>-->
-  </div>
-
-  <div class = "PersonalInfo" id = "Home" style="margin-top: 0%;">
-    <!--Imagen-->
-    <div style=" width: 30%; margin-top: 5%;">
-      <img loading="lazy"  src="../Images/Groupoid.webp" alt="Foto_Ruben" style = "width: 100%; border: 2px solid black;">
-    </div>
-    
-    <!--Texto-->
-    <div style="width: 70%; overflow:auto; text-align: justify;">
-      <h2><b>Reading Groupoid</b></h2>
-      I am co-orgazing the "Reading Groupoid" in the academic year 2025-2026. For more information, 
-      see the <a href="https://readinggroupoid.org/" target = "_blank">official website</a>.
-    </div>
-  </div>
-  
+  <main class="PersonalInfo miscellany-page" id="Miscellany">
+    {% for item in site.data.miscellany %}
+    <section class="miscellany-content" aria-labelledby="miscellany-title">
+      <h1 id="miscellany-title">{{ item.title }}</h1>
+      <p>{{ item.description }} For more information, see the <a href="{{ item.link }}" target="_blank" rel="noopener">{{ item.link_label }}</a>.</p>
+    </section>
+    {% endfor %}
+  </main>
 </body>
 </html>

@@ -1,0 +1,26 @@
+- year: 2025-26
+  courses:
+    - name: Geometría lineal, grupo 711
+      course_url: 'https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs?entradaPublica=true&idiomaPais=es.ES&_anoAcademico=2025&_codAsignatura=20564'
+      degree: Grado en Matemáticas UAM
+      degree_url: https://www.uam.es/uam/matematicas
+      theory_teacher: iason(dot)efraimidis(at)uam(dot)es
+      schedule: Miércoles de 9:30 a 11:30
+      room: Aula 101-4 módulo 16
+      documents:
+        - name: GeoGebra del Ejercicio 6 de la Hoja 0
+          url: ../Documents/Teaching/Geometría_Lineal_25/Hoja0_Ejercicio6.ggb
+        - name: Imagen representando el Ejercicio 14 de la Hoja 2
+          url: ../Documents/Teaching/Geometría_Lineal_25/Hoja2_Ejercicio14.png
+    - name: Geometría lineal, grupo 220
+      course_url: 'https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs?entradaPublica=true&idiomaPais=es.ES&_anoAcademico=2025&_codAsignatura=20564'
+      degree: Grado en Ingeniería Informática y Matemáticas UAM
+      degree_url: https://www.uam.es/uam/informatica-matematicas
+      theory_teacher: daniel(dot)ortega(at)uam(dot)es
+      schedule: Miércoles de 11:30 a 13:30
+      room: Aula 101-5 módulo 16
+      documents:
+        - name: GeoGebra del Ejercicio 6 de la Hoja 0
+          url: ../Documents/Teaching/Geometría_Lineal_25/Hoja0_Ejercicio6.ggb
+        - name: Imagen representando el Ejercicio 14 de la Hoja 2
+          url: ../Documents/Teaching/Geometría_Lineal_25/Hoja2_Ejercicio14.png

@@ -1,130 +1,62 @@
-<!DOCTYPE html>
+---
+layout: null
+---
+<!doctype html>
 <html lang="en">
 <head>
   <title>Rubén Izquierdo López</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="canonical" href="https://rubenizquierdolopez.xyz/">
 </head>
-
-<script type="text/javascript" src="script.js"></script>
-
 <body>
+  {% include navigation.html active='about' %}
 
-  <!--Barra de navegación superior-->
-  <div class="topbar">
-    <a class="active" href="index.html">Home</a>
-    <a href="Research/index.html" >Research</a>
-    <a href="Talks/index.html">Talks</a>
-    <a href="Teaching/index.html">Teaching</a>
-    <a href="Miscellany/index.html">Miscellany</a>
-    <!--Curriculum Vitae-->
-    <!--<div class = "topbar-right">-->
-      <a href="Documents/Curriculum_Vitae.pdf" target="_blank"> 
-        <img loading="lazy" style="height:1.3em;width:1.3em; float: left;" src="Images/External_Link.webp" alt="External_Link">
-        &nbsp; Curriculum Vitae
-      </a>
-    <!--</div>-->
-  </div>
-
- <!-- Header -->
-  <div class="header" style="padding-top: 20px;">
+  <header class="header home-header">
     <h1>Webpage of Rubén Izquierdo López</h1>
-  </div>
+  </header>
 
-  <div class = "PersonalInfo" id = "Home" style="padding-bottom: 3%px; margin-top: 0%; padding-top: 0px;">
-    <!--Imagen-->
-    <div style=" width: 30%; margin-top: 5%;">
-      <img loading="lazy" src="Images/RubenIzquierdo_Profile.webp" alt="Foto_Ruben" style = "width: 100%; border: 2px solid black;">
-      <div>A picture of me at the end of my master's degree, 2024</div>
-    </div>
-    
-    <!--Texto-->
-    <div style="width: 70%; overflow:auto; text-align: justify;">
-      <h2><b>About me</b></h2>
+  <main class="PersonalInfo home-page" id="About">
+    <section class="home-content" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <div class="about-intro">
+        <figure class="about-portrait">
+          <img loading="lazy" src="Images/RubenIzquierdo_Profile.webp" alt="Rubén Izquierdo López">
+          <figcaption>A picture of me at the end of my master's degree, 2024.</figcaption>
+        </figure>
+        <div class="about-intro-copy">
+          <p>Welcome to my personal webpage! <span class="muted">This page was last modified on <a href="Update_Diary.txt" target="_blank" rel="noopener"><span id="last-modified"></span></a>.</span></p>
+          <p>I am currently a PhD student at <a href="https://www.icmat.es/es/" target="_blank" rel="noopener">ICMAT</a> with an <a href="https://www.ciencia.gob.es/Convocatorias/2024/FPU2024.html" target="_blank" rel="noopener">FPU2024</a> fellowship, under the supervision of <a href="https://www.manueldeleon.es/" target="_blank" rel="noopener">Manuel de León</a>. To check my research interests, click the Research button above. My personal interests include playing the piano, cooking, and video games.</p>
+        </div>
+      </div>
+      <p>Below you can find a summary of my (so far short) academic career:</p>
+      <ul>
+        <li>I obtained my undergraduate degree in <a href="https://matematicas.ucm.es/estudios/2025-26/grado-matematicas" target="_blank" rel="noopener">Mathematics</a> at the <a href="https://www.ucm.es/" target="_blank" rel="noopener">Universidad Complutense de Madrid</a> in 2023, with an average grade of 9.44/10. My bachelor’s thesis, <i>Homología Singular y Celular</i>, is available as <a href="Documents/RubenIzquierdo_BachelorThesis.pdf" target="_blank" rel="noopener">text</a> and <a href="Documents/Slides/Bachelor_Thesis_slides.pdf" target="_blank" rel="noopener">slides</a>.</li>
+        <li>I completed my master’s degree in <a href="https://www.ucm.es/estudios/master-matematicasavanzadas" target="_blank" rel="noopener">Advanced Mathematics</a> at the same university in 2024, with an average grade of 9.77/10. My master’s thesis, <i>Coisotropic Reduction in Multisymplectic Geometry</i>, is available as <a href="Documents/RubenIzquierdo_MasterThesis.pdf" target="_blank" rel="noopener">text</a> and <a href="Documents/Slides/Master_Thesis_slides.pdf" target="_blank" rel="noopener">slides</a>.</li>
+        <li>I am currently pursuing my PhD at <a href="https://www.icmat.es/es/" target="_blank" rel="noopener">ICMAT</a> and <a href="https://www.uam.es/uam/inicio" target="_blank" rel="noopener">UAM</a>.</li>
+      </ul>
 
-Welcome to my personal webpage! <span style = "color: #ccc;">This page was last modified on  <a href="Update_Diary.txt" target="_blank" style="color: inherit;">
-<span id = "last-modified"></span>.</span>
-</a>
+      <h2>Relevant links</h2>
+      <div class="social-links" aria-label="External profiles">
+        <a href="https://arxiv.org/search/?query=Rub%C3%A9n+Izquierdo-L%C3%B3pez&searchtype=author&source=head" target="_blank" rel="noopener"><img loading="lazy" src="Images/arxiv_logo.webp" alt="arXiv"></a>
+        <a href="https://bsky.app/profile/rubenizqdo.bsky.social" target="_blank" rel="noopener"><img loading="lazy" src="Images/Bluesky_Logo.webp" alt="Bluesky"></a>
+        <a href="https://scholar.google.es/citations?user=vQKgf6sAAAAJ&hl=es" target="_blank" rel="noopener"><img loading="lazy" src="Images/Google_Scholar.webp" alt="Google Scholar"></a>
+        <a href="https://www.linkedin.com/in/rub%C3%A9n-izquierdo-l%C3%B3pez-942719272/" target="_blank" rel="noopener"><img loading="lazy" src="Images/LinkedIn_logo.webp" alt="LinkedIn"></a>
+        <a href="https://orcid.org/0009-0007-8747-344X" target="_blank" rel="noopener"><img loading="lazy" src="Images/OrcidID.webp" alt="ORCID"></a>
+      </div>
 
-<br><br>
-
-I am currently a PhD student at 
-<a href="https://www.icmat.es/es/" target="_blank">ICMAT</a> with an 
-<a href="https://www.ciencia.gob.es/Convocatorias/2024/FPU2024.html" target="_blank">FPU2024</a> fellowship,
-under the supervision of <a href="https://www.manueldeleon.es/" target="_blank">Manuel de León</a>.
-To check my research interests, you may click the “Research” button above.
-My personal interests include playing the piano, cooking, and video games. Below you can find a summary of my (so far short) academic career:
-
-<br><br>
-
-<div style="margin-left: 3%;">
-  I obtained my undergraduate degree in 
-  <a href="https://matematicas.ucm.es/estudios/2025-26/grado-matematicas" target="_blank">Mathematics</a>
-  at the 
-  <a href="https://www.ucm.es/" target="_blank">Universidad Complutense de Madrid</a> in 2023, with an average grade
-  of 9.44/10. If you wish, you can check my bachelor’s thesis (in Spanish):
-
-  <div style="margin-left: 30px;">
-    <ul>
-      <li>
-        Homología Singular y Celular: <i>Text:</i>
-        <a href="Documents/RubenIzquierdo_BachelorThesis.pdf" target="_blank">
-          <img loading="lazy" style="height:1em;width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
-        <i>Slides:</i>
-        <a href="Documents/Slides/Bachelor_Thesis_slides.pdf" target="_blank">
-          <img loading="lazy" style="height:1em;width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
-      </li>
-    </ul>
-  </div>
-
-  I then completed my master’s degree in 
-  <a href="https://www.ucm.es/estudios/master-matematicasavanzadas" target="_blank">
-    Advanced Mathematics
-  </a>
-  at the same university in 2024 with
-  an average grade of 9.77/10. You can check my master’s thesis here:
-
-  <div style="margin-left: 30px;">
-    <ul>
-      <li>
-        Coisotropic Reduction in Multisymplectic Geometry: <i>Text:</i>
-        <a href="Documents/RubenIzquierdo_MasterThesis.pdf" target="_blank">
-          <img loading="lazy" style="height:1em;width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
-        <i>Slides:</i>
-        <a href="Documents/Slides/Master_Thesis_slides.pdf" target="_blank">
-          <img loading="lazy" style="height:1em;width:1em" src="Images/pdf_icon.webp" alt="PDF"></a>
-      </li>
-    </ul>
-  </div>
-
-  I am currently pursuing my PhD at ICMAT and <a href="https://www.uam.es/uam/inicio" target="_blank">UAM</a>, hopefully there will be a PDF here soon enough.
-</div>
-
-      <br>
-      <h2><b>Relevant links:</b></h2>
-      <!--ArXiV-->
-      <a href="https://arxiv.org/search/?query=Rub%C3%A9n+Izquierdo-L%C3%B3pez&searchtype=author&source=head" target="_blank" style="float: left; margin-left: 2em;"> 
-        <img loading="lazy" style="height:3em;" src="Images/arxiv_logo.webp" alt="arxiv">
-      </a>
-      <!--Bluesky-->
-      <a href="https://bsky.app/profile/rubenizqdo.bsky.social" target="_blank" style="float: left; margin-left: 2em;"> 
-        <img loading="lazy" style="height:3em;" src="Images/Bluesky_Logo.webp" alt="Blue Sky">
-      </a>
-      <!--Google Scholar-->
-      <a href="https://scholar.google.es/citations?user=vQKgf6sAAAAJ&hl=es" target="_blank" style="float: left; margin-left: 2em;"> 
-        <img sloading="lazy" style="height:3em;" src="Images/Google_Scholar.webp" alt="Google Scholar">
-      </a>
-      <!--LinkedIn-->
-      <a href="https://www.linkedin.com/in/rub%C3%A9n-izquierdo-l%C3%B3pez-942719272/" target="_blank" style="float: left; margin-left: 2em;"> 
-        <img loading="lazy" style="height:3em;" src="Images/LinkedIn_logo.webp" alt="Liked In">
-      </a>
-      <!--OrcidID-->
-      <a href="https://orcid.org/0009-0007-8747-344X" target="_blank" style="float: left; margin-left: 2em;"> 
-        <img loading="lazy" style="height:3em;" src="Images/OrcidID.webp" alt="OrcidID">
-      </a>
-    </div>
-  </div>
+      <section class="trip-map-section" aria-labelledby="trip-map-title">
+        <h2 id="trip-map-title">Places I have visited</h2>
+        <p>Selected destinations from my academic trips. Select a pin to see what brought me there.</p>
+        <div id="trip-map" class="trip-map" aria-label="Map of selected academic trips"></div>
+      </section>
+    </section>
+  </main>
+  <script id="trip-data" type="application/json">{{ site.data.trips | jsonify }}</script>
+  <script id="maptiler-api-key" type="application/json">{{ site.maptiler_api_key | jsonify }}</script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
