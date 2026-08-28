@@ -292,6 +292,85 @@ body {
   min-width: 190px;
 }
 
+.trip-popup p {
+  text-align: justify;
+}
+
+.trip-event-viewport {
+  overflow: visible;
+  margin: 0.45rem -0.5rem 0;
+  padding: 0 0.75rem;
+}
+
+.trip-event-content {
+  min-height: 2.5rem;
+  will-change: transform, opacity;
+}
+
+.trip-media-row {
+  position: relative;
+  display: block;
+  margin-top: 0.65rem;
+}
+
+.trip-media-row.has-controls {
+  padding: 0;
+}
+
+.trip-event-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  min-width: 1.5rem;
+  min-height: 2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #007c91;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.trip-event-arrow.carousel-control-prev {
+  left: -1.35rem;
+}
+
+.trip-event-arrow.carousel-control-next {
+  right: -1.6rem;
+}
+
+.trip-media-row.has-controls img {
+  margin-top: 0;
+}
+
+.trip-event-arrow svg {
+  display: block;
+  width: 1.1rem;
+  height: 1.5rem;
+  overflow: visible;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.trip-event-arrow polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.trip-event-arrow:hover,
+.trip-event-arrow:focus-visible {
+  color: #005766;
+}
+
+.trip-event-arrow:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 .trip-popup img {
   display: block;
   width: 100%;
@@ -300,21 +379,113 @@ body {
   object-fit: cover;
 }
 
-.trip-marker {
+.enhance-image {
+  cursor: zoom-in;
+}
+
+.enhance-image:focus-visible {
+  outline: 2px solid #007c91;
+  outline-offset: 3px;
+}
+
+.image-viewer[hidden] {
+  display: none;
+}
+
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #00182b;
-  border-radius: 50%;
-  background: #00d4ff;
-  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.22), 0 3px 10px rgba(0, 0, 0, 0.45);
+  padding: 2rem;
+  background: rgba(0, 11, 30, 0.88);
+  opacity: 0;
+  transition: opacity 180ms ease-out;
 }
 
-.trip-marker span {
-  width: 6px;
-  height: 6px;
+.image-viewer.is-open {
+  opacity: 1;
+}
+
+body.image-viewer-open {
+  overflow: hidden;
+}
+
+.image-viewer img {
+  max-width: min(92vw, 1200px);
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+  transform: scale(0.96);
+  transition: transform 180ms ease-out;
+}
+
+.image-viewer.is-open img {
+  transform: scale(1);
+}
+
+.image-viewer-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  background: #00182b;
+  background: rgba(0, 11, 30, 0.7);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0;
+}
+
+.image-viewer-close::before,
+.image-viewer-close::after {
+  position: absolute;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  content: "";
+}
+
+.image-viewer-close::before {
+  transform: rotate(45deg);
+}
+
+.image-viewer-close::after {
+  transform: rotate(-45deg);
+}
+
+.image-viewer-close:hover,
+.image-viewer-close:focus-visible {
+  background: #007c91;
+}
+
+.image-viewer-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.trip-marker {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.trip-marker svg {
+  display: block;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+}
+
+.leaflet-div-icon {
+  background: transparent;
+  border: none;
 }
 
 /* ESTILO DEL ACORDEÓN REESCRITO */
@@ -351,13 +522,16 @@ body {
 
 .accordion-content {
   padding: 0 20px;
-  max-height: none;
-  overflow: visible;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
   /* Slightly lighter blue to distinguish content area */
   background-color: rgba(255, 255, 255, 0.03); 
   border-left: 2px solid rgba(0, 212, 255, 0.1);
   border-right: 2px solid rgba(0, 212, 255, 0.1);
   border-bottom: 2px solid rgba(0, 212, 255, 0.1);
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
 }
 
 .accordion-content[hidden] {
@@ -375,6 +549,19 @@ body {
 
 .talk-year h2 {
   margin: 1.5rem 0 0;
+}
+
+.talk-year:first-child h2 {
+  margin-top: 0;
+}
+
+.talk-year .accordion-header {
+  border-radius: 6px 6px 0 0;
+}
+
+.talk-year .accordion-header[aria-expanded="false"] {
+  border-radius: 6px;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.3);
 }
 
 .accordion-header {

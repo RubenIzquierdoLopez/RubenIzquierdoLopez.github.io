@@ -1,3 +1,13 @@
+- year: 2026-27
+  courses:
+    - name: Topología, grupo 722
+      course_url: 'https://secretaria-virtual.uam.es/doa/consultaPublica/look[conpub]MostrarPubGuiaDocAs'
+      degree: Grado en Matemáticas UAM
+      degree_url: https://www.uam.es/uam/matematicas
+      theory_teacher: dragan(dot)vukotic(at)uam(dot)es
+      schedule: Miércoles de 17:30 a 19:30
+      room: Por determinar
+
 - year: 2025-26
   courses:
     - name: Geometría lineal, grupo 711

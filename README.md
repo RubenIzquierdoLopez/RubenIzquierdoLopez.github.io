@@ -58,10 +58,9 @@ Map records may also include an optional local photograph:
   title: Example Conference
   description: A short description of the trip.
   image: Images/example-conference-group.jpg
-  image_alt: Group photograph at Example Conference
 ```
 
-Put local images in `Images/`. The map displays the photograph inside the selected pin's popup. Use descriptive `image_alt` text and do not add photographs for which you do not have permission to publish.
+Put local images in `Images/`. The map displays the photograph inside the selected pin's popup. Do not add photographs for which you do not have permission to publish.
 
 ### MapTiler Streets style
 
