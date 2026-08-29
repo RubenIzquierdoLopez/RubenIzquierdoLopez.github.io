@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.10.11)  29 AUG 2026 12:53
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.10.11)  29 AUG 2026 12:57
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -677,15 +677,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
  ***********
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 90483A3D06A768146979D0F9C8B514CD;1490
-(rerunfilecheck)             After:  4AAF968E6CFE843A0CB1E0A5997C9C72;1341.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 4AAF968E6CFE843A0CB1E0A5997C9C72;1341.
 )
 
 Here is how much of LuaTeX's memory you used:
@@ -707,7 +700,7 @@ ts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2024/texmf-dist/fonts/opent
 ype/public/lm/lmroman9-italic.otf><c:/texlive/2024/texmf-dist/fonts/opentype/pub
 lic/lm/lmsans12-regular.otf><c:/texlive/2024/texmf-dist/fonts/opentype/public/lm
 /lmsans10-bold.otf>
-Output written on main.pdf (4 pages, 60321 bytes).
+Output written on main.pdf (4 pages, 60293 bytes).
 
 PDF statistics: 193 PDF objects out of 1000 (max. 8388607)
  158 compressed objects within 2 object streams
