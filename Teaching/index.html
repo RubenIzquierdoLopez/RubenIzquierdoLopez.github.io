@@ -19,13 +19,14 @@ layout: null
 
       <div class="accordion">
         {% for year in site.data.teaching %}
-        {% assign visible_courses = year.courses | where_exp: "course", "course.online != false and course.online != 'no'" %}
-        {% if visible_courses.size > 0 %}
+        {% capture visible_courses %}{% for course in year.courses %}{% unless course.online == false or course.online == 'no' %}1{% endunless %}{% endfor %}{% endcapture %}
+        {% if visible_courses != empty %}
         <section class="talk-year">
           <h2><button class="accordion-header" type="button" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="teaching-{{ year.year | slugify }}">Teaching of {{ year.year }}</button></h2>
           <div class="accordion-content" id="teaching-{{ year.year | slugify }}" {% unless forloop.first %}hidden{% endunless %}>
             <div class="course-list">
-              {% for course in visible_courses %}
+              {% for course in year.courses %}
+              {% unless course.online == false or course.online == 'no' %}
               <article class="course-item">
                 {% if course.name or course.degree %}<h3>{% if course.name %}{% if course.course_url %}<a href="{{ course.course_url }}" target="_blank" rel="noopener">{{ course.name }}</a>{% else %}{{ course.name }}{% endif %}{% endif %}{% if course.degree %}{% if course.name %} ({% endif %}{% if course.degree_url %}<a href="{{ course.degree_url }}" target="_blank" rel="noopener">{{ course.degree }}</a>{% else %}{{ course.degree }}{% endif %}{% if course.name %}){% endif %}{% endif %}</h3>{% endif %}
                 <ul>
@@ -45,6 +46,7 @@ layout: null
                   {% endif %}
                 </ul>
               </article>
+              {% endunless %}
               {% endfor %}
             </div>
           </div>
