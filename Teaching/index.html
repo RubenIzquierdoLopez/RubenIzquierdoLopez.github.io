@@ -19,27 +19,37 @@ layout: null
 
       <div class="accordion">
         {% for year in site.data.teaching %}
+        {% assign visible_courses = year.courses | where_exp: "course", "course.online != false and course.online != 'no'" %}
+        {% if visible_courses.size > 0 %}
         <section class="talk-year">
           <h2><button class="accordion-header" type="button" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="teaching-{{ year.year | slugify }}">Teaching of {{ year.year }}</button></h2>
           <div class="accordion-content" id="teaching-{{ year.year | slugify }}" {% unless forloop.first %}hidden{% endunless %}>
             <div class="course-list">
-              {% for course in year.courses %}
+              {% for course in visible_courses %}
               <article class="course-item">
-                <h3><a href="{{ course.course_url }}" target="_blank" rel="noopener">{{ course.name }}</a> (<a href="{{ course.degree_url }}" target="_blank" rel="noopener">{{ course.degree }}</a>)</h3>
+                {% if course.name or course.degree %}<h3>{% if course.name %}{% if course.course_url %}<a href="{{ course.course_url }}" target="_blank" rel="noopener">{{ course.name }}</a>{% else %}{{ course.name }}{% endif %}{% endif %}{% if course.degree %}{% if course.name %} ({% endif %}{% if course.degree_url %}<a href="{{ course.degree_url }}" target="_blank" rel="noopener">{{ course.degree }}</a>{% else %}{{ course.degree }}{% endif %}{% if course.name %}){% endif %}{% endif %}</h3>{% endif %}
                 <ul>
+                  {% if course.theory_teacher %}
                   <li><i>Professor of theory:</i> {{ course.theory_teacher }}</li>
+                  {% endif %}
+                  {% if course.schedule %}
                   <li><i>Schedule:</i> {{ course.schedule }}</li>
+                  {% endif %}
+                  {% if course.room %}
                   <li><i>Room:</i> {{ course.room }}</li>
-                  <li><i>Tutorials:</i> Consultadme.</li>
+                  {% endif %}
+                  {% if course.documents and course.documents.size > 0 %}
                   <li><i>Documents:</i>
-                    <ul>{% for document in course.documents %}<li><a href="{{ document.url }}" target="_blank" rel="noopener">{{ document.name }}</a></li>{% endfor %}</ul>
+                    <ul>{% for document in course.documents %}{% if document.url %}<li><a href="{{ document.url }}" target="_blank" rel="noopener">{{ document.name | default: document.url }}</a></li>{% endif %}{% endfor %}</ul>
                   </li>
+                  {% endif %}
                 </ul>
               </article>
               {% endfor %}
             </div>
           </div>
         </section>
+        {% endif %}
         {% endfor %}
       </div>
     </section>

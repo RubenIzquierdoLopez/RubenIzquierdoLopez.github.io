@@ -1,6 +1,8 @@
 - year: 2026-27
   courses:
+
     - name: Topología, grupo 722
+      translation: Topology
       course_url: 'https://secretaria-virtual.uam.es/doa/consultaPublica/look[conpub]MostrarPubGuiaDocAs'
       degree: Grado en Matemáticas UAM
       degree_url: https://www.uam.es/uam/matematicas
@@ -8,9 +10,12 @@
       schedule: Miércoles de 17:30 a 19:30
       room: Por determinar
 
+
 - year: 2025-26
   courses:
+
     - name: Geometría lineal, grupo 711
+      translation: Linear Algebra
       course_url: 'https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs?entradaPublica=true&idiomaPais=es.ES&_anoAcademico=2025&_codAsignatura=20564'
       degree: Grado en Matemáticas UAM
       degree_url: https://www.uam.es/uam/matematicas
@@ -18,11 +23,15 @@
       schedule: Miércoles de 9:30 a 11:30
       room: Aula 101-4 módulo 16
       documents:
+
         - name: GeoGebra del Ejercicio 6 de la Hoja 0
           url: ../Documents/Teaching/Geometría_Lineal_25/Hoja0_Ejercicio6.ggb
+
         - name: Imagen representando el Ejercicio 14 de la Hoja 2
           url: ../Documents/Teaching/Geometría_Lineal_25/Hoja2_Ejercicio14.png
+
     - name: Geometría lineal, grupo 220
+      translation: Linear Algebra
       course_url: 'https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs?entradaPublica=true&idiomaPais=es.ES&_anoAcademico=2025&_codAsignatura=20564'
       degree: Grado en Ingeniería Informática y Matemáticas UAM
       degree_url: https://www.uam.es/uam/informatica-matematicas
@@ -30,7 +39,76 @@
       schedule: Miércoles de 11:30 a 13:30
       room: Aula 101-5 módulo 16
       documents:
+
         - name: GeoGebra del Ejercicio 6 de la Hoja 0
           url: ../Documents/Teaching/Geometría_Lineal_25/Hoja0_Ejercicio6.ggb
+
         - name: Imagen representando el Ejercicio 14 de la Hoja 2
           url: ../Documents/Teaching/Geometría_Lineal_25/Hoja2_Ejercicio14.png
+
+    - name: Ecuaciones Diferenciales
+      translation: Differential Equations
+      online: no
+      degree: Grado en Física UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
+
+    - name: Diseño de Algoritmos
+      translation: Algorithm Design
+      online: no
+      degree: Grado en Ingeniería Informática UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-online-ingenieria-informatica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_TECNOLOG_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_TECNOLOG_X_MAR_BUSQ_Marca-IngenieriaInformatica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17568914383&bi_adgroupid=140973685671&gad_source=1&gad_campaignid=17568914383&gbraid=0AAAAADvi6Q_uFQOwr9qFLTn4RuYntGOhL&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSe3hznN7HISPuFtuE2bpekrCvAioljcYvCtdv7SNGeUegqzZ5VPr2gaArL0EALw_wcB
+
+    - name: Diseño de Algoritmos
+      translation: Algorithm Design
+      online: no
+      degree: Grado en Matemática Computacional UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-matematica-computacional/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_X_LWEB_GLOB_ES_PROD_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_BUSQ_Marca-GradoMatematicas_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17557126482&bi_adgroupid=138045350316&gad_source=1&gad_campaignid=17557126482&gbraid=0AAAAADvi6Q8PRYnJBiMzS05vqHTZUemNB&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQScGBWjJljK2zasKgrX9lJ9AT_Oa3ZPSUhhqtZkldrXrBH9dl7q8jb0aApeyEALw_wcB
+
+- year: 2024-25
+  courses:
+
+    - name: Sistemas Dinámicos
+      translation: Dynamical Systems
+      online: no
+      degree: Grado en Matemática Computacional UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-matematica-computacional/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_X_LWEB_GLOB_ES_PROD_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_BUSQ_Marca-GradoMatematicas_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17557126482&bi_adgroupid=138045350316&gad_source=1&gad_campaignid=17557126482&gbraid=0AAAAADvi6Q8PRYnJBiMzS05vqHTZUemNB&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQScGBWjJljK2zasKgrX9lJ9AT_Oa3ZPSUhhqtZkldrXrBH9dl7q8jb0aApeyEALw_wcB
+
+    - name: Lógica Computacional
+      translation: Computational Logic
+      online: no
+      degree: Grado en Matemática Computacional UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-matematica-computacional/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_X_LWEB_GLOB_ES_PROD_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_BUSQ_Marca-GradoMatematicas_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17557126482&bi_adgroupid=138045350316&gad_source=1&gad_campaignid=17557126482&gbraid=0AAAAADvi6Q8PRYnJBiMzS05vqHTZUemNB&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQScGBWjJljK2zasKgrX9lJ9AT_Oa3ZPSUhhqtZkldrXrBH9dl7q8jb0aApeyEALw_wcB
+
+    - name: Análisis Complejo
+      translation: Complex Analysis
+      online: no
+      degree: Grado en Física UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
+
+    - name: Análisis Numérico
+      translation: Numerical Analysis
+      online: no
+      degree: Grado en Física UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
+
+    - name: Ecuaciones Diferenciales
+      translation: Differential Equations
+      online: no
+      degree: Grado en Física UNIR
+      degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
+
+- year: 2022-2023
+  courses:
+
+    - name: Matemáticas Básicas
+      translation: Basic Mathematics
+      online: no
+      degree: Grado en Matemáticas UCM
+      degree_url: https://www.ucm.es/estudios/grado-matematicas-plan/
+
+- year: 2020-2022
+  courses:
+
+    - name: Support Teacher
+      online: no
+      degree: Savannah SLC in Torrejón de Ardoz

@@ -1,0 +1,102 @@
+personal:
+  name: Rubén Izquierdo López
+  title: PhD Student in Mathematics
+  date_of_birth: 08/09/2001
+  nationality: Spanish
+  location: Madrid, Spain
+  email: ruben.izquierdo@icmat.es
+  website: https://rubenizquierdolopez.xyz
+  orcid: https://orcid.org/0009-0007-8747-344X
+
+bio: PhD student at ICMAT and Universidad Autónoma de Madrid, supported by an FPU2024 fellowship and supervised by Manuel de León. My research focuses on differential geometry, geometric mechanics, and the geometric formulation of classical field theories.
+
+education:
+
+  - degree: PhD in Mathematics
+    institution: ICMAT and Universidad Autónoma de Madrid
+    period: 2024--present
+    detail: FPU2024 fellow; supervised by Manuel de León.
+
+  - degree: Master's Degree in Advanced Mathematics
+    institution: Universidad Complutense de Madrid
+    period: 2023--2024
+    detail: "Average grade: 9.77/10. Master's thesis: Coisotropic Reduction in Multisymplectic Geometry."
+
+  - degree: Bachelor's Degree in Mathematics
+    institution: Universidad Complutense de Madrid
+    period: 2019--2023
+    detail: "Average grade: 9.44/10. Bachelor's thesis: Homología Singular y Celular."
+
+research_experience:
+
+  - role: PhD Researcher
+    institution: Instituto de Ciencias Matemáticas (ICMAT)
+    period: 2024--present
+    detail: For developing by PhD in CSIC (Instituto de Ciencias Matemáticas) under the supervision of Manuel de León. We are currently researching `graded Dirac' and `graded Poisson' structures for the study of classical field theories.'
+  
+  - role: Severo Ochoa contract for Master students
+    institution: Instituto de Ciencias Matemáticas (ICMAT)
+    period: 2023-2024
+    detail: Contract for developing my master thesis under the supervision of Manuel de León. We developed the multisymplectic coisotropic reduction.
+  
+  - role: JAE Intro research grant
+    institution: Instituto de Ciencias Matemáticas (ICMAT)
+    period: 2023
+    detail: Introduction to research grant where I learned about the world of differential geometry and geometric mechanics.
+
+research_stays:
+
+other_scientific_meetings_attended:
+
+awards:
+
+  - name: FPU2024 Fellowship
+    organization: Spanish Ministry of Science, Innovation and Universities
+    year: 2025
+    detail: Predoctoral fellowship supporting doctoral research.
+
+  - name: Bachelor's Degree Extraordinary Award 
+    organization: Universidad Complutense de Madrid
+    year: 2024
+    detail: Award granted for the best curriculum in the degree of Mathematics. 
+
+  - name: Severo Ochoa grant
+    organization: Instituto de Ciencias Matemáticas (ICMAT)
+    year: 2023-2024
+    detail: Grant for Master students
+
+  - name: Excelence grant
+    organization: Comunidad de Madrid
+    year: 2020-2021, 2021-2022, 2022-2023
+    detail: Merit-based scholarship for undergrad students
+
+  - name: JAE Intro research grant
+    organization: Consejo Superior de Investigaciones Científicas (CSIC)
+    year: 2023
+    detail: Grant for introduction to research
+
+outreach_and_volunteering:
+
+  - activity: Volunteer, European Congress of Mathematics
+    period: July 2024
+    detail: Assisted with the organization of ECM 2024 in Seville.
+
+  - activity: Volunteer in "Concurso de Primavera"
+    period: April 2023
+    detail: Assisted with the organization of ""Concurso de Primavera", a math competition for highschool students.
+
+academic_activities_organized:
+
+  - activity: Co-organizer, Geometry, Mechanics and Control Seminar
+    period: 2025--present
+    detail_tex: I co-organize the biweekly seminar of the research group in ICMAT.
+
+  - activity: Co-organizer, Reading Groupoid
+    period: 2025--2026
+    detail_tex: Academic-year reading group on Lie groupoids, for more information, see the official website \href{https://readinggroupoid.org/}{https://readinggroupoid.org/}. This is a joint iniciative with ICMAT--UCM--UW.
+
+languages:
+
+  - Spanish (native)
+
+  - English (professional working proficiency)

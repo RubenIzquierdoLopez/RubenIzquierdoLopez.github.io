@@ -1,196 +1,322 @@
 - year: 2026
   label: Talks and posters of 2026
   talks:
+    
+    - event: Higher Categories for the Working Mathematician
+      category: scientific_contribution
+      contribution_type: poster
+      event_url: https://events.gwdg.de/event/1365/
+      date: 27-31 July, 2026
+      title: Higher form symmetries and general conservation laws
+      resources:
+
+        - label: Poster
+          url: ../Documents/Posters/Conserved_quantities.pdf
+          icon: pdf_icon.webp
+
+    - event: 2nd International Workshop “New Advances in Contact and Symplectic Hamiltonian Dynamics”
+      category: scientific_contribution
+      contribution_type: invited_conference_talk
+      event_url: https://sites.google.com/view/nacosy2026/general-information
+      date: 13-17 July, 2026
+      title: The Jacobi brackets of dissipative field theories
+      resources:
+
+        - label: Slides
+          url: ../Documents/Slides/2026/NaCOSy2026.pdf
+          icon: pdf_icon.webp
+
+    - event: '2nd International Workshop on Geometric Field Theory'
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
+      event_url: https://www.fuw.edu.pl/KMMF/GFT2026/
+      date: 6-8 July, 2026
+      title: Multisymplectic structures as G-structures
+      resources:
+
+        - label: Slides
+          url: ../Documents/Slides/2026/GFT_2026.pdf
+          icon: pdf_icon.webp
+
     - event: 'OAK2: Observables, Actions and Quantization'
-      event_url: https://www.lboro.ac.uk/departments/maths/events/conferences-and-workshops/yrw-gdft/
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
+      event_url: https://physmath.pages.math.cnrs.fr/events/metz2026/
       date: 22-25 June, 2026
       title: On the theory of G-structures applied to multisymplectic manifolds
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2026/OAK2.pdf
           icon: pdf_icon.webp
+
     - event: XX International Young Researchers Workshop on Geometry, Dynamics and Field Theory
+      category: scientific_contribution
+      contribution_type: poster
       event_url: https://www.lboro.ac.uk/departments/maths/events/conferences-and-workshops/yrw-gdft/
       date: 25-27 March, 2026
       title: Higher form symmetries and general conservation laws
       resources:
+
         - label: Poster
           url: ../Documents/Posters/Conserved_quantities.pdf
           icon: pdf_icon.webp
+
     - event: Reading Groupoid
+      category: lecture_series
       event_url: https://readinggroupoid.org/
       date: 17 March, 2026
       title: 'Lecture 17: The monodromy groupoid of a Lie groupoid'
       resources:
+
         - label: Video
           url: 'https://www.youtube.com/watch?v=0excp9Gny_o&list=PLWmWVtLPiXLj58YkRr2uESlwurPcipJFK&index=17'
           icon: Youtube_logo.webp
+
     - event: Gamma Seminar
+      category: scientific_contribution
+      contribution_type: seminar
       event_url: https://www.fuw.edu.pl/KMMF/gamma/
       date: 06 March, 2026
       title: The graded Jacobi bracket in dissipative field theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2026/Gamma_Seminar_2026.pdf
           icon: pdf_icon.webp
+
         - label: Video
           url: https://youtu.be/YRa_B6Bp0YM?si=TR5lt-tWoQeJST2i
           icon: Youtube_logo.webp
+
     - event: Reading Groupoid
+      category: lecture_series
       event_url: https://readinggroupoid.org/
       date: 10 February, 2026
       title: 'Lecture 13: The exponential map and adjoint formulas'
       resources:
+
         - label: Video
           url: 'https://www.youtube.com/watch?v=W3HcRZOgPpc&list=PLWmWVtLPiXLj58YkRr2uESlwurPcipJFK&index=13'
           icon: Youtube_logo.webp
+
     - event: VIII Iberoamerican Meeting on Geometry, Dynamics, and Field Theory
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       event_url: https://wp.ull.es/8ibmgmft/
       date: 19 January, 2026
       title: The graded Poisson bracket of general conservation laws in classical field theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2026/viiiiberoamerican_handout.pdf
           icon: pdf_icon.webp
 
+
 - year: 2025
   label: Talks of 2025
   talks:
+
     - event: Reading Groupoid
+      category: lecture_series
       event_url: https://readinggroupoid.org/
       date: 21 October, 2025
       title: 'Lecture 3: Local triviality'
       resources:
+
         - label: Video
           url: 'https://www.youtube.com/watch?v=HPwVIDe8Z-g&list=PLWmWVtLPiXLj58YkRr2uESlwurPcipJFK&index=3&t=3271s'
           icon: Youtube_logo.webp
+
     - event: XXXIII International Fall Workshop on Geometry and Physics
+      category: scientific_contribution
+      contribution_type: invited_conference_talk
       event_url: https://www.uco.es/congresos/ifwgp2025/
       date: 9-13 September, 2025
       title: 'Graded Brackets in Classical Field Theory: Conservative and Dissipative'
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2025/IFW_Córdoba_2025.pdf
           icon: pdf_icon.webp
+
     - event: Summer School of Geometry, Dynamics and Field Theory 2025
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       event_url: https://www.icmat.es/schools/2025/SUMMER-SCHOOL-GMC/
       date: 23-27 June, 2025
       title: Extensions of brackets in classical field theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2025/Summer_School_2025.pdf
           icon: pdf_icon.webp
+
     - event: Geometry and Topology for the future III
+      category: scientific_contribution
+      contribution_type: invited_conference_talk
       event_url: http://sites.google.com/view/alejandro-calleja-math/conferences/geometry-and-topology-for-the-future-iii
       date: 16-18 June, 2025
       title: Recent Developments in the Theory of Brackets in Classical Field Theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2025/G&TIII_RubenIzquierdo.pdf
           icon: pdf_icon.webp
+
     - event: Coloquio Junior de matemáticas
+      category: scientific_contribution
+      contribution_type: seminar
       event_url: https://www.icmat.es/es/actividades/coloquio-junior-icmat-uam-uc3m-ucm/
       date: 7 May, 2025
       title: Natural operations in differential geometry
       note: Talk given at the blackboard.
+
     - event: Q-Math Seminar
+      category: scientific_contribution
+      contribution_type: seminar
       event_url: http://www.q-math.es/
       date: 5 February, 2025
       title: Graded Poisson brackets in classical field theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2025/Q-math2025.pdf
           icon: pdf_icon.webp
+
     - event: XIX Young Researchers Workshop in Geometry, Dynamics and Field Theory
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       event_url: https://sites.google.com/view/xix-yrw-verona/home
       date: 20 January, 2025
       title: Graded structures of classical field theory
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2025/Young_Reseachers_Verona.pdf
           icon: pdf_icon.webp
+
     - event: VII Congreso de Jóvenes Investigadores de la RSME
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       event_url: https://jovenes2025.rsme.es/
       date: 17 January, 2025
       title: A graded approach to brackets in classical field theory
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2025/RSME2025.pdf
           icon: pdf_icon.webp
 
+
 - year: 2024
   label: Talks of 2024
   talks:
+
     - event: New Advances in Contact and Symplectic Hamiltonian Dynamics
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       date: 6 November, 2024
       title: Poisson and Dirac structures in Classical Field Theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2024/New_Advances_in_Contact_and_Symplectic_Hamiltonian_Dynamics.pdf
           icon: pdf_icon.webp
+
     - event: Workshop de Jóvenes Investigadores, UCM
+      category: scientific_contribution
+      contribution_type: invited_conference_talk
       event_url: https://blogs.mat.ucm.es/mmatavan/workshop-de-jovenes-investigadores-2024/
       date: 23 September, 2024
       title: Coisotropic reduction in Classical Field Theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2024/Jovenes_Investigadores_UCM.pdf
           icon: pdf_icon.webp
+
     - event: Seminario de doctorandos, UCM
+      category: scientific_contribution
+      contribution_type: seminar
       event_url: https://blogs.mat.ucm.es/doctorandosmat/
       date: 19 September, 2024
       title: Geometría Multisimpléctica, el marco para Teorías Clásicas de Campos
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2024/Seminario_Doctorandos_UCM_2024.pdf
           icon: pdf_icon.webp
+
     - event: Workshop on Geometric Aspects of Material Modelling
+      category: scientific_contribution
+      contribution_type: invited_conference_talk
       event_url: https://www.icmat.es/congresos/2024/GAMM/index.php
       date: 21-23 August, 2024
       title: The Multisymplectic Framework of Field Theories
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2024/GAMM2024.pdf
           icon: pdf_icon.webp
+
         - label: Video
           url: https://canal.uned.es/video/66cda8dfe17f6b5044068c02
           icon: Youtube_logo.webp
+
     - event: 'Gamma (Geometry and Applications: Modern Mathematical Approaches) Seminar'
+      category: scientific_contribution
+      contribution_type: seminar
       event_url: https://www.fuw.edu.pl/KMMF/gamma/
       date: 26 June, 2024
       title: Coisotropic reduction in Multisymplectic Geometry
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2024/GAMMA_Seminar.pdf
           icon: pdf_icon.webp
+
         - label: Video
           url: https://www.youtube.com/watch?v=2sWAcn1k3V0
           icon: Youtube_logo.webp
+
     - event: The Geometry of Field Theories
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       event_url: https://www.icmat.es/congresos/2024/GFT/
       date: 13-15 June, 2024
       title: Coisotropic reduction in Multisymplectic Geometry
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2024/Geometry_of_Field_Theories2024.pdf
           icon: pdf_icon.webp
+
     - event: XVIII International Young researchers Workshop in Geometry, Dynamics and Field Theory
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       event_url: https://www.fuw.edu.pl/KMMF/18ywgmc/index.html
       date: 21-23 February, 2024
       title: Coisotropic reduction in different phase spaces
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2024/Young_researchers_Workshop.pdf
           icon: pdf_icon.webp
 
+
 - year: 2023
   label: Talks of 2023
   talks:
+
     - event: BYMAT (Bringing Young Mathematicians Together)
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
       event_url: https://www.icmat.es/congresos/2023/BYMAT/
       date: 13-16 November, 2023
       title: Coisotropic reduction in Symplectic, Cosymplectic, Contact, and Cocontact geometry
       resources:
+
         - label: Slides
           url: ../Documents/Slides/2023/BYMAT2023.pdf
           icon: pdf_icon.webp

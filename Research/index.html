@@ -25,29 +25,37 @@ layout: null
       </ul>
       <p>Below you may find published and unpublished papers developed during my PhD, ordered from most recent to oldest. The PDF icon links to the document.</p>
 
+      {% if site.data.research.preprints and site.data.research.preprints.size > 0 %}
       <section aria-labelledby="preprints-title">
         <h2 id="preprints-title">Pre-prints</h2>
         <div class="publication-list">
           {% for paper in site.data.research.preprints %}
           <article class="publication-item">
+            {% if paper.pdf %}
             <a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="PDF"></a>
-            <div><p>{{ paper.citation }} <strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label }}</a>.</p></div>
+            {% endif %}
+            <div><p>{{ paper.citation }}{% if paper.doi %} <strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a>.{% endif %}</p></div>
           </article>
           {% endfor %}
         </div>
       </section>
+      {% endif %}
 
+      {% if site.data.research.publications and site.data.research.publications.size > 0 %}
       <section aria-labelledby="publications-title">
         <h2 id="publications-title">Publications</h2>
         <div class="publication-list">
           {% for paper in site.data.research.publications %}
           <article class="publication-item">
+            {% if paper.pdf %}
             <a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="PDF"></a>
-            <div><p>{{ paper.citation }} <strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label }}</a>.</p></div>
+            {% endif %}
+            <div><p>{{ paper.citation }}{% if paper.doi %} <strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a>.{% endif %}</p></div>
           </article>
           {% endfor %}
         </div>
       </section>
+      {% endif %}
     </section>
   </main>
 </body>

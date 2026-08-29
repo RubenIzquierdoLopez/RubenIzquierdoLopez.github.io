@@ -1,3 +1,5 @@
+29/08/2026: Minor fixes and added updated CV
+28/08/2026: Added map, jekyll functioning, preprint and publication of "A description of classical field equations using extensions of graded Poisson brackets".
 01/07/2026: Added preprint arXiv:2606.20030 and talk at OAK2.
 06/04/2026: Added poster of Young reseachers workshop and updated CV.
 26/03/2026: Added pre-print arXiv:2603.24308

@@ -1,0 +1,137 @@
+% Compile after running: ruby build_cv.rb
+% Example: lualatex main.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{tabularx}
+
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\definecolor{accent}{HTML}{1F4E5F}
+\hypersetup{colorlinks=true,urlcolor=accent}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\titleformat{\section}{\large\sffamily\bfseries\color{accent}}{}{0pt}{}[\vspace{-4pt}\color{accent}\titlerule]
+\titlespacing*{\section}{0pt}{15pt}{7pt}
+\setlist{nosep}
+\newenvironment{CVSubsectionItems}{\begin{list}{}{\setlength{\leftmargin}{1.5em}\setlength{\rightmargin}{0pt}}\item[]}{\end{list}}
+\newenvironment{CVItemList}{\begin{itemize}[leftmargin=1.5em,label={\scriptsize\textbullet},itemsep=2pt,topsep=0pt]}{\end{itemize}}
+
+\newcommand{\CVEntry}[4]{%
+  \item \textbf{#1} \textrm{(#3)}\\
+  \textit{#2}\\
+  #4\par\vspace{2pt}}
+\newcommand{\CVTalk}[3]{%
+  \item \textbf{#1} \textrm{(#3)}\\
+  \textit{#2}\par\vspace{2pt}}
+\newcommand{\CVMeeting}[4]{%
+  \item \textbf{#1} \textrm{(#3)}\if\relax\detokenize{#2}\relax\else\\
+  \textit{#2}\fi\if\relax\detokenize{#4}\relax\else\\
+  #4\fi\par\vspace{2pt}}
+\newcommand{\CVCourse}[2]{%
+  \item \textbf{#1}\\
+  \textit{#2}\par\vspace{2pt}}
+\newcommand{\CVTeachingYear}[2]{%
+  \subsection*{#1}
+  \begin{CVItemList}
+    #2
+  \end{CVItemList}}
+\newcommand{\CVCompactEntry}[4]{%
+  \item \textbf{#1} \textrm{(#3)}. #4\par\vspace{2pt}}
+
+\input{cv-data.tex}
+
+\begin{document}
+\begin{flushleft}
+  {\Huge\sffamily\bfseries\color{accent}\CVName}\\[7pt]
+  {\large\sffamily\CVTitle}\\[2pt]
+  {\small\textit{Last updated: \CVLastUpdated}}\\[10pt]
+  \CVPersonalDetails
+\end{flushleft}
+
+\section{Biography}
+\CVBio
+
+\section{Education}
+\begin{CVItemList}
+  \CVEducation
+\end{CVItemList}
+
+\section{Research Experience}
+\begin{CVItemList}
+  \CVResearchExperience
+\end{CVItemList}
+
+\ifCVHasResearchStays
+  \section{Research Stays}
+  \begin{CVItemList}
+    \CVResearchStays
+  \end{CVItemList}
+\fi
+
+\section{Research Awards}
+\begin{CVItemList}
+  \CVAwards
+\end{CVItemList}
+
+\section{Publications}
+\CVPublications
+
+\section{Preprints}
+\CVPreprints
+
+\section{Seminars and Conferences}
+\subsection*{Invited Talks at Conferences}
+\begin{CVItemList}
+  \CVInvitedConferenceTalks
+\end{CVItemList}
+
+\subsection*{Contributed Talks at Conferences}
+\begin{CVItemList}
+  \CVContributedConferenceTalks
+\end{CVItemList}
+
+\subsection*{Seminars}
+\begin{CVItemList}
+  \CVSeminars
+\end{CVItemList}
+
+\subsection*{Posters}
+\begin{CVItemList}
+  \CVPosters
+\end{CVItemList}
+
+\ifCVHasOtherScientificMeetings
+  \subsection*{Other Scientific Meetings I Attended}
+  \begin{CVItemList}
+    \CVOtherScientificMeetings
+  \end{CVItemList}
+\fi
+
+\section{Teaching}
+\CVTeaching
+
+\ifCVHasOutreachAndVolunteering
+  \section{Outreach and Volunteering}
+  \begin{CVItemList}
+    \CVOutreachAndVolunteering
+  \end{CVItemList}
+\fi
+
+\ifCVHasAcademicActivitiesOrganized
+  \section{Academic Activities Organized}
+  \begin{CVItemList}
+    \CVAcademicActivitiesOrganized
+  \end{CVItemList}
+\fi
+
+\section{Languages}
+\CVLanguages
+\end{document}

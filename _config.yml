@@ -1,5 +1,6 @@
 exclude:
   - Background/background.py
+  - _cv
 url: https://rubenizquierdolopez.xyz
 baseurl: ""
 markdown: kramdown

@@ -5,6 +5,7 @@
   title: ICMAT, UAM, and home base
   description: Madrid is my hometown where, besides everyday adventures, I am also pursuing my PhD at ICMAT. Of course, several academic events take place here. You can click ">" to see information and pictures of these events.
 
+
 - place: Warsaw
   country: Poland
   coordinates: [52.237, 21.018]
@@ -12,6 +13,7 @@
   title: 2nd International Workshop on Geometric Field Theory
   description: A conference on the topic on my PhD, hence very interesting scientifically.
   image: Images/Trips/GFT2026Photo.webp
+
 
 - place: Madrid
   country: Spain
@@ -21,6 +23,7 @@
   description: Second edition (now in Madrid!) of the earlier conference held in China. Very nice experience again.
   image: Images/Trips/Nacosy2026_CUNEF.webp
 
+
 - place: Göttingen
   country: Germany
   coordinates: [51.545483, 9.905548]
@@ -29,12 +32,14 @@
   description: Stepping out of my comfort zone and learning a bit about higher categories and their connection to modern mathematics (and some differential geometry). I apologize for the gloomy picture (of Gauss himself!), but sadly I do not have any others.
   image: Images/Trips/Gottingen2026_gauss.webp
 
+
 - place: Metz
   country: France
   coordinates: [49.1203, 6.1778]
   date: June 2026
   title: 'OAK2: Observables, Actions and Quantization'
   description: Very exciting conference, with very nice people. Sadly, I could not find any pictures.
+
 
 - place: Loughborough
   country: United Kingdom
@@ -44,12 +49,14 @@
   description: Amazing workshop (ignoring the cold and rain of the UK) where we had courses on sub-Riemannian geometry, complex geometry and problems in differential geometry inspired by physics.
   image: Images/Trips/Loghborough2026.webp
 
+
 - place: Manchester
   country: United Kingdom
   coordinates: [53.4839, -2.2446]
   date: March 2026
   title: Short research stay and seminar at Geometry, Topology and Mathematical Physics Seminar
   description: Since I was 'passing by', I did a small research stay at Manchester to work on infinite dimensional contact systems.
+
 
 - place: La Laguna
   country: Spain
@@ -59,12 +66,14 @@
   description: Here we traveled to La Laguna to celebrate the 60th birthday of Juan Carlos Marrero, a great researcher in the field of geometric mechanics. The photo shows me giving a presentation at the conference (taken by my good friend Carla).
   image: Images/Trips/IberoAmerican_meeting_2026.webp
 
+
 - place: Sevilla
   country: Spain
   coordinates: [37.3886, -5.9950]
   date: November 2025
   title: BYMAT 2025
   description: Second edition of the congress "Bringing Young Mathematicians Together" I attended.
+
 
 - place: Córdoba
   country: Spain
@@ -74,6 +83,7 @@
   description: I found this workshop to be very interesting. Here we learned both on Ricci flow and on mathematical T-duality.
   image: Images/Trips/IFWGP_2026.webp
 
+
 - place: Miraflores de la Sierra
   country: Spain
   coordinates: [40.8156, -3.7628]
@@ -82,6 +92,7 @@
   description: My second time in "La Cristalera", now there is a group picture.
   image: Images/Trips/Cristalera2025_grouppicture.webp
 
+
 - place: Madrid
   country: Spain
   coordinates: [40.4168, -3.7038]
@@ -89,12 +100,14 @@
   title: Geometry and Topology for the Future III
   description: Very nice workshop at the university where I studied for my degree.
 
+
 - place: Bilbao
   country: Spain
   coordinates: [43.2627, -2.92528]
   date: January 2025
   title: VII Congreso de Jóvenes Investigadores de la RSME
   description: Spanish young researcher workshop organized by the Royal (Spanish) Mathematical Society.
+
 
 - place: Verona
   country: Italy
@@ -104,6 +117,7 @@
   description: Second edition of the (first ever) workshop I attended! 
   image: Images/Trips/IYRW_Verona_2025.webp
 
+
 - place: Dongguan
   country: China
   coordinates: [23.02,113,75, 10.9916]
@@ -112,6 +126,7 @@
   description: I was extremely lucky to be able to attend this first edition of the Spanish-Chinese workshop on symplectic geometry.
   image: Images/Trips/Dongguan_2024.webp
 
+
 - place: Madrid
   country: Spain
   coordinates: [40.4168, -3.7038]
@@ -119,12 +134,14 @@
   title: Workshop de Jóvenes Investigadores
   description: At the end of my master thesis, I was given the possibility of presenting the research we did at this particular workshop.
 
+
 - place: Madrid
   country: Spain
   coordinates: [40.4168, -3.7038]
   date: August 2024
   title: Workshop on Geometric Aspects of Material Modelling
   description: At (essentially) the beginning of my PhD, UNED organized a conference on applications of differential geometry to materials science. It was very nice to attend.
+
 
 - place: Sevilla
   country: Spain
@@ -134,6 +151,7 @@
   description: I had the chance to travel to Sevilla to volunteer as an assistant in the organization of the European Congress of Mathematics. A very fun week!
   image: Images/Trips/ECM_volunteering.webp
 
+
 - place: Miraflores de la Sierra
   country: Spain
   coordinates: [40.8156, -3.7628]
@@ -141,6 +159,7 @@
   title: XVI International ICMAT Summer School on Geometry, Dynamics and Field theory
   description: My first time at the "La Cristalera" Summer School.
   image: Images/Trips/Cristalera2024_nottalking.webp
+
 
 - place: El Escorial
   country: Spain
@@ -150,12 +169,14 @@
   description: The very first workshop on precisely the topic of my PhD. It was very exciting to present the research of my Master thesis!
   image: Images/Trips/ElEscorial_2024.webp
 
+
 - place: Warsaw
   country: Poland
   coordinates: [52.237, 21.018]
   date: February 2024
   title: XVIII International Young researchers Workshop in Geometry, Dynamics and Field Theory
   description: My very first international workshop! I really enjoyed the courses and talks.
+
 
 - place: Zaragoza
   country: Spain
@@ -164,12 +185,14 @@
   title: XXV WinterMeeting on Geometry, Dynamics and Field Theory
   description: This was my first time outside of Madrid for a conference. There was a (huge!) blizzard the second day, something to remember.
 
+
 - place: Madrid
   country: Spain
   coordinates: [40.4168, -3.7038]
   date: December 2023
   title: de León fest
   description: The celebration of the 70th birthday of my master thesis advisor (later to be my PhD advisor).
+
 
 - place: Madrid
   country: Spain
@@ -178,6 +201,7 @@
   title: BYMAT 2024
   description: My first talk ever at a conference. I remember it being disastrous! Nevertheless, it was a very fun experience.
   image: Images/Trips/BYMAT_2023.webp
+
 
 - place: Madrid
   country: Spain
