@@ -3,7 +3,7 @@
   coordinates: [40.4168, -3.7038]
   date: Ongoing
   title: ICMAT, UAM, and home base
-  description: Madrid is my home town where, besides every-day life adventures, I also am pursuing my PhD at ICMAT. Of course, several academic events happen precisely here. You can press ">" if you want to see some information and pictures of these.
+  description: Madrid is my hometown where, besides everyday adventures, I am also pursuing my PhD at ICMAT. Of course, several academic events take place here. You can click ">" to see information and pictures of these events.
 
 - place: Warsaw
   country: Poland
@@ -26,7 +26,7 @@
   coordinates: [51.545483, 9.905548]
   date: July 2026
   title: Higher Categories for the Working Mathematician
-  description: Stepping out of my confort zone and learning a bit of higher catgeories, and their connection to moder math (and some of differential geometry). I apologize for the gloomy picture (of Gauss himself!), I saldy do not have other.
+  description: Stepping out of my comfort zone and learning a bit about higher categories and their connection to modern mathematics (and some differential geometry). I apologize for the gloomy picture (of Gauss himself!), but sadly I do not have any others.
   image: Images/Trips/Gottingen2026_gauss.webp
 
 - place: Metz
@@ -34,7 +34,7 @@
   coordinates: [49.1203, 6.1778]
   date: June 2026
   title: 'OAK2: Observables, Actions and Quantization'
-  description: Very exiciting conference, with very nice people. Sadly, I could not find any picture.
+  description: Very exciting conference, with very nice people. Sadly, I could not find any pictures.
 
 - place: Loughborough
   country: United Kingdom
@@ -56,7 +56,7 @@
   coordinates: [28.4874, -16.3159]
   date: January 2026
   title: Iberoamerican Meeting on Geometry, Dynamics, and Field Theory
-  description: Here we traveled to La Laguna to celebrate the 70th birthday of Juan Carlos Marrero, a great reseracher in the field of Geometric Mechanics. The picture is a photo of me giving a presentation at the conference (taken by my good friend Carla).
+  description: Here we traveled to La Laguna to celebrate the 60th birthday of Juan Carlos Marrero, a great researcher in the field of geometric mechanics. The photo shows me giving a presentation at the conference (taken by my good friend Carla).
   image: Images/Trips/IberoAmerican_meeting_2026.webp
 
 - place: Sevilla
@@ -87,7 +87,7 @@
   coordinates: [40.4168, -3.7038]
   date: June 2025
   title: Geometry and Topology for the Future III
-  description: Very nice workshop in the Univeristy where I studied my degree. 
+  description: Very nice workshop at the university where I studied for my degree.
 
 - place: Bilbao
   country: Spain
@@ -109,7 +109,7 @@
   coordinates: [23.02,113,75, 10.9916]
   date: November 2024
   title: New Advances in Contact and Symplectic Hamiltonian Dynamics
-  description: I was extremely lucky to be able to assist this first edition of the Spanish-Chinese workshop on symplectic geometry.
+  description: I was extremely lucky to be able to attend this first edition of the Spanish-Chinese workshop on symplectic geometry.
   image: Images/Trips/Dongguan_2024.webp
 
 - place: Madrid
@@ -124,14 +124,14 @@
   coordinates: [40.4168, -3.7038]
   date: August 2024
   title: Workshop on Geometric Aspects of Material Modelling
-  description: At (essentially) the beggining of my PhD, UNED organized a conference on applications of Differential Geometry to Material Sciences. It was very nice to attend.
+  description: At (essentially) the beginning of my PhD, UNED organized a conference on applications of differential geometry to materials science. It was very nice to attend.
 
 - place: Sevilla
   country: Spain
   coordinates: [37.3886, -5.9950]
   date: July 2024
   title: Volunteering at ECM2024
-  description: I had te chance to travel to Sevilla to vounteer as an assistant in the organization of the Eropean Congress of Mathematics. Very fun week!
+  description: I had the chance to travel to Sevilla to volunteer as an assistant in the organization of the European Congress of Mathematics. A very fun week!
   image: Images/Trips/ECM_volunteering.webp
 
 - place: Miraflores de la Sierra
@@ -139,7 +139,7 @@
   coordinates: [40.8156, -3.7628]
   date: June 2024
   title: XVI International ICMAT Summer School on Geometry, Dynamics and Field theory
-  description: My first time in "La Cristalera" Summer School.
+  description: My first time at the "La Cristalera" Summer School.
   image: Images/Trips/Cristalera2024_nottalking.webp
 
 - place: El Escorial
@@ -155,7 +155,7 @@
   coordinates: [52.237, 21.018]
   date: February 2024
   title: XVIII International Young researchers Workshop in Geometry, Dynamics and Field Theory
-  description: My very first international workshop! I enjoyed a lot the courses and the talks.
+  description: My very first international workshop! I really enjoyed the courses and talks.
 
 - place: Zaragoza
   country: Spain
@@ -176,7 +176,7 @@
   coordinates: [40.4168, -3.7038]
   date: November 2023
   title: BYMAT 2024
-  description: First talk (ever), at a conference. I remember it being desastrous! Nevertheless, very fun experience.
+  description: My first talk ever at a conference. I remember it being disastrous! Nevertheless, it was a very fun experience.
   image: Images/Trips/BYMAT_2023.webp
 
 - place: Madrid
@@ -184,4 +184,4 @@
   coordinates: [40.4168, -3.7038]
   date: July 2023
   title: JAE summer School
-  description: First introduction to 'research mathematics'. Very intersting couple of weeks.
+  description: First introduction to 'research mathematics'. A very interesting couple of weeks.
