@@ -27,7 +27,7 @@ layout: null
               {% for talk in year.talks %}
               <li class="talk-item">
                 <p>{% if talk.event %}<strong>{% if talk.event_url %}<a href="{{ talk.event_url }}" target="_blank" rel="noopener">{{ talk.event }}</a>{% else %}{{ talk.event }}{% endif %}</strong>{% endif %}{% if talk.date %}{% if talk.event %}, {% endif %}{{ talk.date }}{% endif %}{% if talk.title %}{% if talk.event or talk.date %}. {% endif %}“{{ talk.title }}”.{% endif %}</p>
-                {% if talk.resources and talk.resources.size > 0 %}<p class="talk-resources">{% for resource in talk.resources %}{% if resource.url %}<span>{% if resource.label %}<i>{{ resource.label }}:</i> {% endif %}<a href="{{ resource.url }}" target="_blank" rel="noopener">{% if resource.icon %}<img loading="lazy" src="../Images/{{ resource.icon }}" alt="{{ resource.label | default: 'Resource' }}">{% else %}{{ resource.label | default: resource.url }}{% endif %}</a></span>{% endif %}{% endfor %}</p>{% endif %}
+                {% if talk.resources and talk.resources.size > 0 %}<div class="talk-resources">{% for resource in talk.resources %}{% if resource.url %}<a class="talk-resource" href="{{ resource.url }}" target="_blank" rel="noopener">{% if resource.icon %}<img loading="lazy" src="../Images/{{ resource.icon }}" alt="">{% endif %}{{ resource.label | default: 'Resource' }}</a>{% endif %}{% endfor %}</div>{% endif %}
                 {% if talk.note %}<p class="talk-note">{{ talk.note }}</p>{% endif %}
               </li>
               {% endfor %}

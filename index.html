@@ -8,32 +8,30 @@ layout: null
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
   <link rel="canonical" href="https://rubenizquierdolopez.xyz/">
 </head>
 <body>
-  {% include navigation.html active='about' %}
+  {% include navigation.html active='home' %}
 
   <header class="header home-header">
-    <h1>Webpage of Rubén Izquierdo López</h1>
+    <h1>Rubén Izquierdo López</h1>
+    <p class="header-subtitle"> - PhD Student in Mathematics - </p>
   </header>
 
   <main class="PersonalInfo home-page" id="About">
-    <section class="home-content" aria-labelledby="about-title">
-      <h2 id="about-title">About</h2>
+    <section class="home-content" aria-labelledby="about-intro">
       <div class="about-intro">
         <figure class="about-portrait">
-          <img loading="lazy" src="Images/RubenIzquierdo_Profile.webp" alt="Rubén Izquierdo López">
-          <figcaption>A picture of me at the end of my master's degree, 2024.</figcaption>
+          <img loading="lazy" class="enhance-image" src="Images/RubenIzquierdo.webp" alt="Rubén Izquierdo López" role="button" tabindex="0">
         </figure>
         <div class="about-intro-copy">
-          <p>Welcome to my personal webpage! <span class="muted">This page was last modified on <a href="Update_Diary.txt" target="_blank" rel="noopener"><span id="last-modified"></span></a>.</span></p>
-          <p>I am currently a PhD student at <a href="https://www.icmat.es/es/" target="_blank" rel="noopener">ICMAT</a> with an <a href="https://www.ciencia.gob.es/Convocatorias/2024/FPU2024.html" target="_blank" rel="noopener">FPU2024</a> fellowship, under the supervision of <a href="https://www.manueldeleon.es/" target="_blank" rel="noopener">Manuel de León</a>. To check my research interests, click the Research button above. My personal interests include playing the piano, cooking, and video games.</p>
+          <p>I am a PhD student at <a href="https://www.icmat.es/es/" target="_blank" rel="noopener">ICMAT</a> with an <a href="https://www.ciencia.gob.es/Convocatorias/2024/FPU2024.html" target="_blank" rel="noopener">FPU2024</a> fellowship, under the supervision of <a href="https://www.manueldeleon.es/" target="_blank" rel="noopener">Manuel de León</a>. Below you can find a quick summary of my rearch interests (for a more in-depth version, press the Research button above):</p>
+          <ul>
+            <li>Multisymplectic and associated geometric formulations of classical field theories.</li>
+            <li>Coisotropic embeddings and regularization.</li>
+            <li>Symmetries and associated Noether charges.</li>
+            <li>Darboux, or flatness, theorems.</li>
+          </ul>  
           <p>Below you can find a summary of my (so far short) academic career:</p>
           <ul>
             <li>I obtained my undergraduate degree in <a href="https://matematicas.ucm.es/estudios/2025-26/grado-matematicas" target="_blank" rel="noopener">Mathematics</a> at the <a href="https://www.ucm.es/" target="_blank" rel="noopener">Universidad Complutense de Madrid</a> in 2023, with an average grade of 9.44/10. My bachelor’s thesis, <i>Homología Singular y Celular</i>, is available as <a href="Documents/RubenIzquierdo_BachelorThesis.pdf" target="_blank" rel="noopener">text</a> and <a href="Documents/Slides/Bachelor_Thesis_slides.pdf" target="_blank" rel="noopener">slides</a>.</li>
@@ -52,15 +50,8 @@ layout: null
         <a href="https://orcid.org/0009-0007-8747-344X" target="_blank" rel="noopener"><img loading="lazy" src="Images/OrcidID.webp" alt="ORCID"></a>
       </div>
 
-      <section class="trip-map-section" aria-labelledby="trip-map-title">
-        <h2 id="trip-map-title">Places I have visited</h2>
-        <p>These are the places that my academic adventures have taken me to. You can find information about each event and see some pictures by clicking on its pin.</p>
-        <div id="trip-map" class="trip-map" aria-label="Map of selected academic trips"></div>
-      </section>
     </section>
   </main>
-  <script id="trip-data" type="application/json">{{ site.data.trips | jsonify }}</script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

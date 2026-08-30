@@ -6,12 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
   imageViewer.setAttribute("aria-modal", "true");
   imageViewer.setAttribute("aria-label", "Expanded image viewer");
   const viewerImage = document.createElement("img");
+  const viewerDescription = document.createElement("p");
+  viewerDescription.className = "image-viewer-description";
   const closeViewer = document.createElement("button");
   closeViewer.type = "button";
   closeViewer.className = "image-viewer-close";
   closeViewer.textContent = "×";
   closeViewer.setAttribute("aria-label", "Close expanded image");
   imageViewer.appendChild(viewerImage);
+  imageViewer.appendChild(viewerDescription);
   imageViewer.appendChild(closeViewer);
   document.body.appendChild(imageViewer);
   let lastFocusedImage = null;
@@ -21,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     imageViewer.classList.remove("is-open");
     document.body.classList.remove("image-viewer-open");
     viewerImage.removeAttribute("src");
+    viewerDescription.textContent = "";
+    viewerDescription.hidden = true;
     if (lastFocusedImage) {
       lastFocusedImage.focus();
     }
@@ -29,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
     lastFocusedImage = image;
     viewerImage.src = image.currentSrc || image.src;
     viewerImage.alt = image.alt;
+    const description = image.closest(".photo-tile")?.querySelector(".photo-caption")?.textContent.trim() || "";
+    viewerDescription.textContent = description;
+    viewerDescription.hidden = !description;
     imageViewer.hidden = false;
     document.body.classList.add("image-viewer-open");
     window.requestAnimationFrame(() => imageViewer.classList.add("is-open"));
@@ -61,6 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll(".accordion-header").forEach((header) => {
     const content = document.getElementById(header.getAttribute("aria-controls")) || header.nextElementSibling;
+    const updateContentHeight = () => {
+      if (content && header.getAttribute("aria-expanded") === "true" && content.style.maxHeight !== "none") {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    };
     if (!header.hasAttribute("aria-expanded")) {
       header.setAttribute("aria-expanded", String(content && !content.hidden));
     }
@@ -68,11 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const isOpen = header.getAttribute("aria-expanded") === "true";
     header.classList.toggle("active", isOpen);
     if (content) {
-      content.hidden = false;
-      content.style.maxHeight = isOpen ? content.scrollHeight + "px" : "0px";
-      if (!isOpen) {
-        content.hidden = true;
-      }
+      content.hidden = !isOpen;
+      content.style.maxHeight = isOpen ? "none" : "";
+      content.addEventListener("load", updateContentHeight, true);
+      content.addEventListener("transitionend", (event) => {
+        if (event.propertyName === "max-height" && header.getAttribute("aria-expanded") === "true") {
+          content.style.maxHeight = "none";
+        }
+      });
     }
 
     header.addEventListener("click", function () {
@@ -82,7 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
       header.setAttribute("aria-expanded", String(!isOpen));
       if (content) {
         if (isOpen) {
-          content.style.maxHeight = "0px";
+          content.style.maxHeight = content.scrollHeight + "px";
+          window.requestAnimationFrame(() => {
+            content.style.maxHeight = "0px";
+          });
           window.setTimeout(() => {
             if (header.getAttribute("aria-expanded") === "false") {
               content.hidden = true;
@@ -90,20 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
           }, 300);
         } else {
           content.hidden = false;
+          content.style.maxHeight = "0px";
+          void content.offsetHeight;
           window.requestAnimationFrame(() => {
-            content.style.maxHeight = content.scrollHeight + "px";
+            updateContentHeight();
           });
-        }
-      }
-    });
-  });
-
-  window.addEventListener("resize", () => {
-    document.querySelectorAll(".accordion-header").forEach((header) => {
-      if (header.getAttribute("aria-expanded") === "true") {
-        const content = document.getElementById(header.getAttribute("aria-controls")) || header.nextElementSibling;
-        if (content) {
-          content.style.maxHeight = content.scrollHeight + "px";
         }
       }
     });
@@ -199,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mediaRow.replaceChildren();
         if (trip.image) {
           const image = document.createElement("img");
-          image.src = trip.image;
+          image.src = new URL("/" + trip.image.replace(/^\/+/, ""), window.location.origin).href;
           image.alt = "Trip photograph";
           image.loading = "lazy";
           image.className = "enhance-image";

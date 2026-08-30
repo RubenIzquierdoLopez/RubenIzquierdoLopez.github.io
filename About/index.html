@@ -1,0 +1,42 @@
+---
+layout: null
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <title>About | Rubén Izquierdo López</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="">
+</head>
+<body>
+  {% include navigation.html active='about' %}
+
+  <main class="PersonalInfo about-page" id="About">
+    <section class="about-content trip-map-section" aria-labelledby="trip-map-title">
+      <h1 id="trip-map-title">Places I have visited</h1>
+      <p>These are the places that my academic adventures have taken me to. You can find information about each event and see some pictures by clicking on its pin.</p>
+      <div id="trip-map" class="trip-map" aria-label="Map of selected academic trips"></div>
+    </section>
+
+    <section class="about-content photo-section" aria-labelledby="photos-title">
+      <h2 id="photos-title">Gallery</h2>
+      <p>Here you can find some pictures of myself in different scenarios, whether academically related or not.</p>
+      <div class="photo-gallery">
+        {% for photo in site.data.photos %}
+        <figure class="photo-tile">
+          <img class="enhance-image" loading="lazy" src="{{ '/' | append: photo.image | relative_url }}" alt="Selected photograph" role="button" tabindex="0">
+          {% if photo.description %}<figcaption class="photo-caption">{{ photo.description }}</figcaption>{% endif %}
+        </figure>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+  <script id="trip-data" type="application/json">{{ site.data.trips | jsonify }}</script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../script.js?v=20260830"></script>
+</body>
+</html>

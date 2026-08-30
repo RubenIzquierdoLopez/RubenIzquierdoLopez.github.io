@@ -1,9 +1,9 @@
 <nav class="topbar" aria-label="Main navigation">
-  <a class="{% if include.active == 'about' %}active{% endif %}" href="{{ '/index.html' | relative_url }}" {% if include.active == 'about' %}aria-current="page"{% endif %}>About</a>
+  <a class="{% if include.active == 'home' %}active{% endif %}" href="{{ '/index.html' | relative_url }}" {% if include.active == 'home' %}aria-current="page"{% endif %}>Home</a>
   <a class="{% if include.active == 'research' %}active{% endif %}" href="{{ '/Research/index.html' | relative_url }}" {% if include.active == 'research' %}aria-current="page"{% endif %}>Research</a>
   <a class="{% if include.active == 'talks' %}active{% endif %}" href="{{ '/Talks/index.html' | relative_url }}" {% if include.active == 'talks' %}aria-current="page"{% endif %}>Talks</a>
   <a class="{% if include.active == 'teaching' %}active{% endif %}" href="{{ '/Teaching/index.html' | relative_url }}" {% if include.active == 'teaching' %}aria-current="page"{% endif %}>Teaching</a>
-  <a class="{% if include.active == 'miscellany' %}active{% endif %}" href="{{ '/Miscellany/index.html' | relative_url }}" {% if include.active == 'miscellany' %}aria-current="page"{% endif %}>Miscellany</a>
+  <a class="{% if include.active == 'about' %}active{% endif %}" href="{{ '/About/index.html' | relative_url }}" {% if include.active == 'about' %}aria-current="page"{% endif %}>About</a>
   <a class="cv-link" href="{{ '/Documents/Curriculum_Vitae.pdf' | relative_url }}" target="_blank" rel="noopener">
   <img class="nav-icon" loading="lazy" src="{{ '/Images/External_Link.webp' | relative_url }}" alt=""> Curriculum Vitae
   </a>

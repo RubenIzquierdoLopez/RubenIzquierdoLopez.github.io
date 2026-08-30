@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.10.11)  29 AUG 2026 12:57
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.10.11)  30 AUG 2026 11:46
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -672,22 +672,24 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 [3]
 
-[4] (./main.aux)
+[4]
+
+[5] (./main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4AAF968E6CFE843A0CB1E0A5997C9C72;1341.
+(rerunfilecheck)             Checksum: EBF7B0F77B204117CFD9506338239266;1354.
 )
 
 Here is how much of LuaTeX's memory you used:
- 14221 strings out of 475910
+ 14222 strings out of 475910
  125240,953878 words of node,token memory allocated
  509 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 1 local_par, 4 glue, 4 kern, 1 penalty, 3 glyph, 8 
 attribute, 54 glue_spec, 8 attribute_list, 1 write, 1 pdf_action nodes
-   avail lists: 2:750,3:435,4:240,5:550,6:73,7:7970,8:3,9:414,10:4,11:612
+   avail lists: 2:733,3:435,4:240,5:548,6:73,7:7973,8:3,9:414,10:4,11:609
  36653 multiletter control sequences out of 65536+600000
  50 fonts using 5331007 bytes
  79i,5n,92p,1369b,504s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -700,10 +702,10 @@ ts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2024/texmf-dist/fonts/opent
 ype/public/lm/lmroman9-italic.otf><c:/texlive/2024/texmf-dist/fonts/opentype/pub
 lic/lm/lmsans12-regular.otf><c:/texlive/2024/texmf-dist/fonts/opentype/public/lm
 /lmsans10-bold.otf>
-Output written on main.pdf (4 pages, 60293 bytes).
+Output written on main.pdf (5 pages, 62399 bytes).
 
-PDF statistics: 193 PDF objects out of 1000 (max. 8388607)
- 158 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 131072)
+PDF statistics: 198 PDF objects out of 1000 (max. 8388607)
+ 162 compressed objects within 2 object streams
+ 26 named destinations out of 1000 (max. 131072)
  89 words of extra memory for PDF output out of 10000 (max. 100000000)
 

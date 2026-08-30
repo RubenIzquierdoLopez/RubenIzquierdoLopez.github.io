@@ -12,7 +12,7 @@ The public pages are:
 - `Research/index.html`: publications and preprints.
 - `Talks/index.html`: talks, posters, and lecture-series sessions.
 - `Teaching/index.html`: course information and resources.
-- `Miscellany/index.html`: other academic activity.
+- `About/index.html`: map of academic trips and photo gallery.
 
 The page templates read structured data from `_data/` through Jekyll's `site.data` object. Shared navigation is in `_includes/navigation.html`; shared styles and behavior are in `style.css` and `script.js`.
 
@@ -222,20 +222,18 @@ Courses appear on the public Teaching page and in the CV Teaching section. The C
 
 `documents` is optional. Its local URLs are relative to `Teaching/index.html`. `online` controls whether a course appears on the public Teaching page: it defaults to `yes`; set `online: no` to hide that course online. This flag does not remove the course from the private CV.
 
-### `_data/miscellany.yml`
+### `_data/photos.yml`
 
-This data appears only on the public Miscellany page.
+This data appears in the public About page photo gallery.
 
 ```yaml
-- title: Activity name
-  description: A short description of the activity.
-  link: https://example.org
-  link_label: official website
+- image: Images/Selected_pictures/example-photo.webp
+  description: An optional caption shown on the photo and in the expanded viewer.
 ```
 
 ### `_data/trips.yml`
 
-This data appears only as pins and popups on the map in the home page.
+This data appears only as pins and popups on the map in the About page.
 
 ```yaml
 - place: Example City
@@ -261,7 +259,7 @@ This data appears only as pins and popups on the map in the home page.
 ## Before Publishing
 
 1. Run a Jekyll build or preview the website.
-2. Check Home, Research, Talks, Teaching, and Miscellany.
+2. Check Home, Research, Talks, Teaching, and About.
 3. Confirm new local document links open correctly.
 4. Regenerate the CV after changing `_data/cv.yml`, `_data/research.yml`, `_data/talks.yml`, or `_data/teaching.yml`.
 5. Do not commit generated `_site/`, `.jekyll-cache/`, local Bundler directories, or `_cv/cv-data.tex` unless deliberately required.

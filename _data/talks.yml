@@ -71,9 +71,9 @@
 
         - label: Video
           url: 'https://www.youtube.com/watch?v=0excp9Gny_o&list=PLWmWVtLPiXLj58YkRr2uESlwurPcipJFK&index=17'
-          icon: Youtube_logo.webp
+          icon: video_logo.webp
 
-    - event: Gamma Seminar
+    - event: "Gamma (Geometry and Applications: Modern Mathematical Approaches) Seminar"
       category: scientific_contribution
       contribution_type: seminar
       event_url: https://www.fuw.edu.pl/KMMF/gamma/
@@ -87,7 +87,7 @@
 
         - label: Video
           url: https://youtu.be/YRa_B6Bp0YM?si=TR5lt-tWoQeJST2i
-          icon: Youtube_logo.webp
+          icon: video_logo.webp
 
     - event: Reading Groupoid
       category: lecture_series
@@ -98,7 +98,7 @@
 
         - label: Video
           url: 'https://www.youtube.com/watch?v=W3HcRZOgPpc&list=PLWmWVtLPiXLj58YkRr2uESlwurPcipJFK&index=13'
-          icon: Youtube_logo.webp
+          icon: video_logo.webp
 
     - event: VIII Iberoamerican Meeting on Geometry, Dynamics, and Field Theory
       category: scientific_contribution
@@ -126,7 +126,7 @@
 
         - label: Video
           url: 'https://www.youtube.com/watch?v=HPwVIDe8Z-g&list=PLWmWVtLPiXLj58YkRr2uESlwurPcipJFK&index=3&t=3271s'
-          icon: Youtube_logo.webp
+          icon: video_logo.webp
 
     - event: XXXIII International Fall Workshop on Geometry and Physics
       category: scientific_contribution
@@ -262,7 +262,7 @@
 
         - label: Video
           url: https://canal.uned.es/video/66cda8dfe17f6b5044068c02
-          icon: Youtube_logo.webp
+          icon: video_logo.webp
 
     - event: 'Gamma (Geometry and Applications: Modern Mathematical Approaches) Seminar'
       category: scientific_contribution
@@ -278,7 +278,7 @@
 
         - label: Video
           url: https://www.youtube.com/watch?v=2sWAcn1k3V0
-          icon: Youtube_logo.webp
+          icon: video_logo.webp
 
     - event: The Geometry of Field Theories
       category: scientific_contribution

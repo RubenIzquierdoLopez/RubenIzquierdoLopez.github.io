@@ -48,19 +48,19 @@
 
     - name: Ecuaciones Diferenciales
       translation: Differential Equations
-      online: no
+      online: yes
       degree: Grado en Física UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
 
     - name: Diseño de Algoritmos
       translation: Algorithm Design
-      online: no
+      online: yes
       degree: Grado en Ingeniería Informática UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-online-ingenieria-informatica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_TECNOLOG_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_TECNOLOG_X_MAR_BUSQ_Marca-IngenieriaInformatica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17568914383&bi_adgroupid=140973685671&gad_source=1&gad_campaignid=17568914383&gbraid=0AAAAADvi6Q_uFQOwr9qFLTn4RuYntGOhL&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSe3hznN7HISPuFtuE2bpekrCvAioljcYvCtdv7SNGeUegqzZ5VPr2gaArL0EALw_wcB
 
     - name: Diseño de Algoritmos
       translation: Algorithm Design
-      online: no
+      online: yes
       degree: Grado en Matemática Computacional UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-matematica-computacional/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_X_LWEB_GLOB_ES_PROD_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_BUSQ_Marca-GradoMatematicas_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17557126482&bi_adgroupid=138045350316&gad_source=1&gad_campaignid=17557126482&gbraid=0AAAAADvi6Q8PRYnJBiMzS05vqHTZUemNB&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQScGBWjJljK2zasKgrX9lJ9AT_Oa3ZPSUhhqtZkldrXrBH9dl7q8jb0aApeyEALw_wcB
 
@@ -69,31 +69,31 @@
 
     - name: Sistemas Dinámicos
       translation: Dynamical Systems
-      online: no
+      online: yes
       degree: Grado en Matemática Computacional UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-matematica-computacional/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_X_LWEB_GLOB_ES_PROD_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_BUSQ_Marca-GradoMatematicas_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17557126482&bi_adgroupid=138045350316&gad_source=1&gad_campaignid=17557126482&gbraid=0AAAAADvi6Q8PRYnJBiMzS05vqHTZUemNB&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQScGBWjJljK2zasKgrX9lJ9AT_Oa3ZPSUhhqtZkldrXrBH9dl7q8jb0aApeyEALw_wcB
 
     - name: Lógica Computacional
       translation: Computational Logic
-      online: no
+      online: yes
       degree: Grado en Matemática Computacional UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-matematica-computacional/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_X_LWEB_GLOB_ES_PROD_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_MATES_MatematicaComputacio-163657_MAR_BUSQ_Marca-GradoMatematicas_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17557126482&bi_adgroupid=138045350316&gad_source=1&gad_campaignid=17557126482&gbraid=0AAAAADvi6Q8PRYnJBiMzS05vqHTZUemNB&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQScGBWjJljK2zasKgrX9lJ9AT_Oa3ZPSUhhqtZkldrXrBH9dl7q8jb0aApeyEALw_wcB
 
     - name: Análisis Complejo
       translation: Complex Analysis
-      online: no
+      online: yes
       degree: Grado en Física UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
 
     - name: Análisis Numérico
       translation: Numerical Analysis
-      online: no
+      online: yes
       degree: Grado en Física UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
 
     - name: Ecuaciones Diferenciales
       translation: Differential Equations
-      online: no
+      online: yes
       degree: Grado en Física UNIR
       degree_url: https://estudiar.unir.net/landings/es_es/ing-pro-gra-ofi-noa-grado-fisica/?utm_source=GOOGLE-BUSQ&utm_medium=Search&utm_campaign=UNIREU_EU_ES_FIG_IG_G_INDUSTRIA_X_MAR_X_LWEB_GLOB_ES_AREA-VERT_AO_GOOGLE-BUS_BUS_ESP_X_X&utm_content=ES_ES_FIG_IG_G_INDUSTRIA_X_MAR_BUSQ_Marca-Fisica_TXT_CPM_GOOGLE-BUS_MIX_X_X_X&bi_campaignid=17561990606&bi_adgroupid=137564140549&gad_source=1&gad_campaignid=17561990606&gbraid=0AAAAADvi6Q8-QRL4OicMiL8s30dq9u0uH&gclid=Cj0KCQjwhsrUBhDxARIsAN3AQSc4VW5cGK4mUqL6JnPu_ZrgKmloqAxuKM8mariSN7PD7O_H91oixvQaAoUAEALw_wcB
 
@@ -102,7 +102,7 @@
 
     - name: Matemáticas Básicas
       translation: Basic Mathematics
-      online: no
+      online: yes
       degree: Grado en Matemáticas UCM
       degree_url: https://www.ucm.es/estudios/grado-matematicas-plan/
 

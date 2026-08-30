@@ -18,12 +18,12 @@ layout: null
       <p>The main topic of my PhD is <a href="https://ncatlab.org/nlab/show/multisymplectic+geometry#from_the_pov" target="_blank" rel="noopener">multisymplectic geometry</a>, the natural finite-dimensional geometric framework for the study of classical field theories, along with related geometries such as multicontact, graded Poisson, and graded Dirac geometry.</p>
       <p>We are interested in both the geometric properties of manifolds equipped with such structures and the dynamical information that one may extract from partial differential equations arising from a multisymplectic or related geometry. These include:</p>
       <ul>
+        <li>Multisymplectic and associated geometric formulations of classical field theories.</li>
         <li>Coisotropic embeddings and regularization.</li>
         <li>Symmetries and associated Noether charges.</li>
         <li>Darboux, or flatness, theorems.</li>
-        <li>Reduction via Lie group actions and associated momentum maps.</li>
       </ul>
-      <p>Below you may find published and unpublished papers developed during my PhD, ordered from most recent to oldest. The PDF icon links to the document.</p>
+      <p>Below you may find published and unpublished papers developed during my PhD, ordered from most recent to oldest.</p>
 
       {% if site.data.research.preprints and site.data.research.preprints.size > 0 %}
       <section aria-labelledby="preprints-title">
@@ -31,10 +31,9 @@ layout: null
         <div class="publication-list">
           {% for paper in site.data.research.preprints %}
           <article class="publication-item">
-            {% if paper.pdf %}
-            <a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="PDF"></a>
-            {% endif %}
-            <div><p>{{ paper.citation }}{% if paper.doi %} <strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a>.{% endif %}</p></div>
+            <p>{{ paper.citation }}</p>
+            {% if paper.doi %}<p class="publication-identifier"><strong>arXiv:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a></p>{% endif %}
+            {% if paper.pdf %}<a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="">Read preprint (PDF)</a>{% endif %}
           </article>
           {% endfor %}
         </div>
@@ -47,10 +46,9 @@ layout: null
         <div class="publication-list">
           {% for paper in site.data.research.publications %}
           <article class="publication-item">
-            {% if paper.pdf %}
-            <a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="PDF"></a>
-            {% endif %}
-            <div><p>{{ paper.citation }}{% if paper.doi %} <strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a>.{% endif %}</p></div>
+            <p>{{ paper.citation }}</p>
+            {% if paper.doi %}<p class="publication-identifier"><strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a></p>{% endif %}
+            {% if paper.pdf %}<a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="">Read paper (PDF)</a>{% endif %}
           </article>
           {% endfor %}
         </div>

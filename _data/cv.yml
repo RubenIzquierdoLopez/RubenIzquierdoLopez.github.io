@@ -48,6 +48,23 @@ research_stays:
 
 other_scientific_meetings_attended:
 
+  - event: XVI International ICMAT Summer School on Geometry, Dynamics and Field theory
+    institution: Instituto de Ciencias Matemáticas (ICMAT)
+    period: June 2024
+
+  - event: XXV WinterMeeting on Geometry, Dynamics and Field Theory
+    institution: Universidad de Zaragoza
+    period: January 2024
+
+  - event: de León fest
+    institution: Instituto de Ciencias Matemáticas (ICMAT)
+    period: December 2023
+
+  - event: JAE Summer School
+    institution: Instituto de Ciencias Matemáticas (ICMAT)
+    period: July 2023
+
+  
 awards:
 
   - name: FPU2024 Fellowship
