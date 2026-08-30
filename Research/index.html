@@ -33,7 +33,7 @@ layout: null
           <article class="publication-item">
             <p>{{ paper.citation }}</p>
             {% if paper.doi %}<p class="publication-identifier"><strong>arXiv:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a></p>{% endif %}
-            {% if paper.pdf %}<a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="">Read preprint (PDF)</a>{% endif %}
+            {% if paper.pdf %}<p class="publication-pdf"><a href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="">Read preprint (PDF)</a></p>{% endif %}
           </article>
           {% endfor %}
         </div>
@@ -48,7 +48,7 @@ layout: null
           <article class="publication-item">
             <p>{{ paper.citation }}</p>
             {% if paper.doi %}<p class="publication-identifier"><strong>DOI:</strong> <a href="{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi_label | default: paper.doi }}</a></p>{% endif %}
-            {% if paper.pdf %}<a class="publication-pdf" href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="">Read paper (PDF)</a>{% endif %}
+            {% if paper.pdf %}<p class="publication-pdf"><a href="{{ paper.pdf }}" target="_blank" rel="noopener"><img loading="lazy" src="../Images/pdf_icon.webp" alt="">Read paper (PDF)</a></p>{% endif %}
           </article>
           {% endfor %}
         </div>
