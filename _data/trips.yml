@@ -5,6 +5,13 @@
   title: ICMAT, UAM, and home base
   description: Madrid is my hometown where, besides everyday adventures, I am also pursuing my PhD at ICMAT. Of course, several academic events take place here. You can click ">" to see information and pictures of these events.
 
+- place: Tarragona
+  country: Spain
+  coordinates: [41.1175, 1.2528]
+  date: September 2026
+  title: XXXIV International Fall Workshop on Geometry and Physics
+  description: Second edition of this conference I attended, very interesting set of courses and talks!
+
 
 - place: Warsaw
   country: Poland

@@ -1,6 +1,18 @@
 - year: 2026
   label: Talks and posters of 2026
   talks:
+
+    - event: XXXIV International Fall Workshop on Geometry and Physics
+      category: scientific_contribution
+      contribution_type: contributed_conference_talk
+      event_url: https://webs-deim.urv.cat/~34ifwgp/registration/index.html
+      date: 2 September, 2026
+      title: On the Spencer cohomology and integrability of multisymplectic structures
+      resources: 
+
+        - label: Slides
+          url: ../Documents/Slides/2026/IFWGP34_RubenIzquierdo.pdf
+          icon: pdf_icon.webp
     
     - event: Higher Categories for the Working Mathematician
       category: scientific_contribution
