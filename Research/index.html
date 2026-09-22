@@ -16,13 +16,42 @@ layout: null
     <section class="research-content" aria-labelledby="research-title">
       <h1 id="research-title">Research</h1>
       <p>The main topic of my PhD is <a href="https://ncatlab.org/nlab/show/multisymplectic+geometry#from_the_pov" target="_blank" rel="noopener">multisymplectic geometry</a>, the natural finite-dimensional geometric framework for the study of classical field theories, along with related geometries such as multicontact, graded Poisson, and graded Dirac geometry.</p>
-      <p>We are interested in both the geometric properties of manifolds equipped with such structures and the dynamical information that one may extract from partial differential equations arising from a multisymplectic or related geometry. These include:</p>
-      <ul>
-        <li>Multisymplectic and associated geometric formulations of classical field theories.</li>
-        <li>Coisotropic embeddings and regularization.</li>
-        <li>Symmetries and associated Noether charges.</li>
-        <li>Darboux, or flatness, theorems.</li>
-      </ul>
+      <p>We are interested in both the geometric properties of manifolds equipped with such structures and the dynamical information that one may extract from partial differential equations arising from a multisymplectic or related geometry.</p>
+      <p>Below you may find the main research topics I am interested in. Click on each topic to read a more in-depth explanation.</p>
+      <div class="accordion research-topics">
+        <section class="research-topic">
+          <h2>
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="topic-multisymplectic">Multisymplectic and associated geometric formulations of classical field theories</button>
+          </h2>
+          <div class="accordion-content" id="topic-multisymplectic" hidden>
+            <p>Detailed explanation coming soon.</p>
+          </div>
+        </section>
+        <section class="research-topic">
+          <h2>
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="topic-coisotropic">Coisotropic embeddings and regularization</button>
+          </h2>
+          <div class="accordion-content" id="topic-coisotropic" hidden>
+            <p>Detailed explanation coming soon.</p>
+          </div>
+        </section>
+        <section class="research-topic">
+          <h2>
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="topic-symmetries">Symmetries and associated Noether charges</button>
+          </h2>
+          <div class="accordion-content" id="topic-symmetries" hidden>
+            <p>Detailed explanation coming soon.</p>
+          </div>
+        </section>
+        <section class="research-topic">
+          <h2>
+            <button class="accordion-header" type="button" aria-expanded="false" aria-controls="topic-darboux">Darboux, or flatness, theorems</button>
+          </h2>
+          <div class="accordion-content" id="topic-darboux" hidden>
+            <p>Detailed explanation coming soon.</p>
+          </div>
+        </section>
+      </div>
       <p>Below you may find published and unpublished papers developed during my PhD, ordered from most recent to oldest.</p>
 
       {% if site.data.research.preprints and site.data.research.preprints.size > 0 %}
@@ -56,5 +85,6 @@ layout: null
       {% endif %}
     </section>
   </main>
+  <script src="../script.js"></script>
 </body>
 </html>

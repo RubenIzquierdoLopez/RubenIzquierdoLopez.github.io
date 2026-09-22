@@ -10,17 +10,17 @@ preprints:
     doi: https://arxiv.org/abs/2606.20030
     doi_label: arXiv:2606.20030
 
-  - citation: 'M. de León, R. Izquierdo-López, L. Schiavone, P. Soto, "Regularization of singular time-dependent Lagrangian systems".'
-    pdf: ../Documents/Papers/2603.24308v1.pdf
-    doi: https://doi.org/10.48550/arXiv.2603.24308
-    doi_label: arXiv:2603.24308
-
   - citation: 'M. de León, R. Izquierdo-López, L. Schiavone, P. Soto, "A zoo of coisotropic embeddings".'
     pdf: ../Documents/Papers/2509.19039v1.pdf
     doi: https://doi.org/10.48550/arXiv.2509.19039
     doi_label: arXiv:2509.19039
 
 publications:
+
+  - citation: 'M. de León, R. Izquierdo-López, L. Schiavone, P. Soto, "Regularization of singular time-dependent Lagrangian systems". Anal.Math.Phys. 16, 125 (2026).'
+    pdf: ../Documents/Papers/liss2026anal.math.phys.pdf
+    doi: https://doi.org/10.1007/s13324-026-01261-z
+    doi_label: /10.1007/s13324-026-01261-z
 
   - citation: 'M. de León and R. Izquierdo-López, "A description of classical field equations using extensions of graded Poisson brackets", International Journal of Geometric Methods in Modern Physics, Accepted for publication.'
     pdf: ../Documents/Papers/li2026int.j.geom.methodsmod.phys.pdf

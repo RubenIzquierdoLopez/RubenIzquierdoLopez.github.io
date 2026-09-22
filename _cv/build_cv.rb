@@ -18,6 +18,7 @@ def tex(value)
        .gsub(/([#$%&_{}])/) { "\\#{Regexp.last_match(1)}" }
        .gsub("~", "\\textasciitilde{}")
        .gsub("^", "\\textasciicircum{}")
+       .gsub(/"([^"]*)"/, "``\\1''")
 end
 
 def tex_url(value)
@@ -151,6 +152,12 @@ academic_activities.each do |item|
   detail = item["detail_tex"] || tex(item["detail"])
   lines << "\\CVCompactEntry{#{tex(item["activity"])}}{}{#{tex(item["period"])}}{#{detail}}"
 end
+lines << "}"
+referee_service = Array(cv["referee_service"])
+lines << "\\newif\\ifCVHasRefereeService"
+lines << (referee_service.empty? ? "\\CVHasRefereeServicefalse" : "\\CVHasRefereeServicetrue")
+lines << "\\newcommand{\\CVRefereeService}{%"
+referee_service.each { |item| lines << "\\CVReferee{#{tex(item["journal"])}}{#{tex(item["period"])}}" }
 lines << "}"
 lines << "\\newcommand{\\CVLanguages}{#{cv.fetch("languages").map { |item| tex(item) }.join("; ")}}"
 

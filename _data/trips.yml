@@ -36,8 +36,8 @@
   coordinates: [51.545483, 9.905548]
   date: July 2026
   title: Higher Categories for the Working Mathematician
-  description: Stepping out of my comfort zone and learning a bit about higher categories and their connection to modern mathematics (and some differential geometry). I apologize for the gloomy picture (of Gauss himself!), but sadly I do not have any others.
-  image: Images/Trips/Gottingen2026_gauss.webp
+  description: Stepping out of my comfort zone and learning a bit about higher categories and their connection to modern mathematics (and some differential geometry).
+  image: Images/Trips/Higher_Categories.webp
 
 
 - place: Metz

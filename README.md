@@ -136,12 +136,16 @@ academic_activities_organized:
     period: 2025--2026
     detail: Short description.
 
+referee_service:
+  - journal: Journal name
+    period: 2026
+
 languages:
   - Spanish (native)
   - English (professional working proficiency)
 ```
 
-`personal`, `bio`, and every list above are used by the CV renderer. Keep `research_experience` for employment or ongoing research roles and `research_stays` for temporary visits. `other_scientific_meetings_attended` is only for conferences, workshops, or schools attended without contributing a talk or poster; contributed events belong in `_data/talks.yml`. Use `detail_tex` instead of `detail` only when a record needs trusted LaTeX, such as `\href{https://example.org}{https://example.org}`; ordinary text must remain in `detail`.
+`personal`, `bio`, and every list above are used by the CV renderer. Keep `research_experience` for employment or ongoing research roles and `research_stays` for temporary visits. `other_scientific_meetings_attended` is only for conferences, workshops, or schools attended without contributing a talk or poster; contributed events belong in `_data/talks.yml`. `referee_service` lists journals you have reviewed for; `journal` is required and `period` is optional, and the section stays hidden while the list is empty. Use `detail_tex` instead of `detail` only when a record needs trusted LaTeX, such as `\href{https://example.org}{https://example.org}`; ordinary text must remain in `detail`. Write straight double quotes (`"..."`) in ordinary text; the renderer converts each pair into proper LaTeX quotation marks, so the PDF shows correct opening and closing quotes.
 
 ### `_data/research.yml`
 

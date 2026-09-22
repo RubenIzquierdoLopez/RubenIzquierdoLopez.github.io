@@ -100,7 +100,7 @@ outreach_and_volunteering:
 
   - activity: Volunteer in "Concurso de Primavera"
     period: April 2023
-    detail: Assisted with the organization of ""Concurso de Primavera", a math competition for highschool students.
+    detail: Assisted with the organization of "Concurso de Primavera", a math competition for highschool students.
 
 academic_activities_organized:
 
@@ -111,6 +111,13 @@ academic_activities_organized:
   - activity: Co-organizer, Reading Groupoid
     period: 2025--2026
     detail_tex: Academic-year reading group on Lie groupoids, for more information, see the official website \href{https://readinggroupoid.org/}{https://readinggroupoid.org/}. This is a joint iniciative with ICMAT--UCM--UW.
+
+referee_service:
+
+  - journal: Geometric Mechanics
+  - journal: Journal of Nonlinear Science
+  - journal: Mediterranean Journal of Mathematics
+  - journal: Discrete and Continuous Dynamical Systems
 
 languages:
 

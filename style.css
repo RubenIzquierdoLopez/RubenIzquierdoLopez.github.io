@@ -760,6 +760,39 @@ body.image-viewer-open {
   color: #00d4ff; /* Cyan bullet points */
 }
 
+/* Research topics accordion */
+.research-topics {
+  margin: 1.5rem 0;
+}
+
+.research-topic {
+  margin-bottom: 0.5rem;
+}
+
+.research-topic h2 {
+  margin: 0;
+}
+
+.research-topic .accordion-header {
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 12px 16px;
+  border-radius: 6px 6px 0 0;
+}
+
+.research-topic .accordion-header[aria-expanded="false"] {
+  border-radius: 6px;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.3);
+}
+
+.research-topic .accordion-content {
+  text-align: justify;
+}
+
+.research-topic .accordion-content p {
+  margin: 0.8rem 0;
+}
+
 /* FORCE ALL LINKS TO BE IDENTICAL */
 a, a:link, a:visited {
     color: #8da9c4;

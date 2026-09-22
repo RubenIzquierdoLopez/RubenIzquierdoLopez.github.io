@@ -45,6 +45,8 @@
   \end{CVItemList}}
 \newcommand{\CVCompactEntry}[4]{%
   \item \textbf{#1} \textrm{(#3)}. #4\par\vspace{2pt}}
+\newcommand{\CVReferee}[2]{%
+  \item \textbf{#1}\if\relax\detokenize{#2}\relax\else\ \textrm{(#2)}\fi\par\vspace{2pt}}
 
 \input{cv-data.tex}
 
@@ -129,6 +131,13 @@
   \section{Academic Activities Organized}
   \begin{CVItemList}
     \CVAcademicActivitiesOrganized
+  \end{CVItemList}
+\fi
+
+\ifCVHasRefereeService
+  \section{Referee Service}
+  \begin{CVItemList}
+    \CVRefereeService
   \end{CVItemList}
 \fi
 
