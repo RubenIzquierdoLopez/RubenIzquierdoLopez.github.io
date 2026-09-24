@@ -1,223 +1,229 @@
-# Ruben Izquierdo Lopez
+# Ruben Izquierdo López
 
-This repository contains a personal academic website and a private, data-driven LaTeX CV. The website is published with Jekyll; the CV is generated locally and is not part of the public site.
+This repository contains a personal academic website built with Jekyll and a separate, private CV pipeline driven by LaTeX and YAML data. The public site and the CV share the same source data and must stay consistent when content is updated.
 
-## How the website works
+## Project purpose
 
-Jekyll builds static HTML from the source files in this repository. GitHub Pages runs the build automatically after a push. The source files are the files to edit; `_site/` is generated output and must not be edited.
+The repository serves two linked outputs:
 
-The public pages are:
+- Public academic website: home, research, talks, teaching, and about pages.
+- Local CV: a PDF generated from the research and activity data under `_cv/`.
 
-- `index.html`: home page and biography.
-- `Research/index.html`: publications and preprints.
-- `Talks/index.html`: talks, posters, and lecture-series sessions.
-- `Teaching/index.html`: course information and resources.
-- `About/index.html`: map of academic trips and photo gallery.
+The source of truth is the structured data in `_data/`. The generated site output under `_site/` is not edited manually.
 
-The page templates read structured data from `_data/` through Jekyll's `site.data` object. Shared navigation is in `_includes/navigation.html`; shared styles and behavior are in `style.css` and `script.js`.
+## Site structure
 
-## One Data Change, Two Outputs
+The public website is organized as a multi-page Jekyll site:
 
-Use `_data/` as the source of truth for academic records. A change to a shared YAML file can update both the public webpage and the local CV:
+- `index.html`: home page, biography, academic summary, and external profile links.
+- `Research/index.html`: research themes, publication list, arXiv/DOI links, and PDF access.
+- `Talks/index.html`: talks, posters, lecture series, event links, and downloadable resources.
+- `Teaching/index.html`: teaching portfolio grouped by academic year and course metadata.
+- `About/index.html`: map of academic trips and a gallery of selected photographs.
+- `Miscellany/index.html`: a secondary page that mirrors the same trip/photo pattern and acts as a catch-all section for additional content.
 
-- Add a paper to `_data/research.yml`: it appears on the Research page and in the CV.
-- Add a CV-eligible scientific contribution to `_data/talks.yml`: it appears on the Talks page and in the appropriate CV subsection.
-- Add a course to `_data/teaching.yml`: it appears on the Teaching page and in the CV Teaching section.
+Shared navigation is in `_includes/navigation.html`, styling is in `style.css`, and behavior is in `script.js`.
 
-Do not duplicate shared records in HTML or LaTeX. After editing data, build the website and regenerate the CV when relevant.
+## Current functionality of the website
 
-## Local Builds
+The site is more than a static page set. It includes several interactive and data-driven features.
 
-Run commands from the repository root.
+### 1. Data-driven academic content
 
-### Website preview
+The pages read YAML content from `_data/` using Jekyll's `site.data` access pattern. This is the central model for the repository:
 
-Install the dependencies once:
+- `_data/research.yml`: preprints and publications with DOI/arXiv links and PDF download links.
+- `_data/talks.yml`: yearly talk records with title, event, category, contribution type, date, links, notes, and resources.
+- `_data/teaching.yml`: academic years, courses, online/offline status, degree information, schedules, and documents.
+- `_data/trips.yml`: map entries with place, coordinates, event title, dates, and descriptions.
+- `_data/photos.yml`: gallery images and captions.
+- `_data/cv.yml`: private CV metadata and biography content used by the LaTeX CV generation.
+
+The website and CV both consume these records, so a single data update may affect both outputs.
+
+### 2. Research page with accordion sections and citation links
+
+`Research/index.html` includes:
+
+- A research overview with expandable accordion sections for each main topic.
+- Publication and preprint sections ordered by date or relevance.
+- `pdf` links for the actual paper files in `Documents/Papers/`.
+- DOI and arXiv links for each item.
+- A citation system based on `\cite{...}` markup, processed by `script.js` to convert citations into clickable references.
+- Highlighting of cited targets when the URL hash points to a reference.
+
+The front-end behavior in `script.js` parses the `citation-data` JSON injected by the include and rewrites citation text into links without hardcoding the bibliography in HTML.
+
+### 3. Talks page with yearly grouping and resource buttons
+
+`Talks/index.html` includes:
+
+- Accordion groups by academic year.
+- Event-level metadata such as date, event URL, title, and notes.
+- Resource badges for slides, posters, videos, or other downloadable material.
+- Support for `lecture_series` entries that remain on the site without being part of the CV contribution list.
+- Scientific contribution records that can be surfaced in the CV using the appropriate `contribution_type` values.
+
+### 4. Teaching page with course grouping and documents
+
+`Teaching/index.html` includes:
+
+- Teaching entries grouped by academic year.
+- Course cards with links to the course page, degree, and downloadable teaching materials.
+- Optional `online` filtering so online courses can be displayed or omitted depending on the intended page behavior.
+- Fields for schedule, classroom, theory teacher, and supporting documents.
+
+### 5. About page with map and gallery
+
+`About/index.html` includes:
+
+- An interactive Leaflet map of academic trips and visits.
+- Markers with custom popup content generated from `site.data.trips`.
+- Photo gallery with selected academic or personal images.
+- An image viewer modal that opens full-size images and supports keyboard access and Escape-to-close behavior.
+
+The JavaScript in `script.js` creates the map, loads the JSON trip data from the page, places markers, and handles the modal viewer image interaction.
+
+### 6. Accessibility and interaction behavior
+
+The client-side logic in `script.js` adds several usability features:
+
+- Expand/collapse accordions for long research and teaching content.
+- Keyboard-triggered image opening using Enter or Space on images with `enhance-image`.
+- Focus restoration after closing the image viewer.
+- Modern modal dialog semantics with `role="dialog"`, `aria-modal`, and keyboard support.
+- Hash-based citation highlighting for in-page reference navigation.
+
+### 7. Link validation and maintenance tooling
+
+The repository contains a simple validation script:
+
+- `scripts/check_document_links.rb` scans YAML/HTML/Markdown files for local document references and reports missing files.
+
+This helps catch broken document paths, local PDFs, slide links, and similar issues before publishing.
+
+### 8. Documentation and operational notes
+
+The repo also contains project documentation under `docs/`:
+
+- `docs/project.md`: overview of the two-output data model.
+- `docs/architecture.md`: repository architecture and cross-output consistency notes.
+- `docs/copilot-workflow.md`: operational guidance for working in the repo.
+
+## Data-first workflow
+
+The repository intentionally uses structured YAML rather than hardcoding content in the HTML templates.
+
+A typical content update looks like this:
+
+1. Edit the relevant file in `_data/`.
+2. Update the matching page template only if the schema changes or a new field needs rendering.
+3. Check that the data still flows into both the website and the CV when relevant.
+4. Build the site and validate links.
+5. Regenerate the CV if a shared record influences it.
+
+Do not duplicate shared records across HTML and LaTeX. Keep the authoritative values in YAML and render them through the templates.
+
+## Local development and build
+
+Run the commands from the repository root.
+
+### Install dependencies
 
 ```powershell
 bundle install
 ```
 
-Then start the local Jekyll server:
+### Local website preview
+
+Ruby 3.3 and earlier:
+
+```powershell
+bundle exec jekyll serve --livereload
+```
+
+Ruby 4 compatibility workaround:
 
 ```powershell
 C:\Ruby40-x64\bin\ruby.exe -e "class Object; def tainted?; false; end; end; require 'bundler'; Bundler.setup; spec=Gem.loaded_specs['jekyll']; load File.join(spec.full_gem_path, 'exe', 'jekyll')" serve --livereload
 ```
 
-Open `http://localhost:4000/`. Jekyll watches source files and rebuilds after changes. Stop the server with `Ctrl+C`.
+The site is available at:
 
-The long command is required by Ruby 4 because one Jekyll dependency still calls the removed `tainted?` method. With Ruby 3.3 or earlier, use:
+```text
+http://localhost:4000/
+```
+
+To do a one-off build instead of serving the site:
 
 ```powershell
-bundle exec jekyll serve --livereload
 bundle exec jekyll build --trace
 ```
 
-For a one-time Ruby 4 build, replace `serve --livereload` in the long command with `build --trace`.
+or, for the Ruby 4 compatibility runner:
 
-### CV
+```powershell
+C:\Ruby40-x64\bin\ruby.exe -e "class Object; def tainted?; false; end; end; require 'bundler'; Bundler.setup; spec=Gem.loaded_specs['jekyll']; load File.join(spec.full_gem_path, 'exe', 'jekyll')" build --trace
+```
 
-The private [_cv/](_cv/) directory contains the LaTeX template and renderer. `_config.yml` excludes it from the Jekyll site.
+### CV generation
 
-To generate the CV and start the local website together, double-click `preview_site_and_cv.bat` or run it from PowerShell:
+The private CV source lives in `_cv/` and is excluded from the public Jekyll site build.
+
+To build the CV and generate the PDF:
+
+```powershell
+Push-Location _cv
+ruby build_cv.rb
+lualatex main.tex
+Pop-Location
+```
+
+There is also a combined launcher:
 
 ```powershell
 .\preview_site_and_cv.bat
 ```
 
-Generate the data file and compile the PDF:
+This script starts the site and regenerates the CV as needed. The output PDF is copied into `Documents/Curriculum_Vitae.pdf` for the site’s navigation link.
+
+## Key maintenance rules
+
+- Do not edit `_site/` directly. It is generated output.
+- Keep the shared YAML data as the main source of truth.
+- Preserve field names and data types when modifying schemas.
+- Update all consumers when adding, renaming, or removing a field.
+- Prefer relative local document paths in YAML and keep links consistent with the page that renders them.
+- Validate document links when paths or resources change.
+
+## Validation commands
+
+After making content or data changes, run the relevant checks:
 
 ```powershell
-Push-Location _cv; ruby build_cv.rb; lualatex main.tex; Pop-Location
+bundle exec jekyll build --trace
+ruby scripts/check_document_links.rb
 ```
 
-The result is [_cv/main.pdf](_cv/main.pdf). The combined launcher also copies it to `Documents/Curriculum_Vitae.pdf`, which is the public file opened by the Curriculum Vitae navigation link. The renderer writes `_cv/cv-data.tex`; do not edit that generated file. Edit the YAML data instead.
+If the CV data or templates were modified, regenerate the PDF as well:
 
-LuaLaTeX is required because the data contains accented characters. The first run can take longer while TeX indexes fonts.
-
-## Data Files
-
-Keep one blank line between records to make the YAML easy to scan. YAML indentation is meaningful: use two spaces for nested properties and never use tabs. Quote text containing `:` or characters that YAML could interpret specially.
-
-### `_data/cv.yml`
-
-CV-only information. It appears in the CV and is not rendered on the public website.
-
-```yaml
-personal:
-  name: Name Surname
-  title: PhD Student in Mathematics
-  date_of_birth: DD/MM/YYYY
-  nationality: Spanish
-  location: Madrid, Spain
-  email: name@example.org
-  website: https://example.org
-  orcid: https://orcid.org/0000-0000-0000-0000
-
-bio: A concise research biography for the CV.
-
-education:
-  - degree: PhD in Mathematics
-    institution: University or institute
-    period: 2024--present
-    detail: Fellowship, supervisor, thesis, or grade.
-
-research_experience:
-  - role: Researcher
-    institution: Institution
-    period: 2024--present
-    detail: Short description.
-
-research_stays:
-  - role: Visiting Researcher
-    institution: Host institution
-    period: March 2026
-    detail: Short description.
-
-other_scientific_meetings_attended:
-  - event: Name of conference, school, or workshop
-    institution: Host institution or organizer
-    period: June 2026
-    detail: Optional short description.
-
-awards:
-  - name: Award name
-    organization: Awarding organization
-    year: 2026
-    detail: Short description.
-
-outreach_and_volunteering:
-  - activity: Outreach activity
-    period: 2026
-    detail: Short description.
-
-academic_activities_organized:
-  - activity: Organizer, activity name
-    period: 2025--2026
-    detail: Short description.
-
-referee_service:
-  - journal: Journal name
-    period: 2026
-
-languages:
-  - Spanish (native)
-  - English (professional working proficiency)
+```powershell
+Push-Location _cv
+ruby build_cv.rb
+lualatex main.tex
+Pop-Location
 ```
 
-`personal`, `bio`, and every list above are used by the CV renderer. Keep `research_experience` for employment or ongoing research roles and `research_stays` for temporary visits. `other_scientific_meetings_attended` is only for conferences, workshops, or schools attended without contributing a talk or poster; contributed events belong in `_data/talks.yml`. `referee_service` lists journals you have reviewed for; `journal` is required and `period` is optional, and the section stays hidden while the list is empty. Use `detail_tex` instead of `detail` only when a record needs trusted LaTeX, such as `\href{https://example.org}{https://example.org}`; ordinary text must remain in `detail`. Write straight double quotes (`"..."`) in ordinary text; the renderer converts each pair into proper LaTeX quotation marks, so the PDF shows correct opening and closing quotes.
+## Summary
 
-### `_data/research.yml`
+This project is a Jekyll-based academic portfolio that combines:
 
-Publications and preprints. Both groups appear on the public Research page and in the matching CV sections.
+- a public website for research, talks, teaching, and travel history,
+- an interactive presentation layer with accordions, maps, and modal image viewing,
+- a data-driven architecture powered by YAML,
+- and a separate LaTeX CV build driven by the same data model.
 
-```yaml
-publications:
-  - citation: 'A. Author, "Paper title", Journal 1, 1--10 (2026).'
-    pdf: ../Documents/Papers/paper.pdf
-    doi: https://doi.org/10.example/identifier
-    doi_label: 10.example/identifier
-
-preprints:
-  - citation: 'A. Author, "Preprint title".'
-    pdf: ../Documents/Papers/preprint.pdf
-    doi: https://arxiv.org/abs/1234.56789
-    doi_label: arXiv:1234.56789
-```
-
-`citation` is required. `pdf`, `doi`, and `doi_label` provide website links; the CV currently uses the DOI link and label.
-
-### `_data/talks.yml`
-
-All records appear on the public Talks page. The CV includes only records with `category: scientific_contribution`, grouped by `contribution_type`.
-
-```yaml
-- year: 2026
-  label: Talks and posters of 2026
-  talks:
-    - event: Conference name
-      category: scientific_contribution
-      contribution_type: contributed_conference_talk
-      event_url: https://example.org/event
-      date: 10--12 June, 2026
-      title: Title of the contribution
-      resources:
-        - label: Slides
-          url: ../Documents/Slides/2026/talk.pdf
-          icon: pdf_icon.webp
-      note: Optional additional information.
-```
-
-Use one of these `contribution_type` values for a CV scientific contribution:
-
-- `invited_conference_talk`
-- `contributed_conference_talk`
-- `seminar`
-- `poster`
-
-For a lecture series that should remain on the website but not appear in the CV, use:
-
-```yaml
-category: lecture_series
-```
-
-`event`, `date`, and `title` are required. `event_url`, `resources`, and `note` are optional. Resource URLs are relative to `Talks/index.html`, so local files normally begin with `../Documents/`.
-
-### `_data/teaching.yml`
-
-Courses appear on the public Teaching page and in the CV Teaching section. The CV groups courses under each available academic `year`; for an individual course, only `name` and `degree` are required. `translation` adds an English course title in parentheses in the CV. `degree_url` and all other course fields are optional. The public page also displays the remaining fields and downloadable documents when present.
-
-```yaml
-- year: 2026-27
-  courses:
-    - name: Course name, group 000
-      translation: English course title
-      online: yes
-      course_url: https://example.org/course
-      degree: Degree programme
-      degree_url: https://example.org/degree
-      theory_teacher: teacher(dot)email(at)university(dot)es
-      schedule: Wednesday, 10:00 to 12:00
+That combination is the heart of the repository and the main reason why content and configuration updates should be made carefully and with cross-output validation in mind.
       room: Room 101
       documents:
         - name: Resource title

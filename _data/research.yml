@@ -1,48 +1,60 @@
 preprints:
 
   - citation: 'M. de León, R. Izquierdo-López, M. Lainz, "The Spencer cohomology and integrability of multisymplectic structures".'
+    key: 2607.05267v2
     pdf: ../Documents/Papers/2607.05267v2.pdf
     doi: https://arxiv.org/abs/2607.05267
     doi_label: arXiv:2607.05267
+    note: 
 
   - citation: 'M. de León, X. Gràcia, R. Izquierdo-López, A. Martínez-Muñoz, X. Rivas, "Poisson and Jacobi structures from 2-covariant tensors".'
+    key: 2606.20030v1
     pdf: ../Documents/Papers/2606.20030v1.pdf
     doi: https://arxiv.org/abs/2606.20030
     doi_label: arXiv:2606.20030
 
   - citation: 'M. de León, R. Izquierdo-López, L. Schiavone, P. Soto, "A zoo of coisotropic embeddings".'
+    key: 2509.19039v1
     pdf: ../Documents/Papers/2509.19039v1.pdf
     doi: https://doi.org/10.48550/arXiv.2509.19039
     doi_label: arXiv:2509.19039
 
 publications:
 
-  - citation: 'M. de León, R. Izquierdo-López, L. Schiavone, P. Soto, "Regularization of singular time-dependent Lagrangian systems". Anal.Math.Phys. 16, 125 (2026).'
+  - citation: 'M. de León, R. Izquierdo-López, L. Schiavone, P. Soto, "Regularization of singular time-dependent Lagrangian systems". Anal. Math. Phys. 16, 125 (2026).'
+    key: liss2026anal.math.phys
     pdf: ../Documents/Papers/liss2026anal.math.phys.pdf
     doi: https://doi.org/10.1007/s13324-026-01261-z
     doi_label: /10.1007/s13324-026-01261-z
 
   - citation: 'M. de León and R. Izquierdo-López, "A description of classical field equations using extensions of graded Poisson brackets", International Journal of Geometric Methods in Modern Physics, Accepted for publication.'
+    key: li2026int.j.geom.methodsmod.phys
     pdf: ../Documents/Papers/li2026int.j.geom.methodsmod.phys.pdf
     doi: https://doi.org/10.1142/S0219887826502439
     doi_label: 10.1142/S0219887826502439
 
   - citation: 'M. de León, R. Izquierdo-López and X. Rivas, "Brackets in Multicontact Geometry and Multisymplectization", Mediterr. J. Math. 23, 81 (2026).'
+    key: lir2026mediterr.j.math
     pdf: ../Documents/Papers/lir2026mediterr.j.math.pdf
     doi: https://doi.org/10.1007/s00009-026-03077-4
     doi_label: 10.1007/s00009-026-03077-4
 
   - citation: 'M. de León and R. Izquierdo-López, "Graded poisson and graded dirac structures", J. Math. Phys. 66 (2), 022901 (2025).'
+    key: di2025j.math.phys
     pdf: ../Documents/Papers/di2025j.math.phys.pdf
     doi: https://doi.org/10.1063/5.0243128
     doi_label: 10.1063/5.0243128
+    note: 
 
   - citation: 'M. de León and R. Izquierdo-López, "Coisotropic reduction in multisymplectic geometry", Geometric Mechanics, 1 (3), 209–244 (2024).'
+    key: di2024geom.mech
     pdf: ../Documents/Papers/di2024geom.mech.pdf
     doi: https://doi.org/10.1142/S2972458924500096
     doi_label: 10.1142/S2972458924500096
 
   - citation: 'M. de León and R. Izquierdo-López, "A review on coisotropic reduction in symplectic, cosymplectic, contact and co-contact Hamiltonian systems", J. Phys. A: Math. Theor. 57, 163001 (2024).'
+    key: di2024j.phys.a_math.theor
     pdf: ../Documents/Papers/di2024j.phys.a_math.theor.pdf
     doi: https://doi.org/10.1088/1751-8121/ad37b2
     doi_label: 10.1088/1751-8121/ad37b2
+    note: 

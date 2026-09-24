@@ -1,0 +1,12 @@
+<script type="application/json" id="citation-data">
+{
+  {% capture romans_csv %}{% include roman-numerals.html %}{% endcapture %}
+  {% assign romans = romans_csv | strip | split: "," %}
+  "entries": {
+    {% for paper in site.data.research.preprints %}"{{ paper.key }}": { "label": "[{{ romans[forloop.index0] }}]", "href": "{{ '/Research/index.html' | relative_url }}#cite-{{ paper.key }}" }{% unless forloop.last %},{% endunless %}
+    {% endfor %}{% if site.data.research.preprints and site.data.research.publications %},{% endif %}
+    {% for paper in site.data.research.publications %}"{{ paper.key }}": { "label": "[{{ forloop.index }}]", "href": "{{ '/Research/index.html' | relative_url }}#cite-{{ paper.key }}" }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  }
+}
+</script>

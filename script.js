@@ -1,4 +1,83 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // \cite{key} -> [n]/[i] link resolution
+  const citationDataElement = document.getElementById("citation-data");
+  let citations = {};
+  if (citationDataElement) {
+    try {
+      citations = JSON.parse(citationDataElement.textContent).entries || {};
+    } catch (error) {
+      console.error("Failed to parse citation data:", error);
+    }
+  }
+  const citeSkipTags = new Set(["SCRIPT", "STYLE", "TEXTAREA", "A"]);
+  const citePattern = /\\cite\{([^{}]+)\}/g;
+
+  const replaceCitationsInTextNode = (textNode) => {
+    const text = textNode.nodeValue;
+    citePattern.lastIndex = 0;
+    if (!citePattern.test(text)) {
+      return;
+    }
+    citePattern.lastIndex = 0;
+    const fragment = document.createDocumentFragment();
+    let lastIndex = 0;
+    let match;
+    while ((match = citePattern.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+      }
+      const key = match[1];
+      const citation = citations[key];
+      if (citation) {
+        const link = document.createElement("a");
+        link.className = "cite-ref";
+        link.href = citation.href;
+        link.textContent = citation.label;
+        fragment.appendChild(link);
+      } else {
+        fragment.appendChild(document.createTextNode(match[0]));
+      }
+      lastIndex = citePattern.lastIndex;
+    }
+    if (lastIndex < text.length) {
+      fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
+    textNode.parentNode.replaceChild(fragment, textNode);
+  };
+
+  const processCitations = (root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        citePattern.lastIndex = 0;
+        return node.parentNode && !citeSkipTags.has(node.parentNode.nodeName) && citePattern.test(node.nodeValue)
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+    citePattern.lastIndex = 0;
+    const nodes = [];
+    let current;
+    while ((current = walker.nextNode())) {
+      nodes.push(current);
+    }
+    nodes.forEach(replaceCitationsInTextNode);
+  };
+  processCitations(document.body);
+
+  const highlightCitationTarget = () => {
+    if (!location.hash.startsWith("#cite-")) {
+      return;
+    }
+    const target = document.getElementById(location.hash.slice(1));
+    if (!target) {
+      return;
+    }
+    target.classList.add("citation-highlight");
+    window.setTimeout(() => target.classList.remove("citation-highlight"), 2000);
+  };
+  highlightCitationTarget();
+  window.addEventListener("hashchange", highlightCitationTarget);
+
   const imageViewer = document.createElement("div");
   imageViewer.className = "image-viewer";
   imageViewer.hidden = true;
@@ -119,19 +198,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const lastModified = document.getElementById("last-modified");
-  if (lastModified) {
-    const date = new Date(document.lastModified);
-    lastModified.textContent = date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    });
-  }
-
   const mapElement = document.getElementById("trip-map");
   const tripDataElement = document.getElementById("trip-data");
-  const tripData = tripDataElement ? JSON.parse(tripDataElement.textContent) : [];
+  let tripData = [];
+  if (tripDataElement) {
+    try {
+      tripData = JSON.parse(tripDataElement.textContent);
+    } catch (error) {
+      console.error("Failed to parse trip data:", error);
+    }
+  }
   if (mapElement && window.L && tripData.length) {
     const map = L.map(mapElement, { scrollWheelZoom: false, preferCanvas: true });
     const tileLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -192,8 +268,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let currentTripIndex = 0;
       const previousEvents = document.createElement("button");
       const nextEvents = document.createElement("button");
-       previousEvents.classList.add("carousel-control-prev");
-       nextEvents.classList.add("carousel-control-next");
+      previousEvents.classList.add("carousel-control-prev");
+      nextEvents.classList.add("carousel-control-next");
       const updateControls = () => {
         previousEvents.hidden = currentTripIndex === 0;
         nextEvents.hidden = currentTripIndex === trips.length - 1;
