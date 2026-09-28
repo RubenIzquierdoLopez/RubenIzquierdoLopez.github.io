@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
-from matplotlib.colors import LinearSegmentedColormap
 
 def generate_thicker_thinner_serpent(output_file="serpent_thick_thin.png"):
     fig, ax = plt.subplots(figsize=(16, 9), dpi=300)
@@ -27,17 +26,9 @@ def generate_thicker_thinner_serpent(output_file="serpent_thick_thin.png"):
         x_line = x_spine + off
         side_shading = (1.0 - (abs(off) / serpent_width)) ** 2.0 
         # Thinner lines
-        ax.plot(x_line, y_spine, color='#4a9eff', alpha=side_shading * 0.7, lw=0.4, zorder=1)
+        ax.plot(x_line, y_spine, color="#1D4672", alpha=side_shading * 0.7, lw=0.4, zorder=1)
 
     # --- 2. Transversal Lines (The Ribs) ---
-    cmap_data = {
-        'red':   [[0.0, 0.0, 0.0], [0.5, 0.0, 0.0], [1.0, 0.0, 0.0]],
-        'green': [[0.0, 0.83, 0.83], [0.5, 0.83, 0.83], [1.0, 0.83, 0.83]],
-        'blue':  [[0.0, 1.0, 1.0], [0.5, 1.0, 1.0], [1.0, 1.0, 1.0]],
-        'alpha': [[0.0, 0.0, 0.0], [0.5, 0.5, 0.5], [1.0, 0.0, 0.0]] 
-    }
-    rib_cmap = LinearSegmentedColormap('rib_fade', cmap_data)
-
     rib_indices = np.linspace(0, points_per_line - 1, n_transversal, dtype=int)
     for idx in rib_indices:
         y_val = y_spine[idx]
@@ -48,9 +39,11 @@ def generate_thicker_thinner_serpent(output_file="serpent_thick_thin.png"):
         
         points = np.array([x_rib, y_rib]).T.reshape(-1, 1, 2)
         segments = np.concatenate([points[:-1], points[1:]], axis=1)
-        
-        lc = LineCollection(segments, cmap=rib_cmap, linewidth=0.6, zorder=2) # Thinner ribs
-        lc.set_array(np.linspace(0, 1, len(x_rib)))
+
+        rib_positions = np.linspace(0.0, 1.0, len(segments))
+        rib_colors = np.tile([29 / 255, 70 / 255, 114 / 255, 1.0], (len(segments), 1))
+        rib_colors[:, 3] = 0.5 * (1.0 - np.abs(2.0 * rib_positions - 1.0))
+        lc = LineCollection(segments, colors=rib_colors, linewidth=0.6, zorder=2) # Thinner ribs
         ax.add_collection(lc)
 
     # Styling
