@@ -13,15 +13,15 @@ preprints:
     doi_label: arXiv:2607.05267
     note: 
 
-  - citation: 'M. de León, X. Gràcia, R. Izquierdo-López, A. Martínez-Muñoz, X. Rivas, "Poisson and Jacobi structures from 2-covariant tensors".'
+  - citation: 'M. de León, X. Gràcia, R. Izquierdo-López, A. Martínez-Muñoz, X. Rivas, "From 2-covariant tensor fields to Poisson and Jacobi structures".'
     key: 2606.20030
-    pdf: ../Documents/Papers/2606.20030v1.pdf
+    pdf: ../Documents/Papers/2606.20030v2.pdf
     doi: https://arxiv.org/abs/2606.20030
     doi_label: arXiv:2606.20030
 
   - citation: 'M. de León, R. Izquierdo-López, L. Schiavone, P. Soto, "A zoo of coisotropic embeddings".'
     key: 2509.19039
-    pdf: ../Documents/Papers/2509.19039v1.pdf
+    pdf: ../Documents/Papers/2509.19039v2.pdf
     doi: https://doi.org/10.48550/arXiv.2509.19039
     doi_label: arXiv:2509.19039
 

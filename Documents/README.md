@@ -23,7 +23,7 @@ Keep every attachment in this folder tree and link to it from the nearest Jekyll
 - Store the file in the most specific category above.
 - In `_data/*.yml`, reference it with a relative URL that is correct from the data file location.
 - Example paths:
-  - `../Documents/Papers/2606.20030v1.pdf`
+  - `../Documents/Papers/2606.20030v2.pdf`
   - `../Documents/Slides/2026/OAK2.pdf`
   - `../Documents/Teaching/Geometría_Lineal_25/Hoja0_Ejercicio6.ggb`
 
