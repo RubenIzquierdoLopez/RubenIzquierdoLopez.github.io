@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mots du métro</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#123B7A" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1120" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+@font-face{font-family:"Barlow";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/barlow-400.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/barlow-500.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-600.woff2) format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-sc-600.woff2) format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/barlow-sc-700.woff2) format("woff2")}
+
+:root{
+  /* Layout idea: a metro nameplate card on cool paper, big thumb-reach actions at the bottom, a tab bar that reads like a line strip. */
+  --bg:#EDF0F5; --surface:#FFFFFF; --ink:#0F1B2D; --muted:#586579; --line:#D3DAE5; --soft:#E2E8F1;
+  --enamel:#123B7A; --enamel-ink:#FFFFFF; --signal:#FFCE00; --signal-ink:#1A1400;
+  --cta:#123B7A; --cta-ink:#FFFFFF; --focus:#2F6FDE;
+  --good:#1F7A4D; --good-ink:#FFFFFF; --bad:#B3261E;
+  --c-new:#9AA7BB; --c-learn:#E8A200; --c-fam:#4C93D6; --c-known:#1F7A4D;
+  --font-display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --font-body:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1120; --surface:#121C31; --ink:#E9EEF8; --muted:#97A4BB; --line:#24324D; --soft:#1A2640;
+    --enamel:#17418A; --enamel-ink:#FFFFFF; --cta:#FFCE00; --cta-ink:#1A1400; --focus:#FFCE00;
+    --good:#4CC38A; --good-ink:#06200F; --bad:#FF8279;
+    --c-new:#5E6C86; --c-learn:#F0B429; --c-fam:#6FB1EC; --c-known:#4CC38A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1120; --surface:#121C31; --ink:#E9EEF8; --muted:#97A4BB; --line:#24324D; --soft:#1A2640;
+  --enamel:#17418A; --enamel-ink:#FFFFFF; --cta:#FFCE00; --cta-ink:#1A1400; --focus:#FFCE00;
+  --good:#4CC38A; --good-ink:#06200F; --bad:#FF8279;
+  --c-new:#5E6C86; --c-learn:#F0B429; --c-fam:#6FB1EC; --c-known:#4CC38A;
+  color-scheme:dark;
+}
+
+[hidden]{display:none!important}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:500 17px/1.4 var(--font-body);overscroll-behavior-y:none;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font-family:inherit}
+#app{height:100%;max-width:560px;margin:0 auto;display:flex;flex-direction:column}
+#view{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:env(safe-area-inset-top) 16px 28px}
+body.in-session #view{padding-bottom:0;overflow:hidden;display:flex;flex-direction:column}
+
+h1{font:700 34px/1.05 var(--font-display);margin:0;text-wrap:balance}
+h2{font:700 22px/1.15 var(--font-display);margin:0 0 10px}
+p{margin:0}
+.head{padding:20px 0 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.sub{color:var(--muted);font-size:15px;margin-top:4px}
+.hint{color:var(--muted);font-weight:400;font-size:13.5px;margin-left:4px}
+.count{font:600 15px var(--font-body);color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 20px;border:2px solid transparent;border-radius:14px;font:700 20px/1 var(--font-display);letter-spacing:.01em;cursor:pointer;color:var(--ink);background:var(--surface);text-align:center}
+.btn.wide{width:100%}
+.btn.primary{background:var(--cta);color:var(--cta-ink)}
+.btn.ghost{background:transparent;border-color:var(--line)}
+.btn.good{background:var(--good);color:var(--good-ink)}
+.btn.again{background:transparent;border-color:var(--bad);color:var(--bad)}
+.btn.danger{background:transparent;border-color:var(--bad);color:var(--bad)}
+.btn.small{min-height:44px;font-size:17px;padding:0 14px}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.link{background:none;border:0;color:var(--muted);font:600 16px var(--font-body);text-decoration:underline;padding:10px;cursor:pointer}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:12px;background:transparent;color:inherit;cursor:pointer}
+.icon-btn.light{color:var(--enamel-ink)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* tab bar */
+#tabs{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+#tabs[hidden]{display:none}
+#tabs button{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:11px 0 9px;border:0;background:none;color:var(--muted);font:600 12.5px var(--font-body);letter-spacing:.02em;cursor:pointer}
+#tabs button[aria-current="page"]{color:var(--ink)}
+#tabs button[aria-current="page"]::before{content:"";position:absolute;top:-1px;left:24%;right:24%;height:4px;border-radius:0 0 4px 4px;background:var(--signal)}
+
+/* roundels: type badges in metro-line colours */
+.roundel{display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 9px;border-radius:17px;background:var(--rb,#888);color:var(--ri,#fff);font:700 15px/1 var(--font-display);letter-spacing:.01em;flex:none}
+.t-noun{--rb:#FFCE00;--ri:#1A1400}
+.t-verb{--rb:#BB4D98;--ri:#fff}
+.t-adjective{--rb:#00814F;--ri:#fff}
+.t-adverb{--rb:#F3A4BA;--ri:#2A0A14}
+.t-preposition{--rb:#98D4E2;--ri:#07252C}
+.t-pronoun{--rb:#DE8B53;--ri:#2A1000}
+.t-conjunction{--rb:#B6BD00;--ri:#1E2000}
+.t-determiner{--rb:#CEADD2;--ri:#27102B}
+.t-number{--rb:#8D5E2A;--ri:#fff}
+.t-expression{--rb:#662483;--ri:#fff}
+.t-other{--rb:#7C8799;--ri:#fff}
+.tag{font:600 13px/1 var(--font-body);letter-spacing:.04em;text-transform:uppercase;padding:6px 9px;border-radius:8px;border:1.5px solid currentColor;opacity:.9}
+.tag.new{background:var(--signal);border-color:var(--signal);color:var(--signal-ink);opacity:1}
+
+/* home ticket */
+.ticket{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.ticket-top{display:flex;align-items:center;gap:18px;padding:20px 20px 18px}
+.big-n{font:700 68px/0.9 var(--font-display);font-variant-numeric:tabular-nums;min-width:70px}
+.t-label{font:700 22px/1.1 var(--font-display)}
+.t-sub{color:var(--muted);font-size:15px;margin-top:3px}
+.ticket-cut{position:relative;border-top:2px dashed var(--line);margin:0 14px}
+.ticket-cut::before,.ticket-cut::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.ticket-cut::before{left:-25px}
+.ticket-cut::after{right:-25px}
+.ticket-bot{display:grid;gap:10px;padding:18px 20px 20px}
+.sect{margin-top:22px}
+.sect>h2{font-size:18px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lvlbar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--soft);gap:2px}
+.lvlbar i{display:block;min-width:0}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:12px;color:var(--muted);font-size:15px}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend b{color:var(--ink);font-variant-numeric:tabular-nums}
+.legend i{width:12px;height:12px;border-radius:3px;flex:none}
+.empty{padding:36px 8px;text-align:center;color:var(--muted)}
+.empty h2{color:var(--ink)}
+.empty .btn{margin:18px auto 0;max-width:280px}
+.banner{background:var(--signal);color:var(--signal-ink);border-radius:12px;padding:11px 14px;font-weight:600;font-size:15px;margin-top:14px}
+
+/* forms */
+label{display:block;font:600 14.5px var(--font-body);color:var(--muted);margin:16px 0 6px;letter-spacing:.02em}
+input,select,textarea{width:100%;font-size:18px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;min-height:52px}
+input[type=file]{padding:10px;font-size:15px}
+input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+textarea{resize:vertical;min-height:170px;line-height:1.45}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.7}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--soft);border-radius:13px;padding:4px;gap:4px}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 16px var(--font-body);padding:11px 8px;border-radius:10px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.stack{display:grid;gap:10px;margin-top:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}
+.card p{color:var(--muted);font-size:15.5px;margin-bottom:12px}
+.card .btn{margin-top:8px}
+.dup{margin-top:12px;border:1.5px solid var(--bad);border-radius:14px;padding:12px 14px;background:var(--surface)}
+.dup b{color:var(--bad);font-weight:700}
+.dup-w{font:700 21px/1.2 var(--font-display);margin:6px 0 2px}
+.dup small{color:var(--muted);font-size:14px}
+.note{margin-top:10px;border-left:4px solid var(--signal);background:var(--surface);border-radius:8px;padding:10px 12px;font-size:15.5px;color:var(--muted)}
+.note b{color:var(--ink)}
+.dup-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font:600 14.5px var(--font-body);padding:7px 12px;border-radius:999px;background:var(--soft)}
+.chip.ok{background:var(--good);color:var(--good-ink)}
+.chip.err{background:var(--bad);color:#fff}
+details{margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 14px}
+summary{cursor:pointer;padding:12px 0;font-weight:600}
+details ul{list-style:none;margin:0;padding:0 0 10px;display:grid;gap:6px;font-size:16px}
+details li{display:flex;justify-content:space-between;gap:12px}
+details li span:last-child{color:var(--muted);text-align:right}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;white-space:pre-wrap;color:var(--muted)}
+
+/* words list */
+.searchbar{position:sticky;top:0;z-index:2;background:var(--bg);padding:6px 0 10px}
+.searchbar .field{position:relative}
+.searchbar svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.searchbar input{padding-left:46px;padding-right:46px}
+.searchbar .clear{position:absolute;right:2px;top:4px}
+.list{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;color:inherit;cursor:pointer}
+.row:last-child{border-bottom:0}
+.row-main{flex:1;min-width:0;display:grid}
+.row-main b{font:700 21px/1.15 var(--font-display)}
+.row-main span{color:var(--muted);font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pips{display:flex;gap:3px;flex:none}
+.pips i{width:5px;height:16px;border-radius:2px;background:var(--line)}
+.pips i.on{background:var(--good)}
+.grp{font:600 13.5px var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:18px 2px 8px}
+
+/* study session */
+.sess{display:flex;flex-direction:column;flex:1;min-height:0}
+.sess-top{display:flex;align-items:center;gap:10px;padding:10px 0 8px}
+.prog{flex:1;height:8px;border-radius:4px;background:var(--soft);overflow:hidden}
+.prog i{display:block;height:100%;border-radius:4px;background:var(--cta);transition:width .25s}
+.sess-body{flex:1;min-height:0;overflow-y:auto;padding:6px 0 14px}
+.sess-actions{padding:10px 0 calc(14px + env(safe-area-inset-bottom));display:grid;gap:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.plate{position:relative;display:flex;flex-direction:column;min-height:230px;padding:18px 22px 20px;border-radius:20px;background:var(--enamel);color:var(--enamel-ink);box-shadow:0 10px 26px -14px rgba(5,15,40,.7)}
+.plate::before{content:"";position:absolute;inset:8px;border:2px solid rgba(255,255,255,.88);border-radius:14px;pointer-events:none}
+.plate-top{position:relative;display:flex;align-items:center;gap:8px;min-height:44px}
+.plate-top .grow{flex:1}
+.plate .fr{position:relative;font:700 var(--fr-size,52px)/1.04 var(--font-display);margin:auto 0;padding:14px 0;word-break:break-word}
+.plate-foot{position:relative;font:600 13px var(--font-body);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.answer{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.answer .es{font:700 34px/1.12 var(--font-display)}
+.answer .ex{display:grid;gap:3px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:17px}
+.answer .ex [lang="fr"]{color:var(--ink)}
+.verdict{display:flex;align-items:center;gap:8px;font:700 19px var(--font-display);margin-bottom:8px}
+.verdict.ok{color:var(--good)}
+.verdict.no{color:var(--bad)}
+.verdict small{font:500 15px var(--font-body);color:var(--muted)}
+.prompt{color:var(--muted);text-align:center;padding:20px 8px}
+.sum{padding:24px 0}
+.sum .big{font:700 88px/1 var(--font-display);margin:14px 0 0;font-variant-numeric:tabular-nums}
+.sum .big span{font-size:44px;color:var(--muted)}
+
+/* sheet + toast */
+.sheet{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet[hidden]{display:none}
+.sheet-bg{position:absolute;inset:0;background:rgba(5,10,20,.55)}
+.sheet-panel{position:relative;width:100%;max-width:560px;max-height:92%;overflow-y:auto;background:var(--bg);border-radius:22px 22px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom))}
+.sheet-h{font:700 26px/1.1 var(--font-display);margin-bottom:4px}
+.edit-meta{color:var(--muted);font-size:14.5px;margin-top:14px}
+#toast{position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom));transform:translate(-50%,10px);max-width:90%;padding:12px 18px;border-radius:12px;background:var(--ink);color:var(--bg);font:600 16px var(--font-body);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:40;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <main id="view" aria-live="polite"></main>
+  <nav id="tabs" aria-label="Main"></nav>
+</div>
+<datalist id="topics"></datalist>
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-bg" data-act="closesheet"></div>
+  <div class="sheet-panel" id="sheet-panel" role="dialog" aria-modal="true"></div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script type="text/plain" id="a1pack"># Greetings & politeness
+bonjour ; hola, buenos días ; expr ; Bonjour, madame ! ; ¡Buenos días, señora!
+bonsoir ; buenas tardes, buenas noches ; expr ; Bonsoir, monsieur. ; Buenas noches, señor.
+salut ; hola, adiós (informal) ; expr ; Salut, ça va ? ; Hola, ¿qué tal?
+au revoir ; adiós ; expr ; Au revoir, à demain ! ; ¡Adiós, hasta mañana!
+à bientôt ; hasta pronto ; expr ; Merci, à bientôt ! ; ¡Gracias, hasta pronto!
+à demain ; hasta mañana ; expr ; Bonne nuit, à demain. ; Buenas noches, hasta mañana.
+bonne nuit ; buenas noches ; expr ; Bonne nuit, maman. ; Buenas noches, mamá.
+bonne journée ; que tenga un buen día, buen día ; expr ; Bonne journée, monsieur ! ; ¡Que tenga un buen día, señor!
+merci ; gracias ; expr ; Merci beaucoup ! ; ¡Muchas gracias!
+s'il vous plaît ; por favor ; expr ; Un café, s'il vous plaît. ; Un café, por favor.
+de rien ; de nada ; expr ; Merci ! — De rien. ; ¡Gracias! — De nada.
+excusez-moi ; disculpe, perdone ; expr ; Excusez-moi, où est la gare ? ; Disculpe, ¿dónde está la estación?
+pardon ; perdón ; expr ; Pardon, madame. ; Perdón, señora.
+oui ; sí ; adv ; Oui, merci. ; Sí, gracias.
+non ; no ; adv ; Non, merci. ; No, gracias.
+enchanté(e) ; encantado, encantada ; expr ; Enchanté, je m'appelle Paul. ; Encantado, me llamo Paul.
+bienvenue ; bienvenido, bienvenida ; expr ; Bienvenue à Paris ! ; ¡Bienvenido a París!
+
+# Pronouns & questions
+je ; yo ; pron ; Je suis ici. ; Estoy aquí.
+tu ; tú ; pron ; Tu es content ? ; ¿Estás contento?
+il ; él ; pron ; Il travaille à Madrid. ; Él trabaja en Madrid.
+elle ; ella ; pron ; Elle habite à Lyon. ; Ella vive en Lyon.
+on ; nosotros, se (impersonal) ; pron ; On mange à une heure. ; Comemos a la una.
+nous ; nosotros, nosotras ; pron ; Nous sommes amis. ; Somos amigos.
+vous ; usted, ustedes, vosotros ; pron ; Vous parlez espagnol ? ; ¿Habla usted español?
+ils ; ellos ; pron ; Ils sont au parc. ; Ellos están en el parque.
+elles ; ellas ; pron ; Elles sont fatiguées. ; Ellas están cansadas.
+qui ; quién ; pron ; Qui est-ce ? ; ¿Quién es?
+que ; qué ; pron ; Que veux-tu ? ; ¿Qué quieres?
+quoi ; qué ; pron ; C'est quoi ? ; ¿Qué es eso?
+où ; dónde ; adv ; Où est la gare ? ; ¿Dónde está la estación?
+quand ; cuándo ; adv ; Quand part le train ? ; ¿Cuándo sale el tren?
+comment ; cómo ; adv ; Comment tu t'appelles ? ; ¿Cómo te llamas?
+pourquoi ; por qué ; adv ; Pourquoi tu apprends le français ? ; ¿Por qué aprendes francés?
+combien ; cuánto ; adv ; Combien de frères as-tu ? ; ¿Cuántos hermanos tienes?
+quel / quelle ; qué, cuál ; det ; Quelle heure est-il ? ; ¿Qué hora es?
+parce que ; porque ; conj ; Parce que j'aime ça. ; Porque me gusta.
+
+# Numbers
+zéro ; cero ; num
+un / une ; uno, una, un ; num ; J'ai un frère et une sœur. ; Tengo un hermano y una hermana.
+deux ; dos ; num ; J'ai deux enfants. ; Tengo dos hijos.
+trois ; tres ; num ; Il est trois heures. ; Son las tres.
+quatre ; cuatro ; num ; Quatre cafés, s'il vous plaît. ; Cuatro cafés, por favor.
+cinq ; cinco ; num ; J'attends cinq minutes. ; Espero cinco minutos.
+six ; seis ; num ; Mon fils a six ans. ; Mi hijo tiene seis años.
+sept ; siete ; num ; Je me lève à sept heures. ; Me levanto a las siete.
+huit ; ocho ; num ; Le bureau ouvre à huit heures. ; La oficina abre a las ocho.
+neuf ; nueve ; num ; Le cours commence à neuf heures. ; La clase empieza a las nueve.
+dix ; diez ; num ; Dix euros, s'il vous plaît. ; Diez euros, por favor.
+onze ; once ; num
+douze ; doce ; num ; Il est douze heures. ; Son las doce.
+quinze ; quince ; num
+vingt ; veinte ; num ; J'ai vingt ans. ; Tengo veinte años.
+trente ; treinta ; num
+quarante ; cuarenta ; num
+cinquante ; cincuenta ; num
+cent ; cien, ciento ; num ; Cent euros. ; Cien euros.
+mille ; mil ; num
+premier / première ; primero, primera ; num ; C'est le premier jour. ; Es el primer día.
+
+# Colors
+rouge ; rojo ; adj ; La voiture est rouge. ; El coche es rojo.
+bleu / bleue ; azul ; adj ; La mer est bleue. ; El mar es azul.
+vert / verte ; verde ; adj ; Le parc est vert. ; El parque es verde.
+jaune ; amarillo, amarilla ; adj ; Le bus est jaune. ; El autobús es amarillo.
+noir / noire ; negro, negra ; adj ; Mon sac est noir. ; Mi bolso es negro.
+blanc / blanche ; blanco, blanca ; adj ; La maison est blanche. ; La casa es blanca.
+gris / grise ; gris ; adj ; Le manteau est gris. ; El abrigo es gris.
+orange ; naranja ; adj ; Mon pull est orange. ; Mi jersey es naranja.
+rose ; rosa ; adj ; La robe est rose. ; El vestido es rosa.
+marron ; marrón ; adj ; Mes chaussures sont marron. ; Mis zapatos son marrones.
+violet / violette ; morado, morada, violeta ; adj ; La chemise est violette. ; La camisa es morada.
+
+# Days & months
+lundi ; lunes ; nm ; Le lundi, je travaille. ; Los lunes trabajo.
+mardi ; martes ; nm ; Mardi, j'ai cours. ; El martes tengo clase.
+mercredi ; miércoles ; nm ; Mercredi, je reste à la maison. ; El miércoles me quedo en casa.
+jeudi ; jueves ; nm ; Jeudi, je vais au cinéma. ; El jueves voy al cine.
+vendredi ; viernes ; nm ; Vendredi soir, nous dînons ensemble. ; El viernes por la noche cenamos juntos.
+samedi ; sábado ; nm ; Samedi, je dors tard. ; El sábado duermo hasta tarde.
+dimanche ; domingo ; nm ; Dimanche, nous allons au parc. ; El domingo vamos al parque.
+janvier ; enero ; nm ; Janvier est froid. ; Enero es frío.
+février ; febrero ; nm
+mars ; marzo ; nm
+avril ; abril ; nm
+mai ; mayo ; nm
+juin ; junio ; nm
+juillet ; julio ; nm
+août ; agosto ; nm
+septembre ; septiembre ; nm
+octobre ; octubre ; nm
+novembre ; noviembre ; nm
+décembre ; diciembre ; nm
+
+# Time
+le jour ; el día ; nm ; Quel jour est-on ? ; ¿Qué día es hoy?
+la semaine ; la semana ; nf ; Je travaille toute la semaine. ; Trabajo toda la semana.
+le mois ; el mes ; nm ; Le mois prochain, je pars. ; El mes que viene me voy.
+l'année ; el año ; nf ; Cette année, j'apprends le français. ; Este año aprendo francés.
+le matin ; la mañana ; nm ; Je bois du café le matin. ; Bebo café por la mañana.
+l'après-midi ; la tarde ; nm ; L'après-midi, je travaille. ; Por la tarde trabajo.
+le soir ; la tarde, la noche ; nm ; Le soir, je rentre à la maison. ; Por la noche vuelvo a casa.
+la nuit ; la noche ; nf ; La nuit, je dors. ; Por la noche duermo.
+l'heure ; la hora ; nf ; À quelle heure part le bus ? ; ¿A qué hora sale el autobús?
+la minute ; el minuto ; nf ; Le bus arrive dans dix minutes. ; El autobús llega en diez minutos.
+aujourd'hui ; hoy ; adv ; Aujourd'hui, il pleut. ; Hoy llueve.
+demain ; mañana ; adv ; Demain, je travaille. ; Mañana trabajo.
+hier ; ayer ; adv ; Hier, j'étais malade. ; Ayer estaba enfermo.
+maintenant ; ahora ; adv ; Je pars maintenant. ; Me voy ahora.
+tard ; tarde ; adv ; Il est tard. ; Es tarde.
+tôt ; temprano ; adv ; Je me lève tôt. ; Me levanto temprano.
+toujours ; siempre ; adv ; Je mange toujours ici. ; Siempre como aquí.
+souvent ; a menudo, con frecuencia ; adv ; Je prends souvent le métro. ; A menudo cojo el metro.
+parfois ; a veces ; adv ; Parfois, je marche. ; A veces camino.
+jamais ; nunca ; adv ; Je ne mange jamais de viande. ; Nunca como carne.
+déjà ; ya ; adv ; Tu as déjà mangé ? ; ¿Ya has comido?
+encore ; todavía, otra vez ; adv ; Je suis encore au bureau. ; Todavía estoy en la oficina.
+
+# Family & people
+la famille ; la familia ; nf ; J'aime ma famille. ; Quiero a mi familia.
+la mère ; la madre ; nf ; Ma mère est médecin. ; Mi madre es médica.
+le père ; el padre ; nm ; Mon père travaille à Madrid. ; Mi padre trabaja en Madrid.
+les parents ; los padres ; npl ; Mes parents habitent à Lyon. ; Mis padres viven en Lyon.
+le frère ; el hermano ; nm ; Mon frère habite à Paris. ; Mi hermano vive en París.
+la sœur ; la hermana ; nf ; Ma sœur travaille ici. ; Mi hermana trabaja aquí.
+le fils ; el hijo ; nm ; Son fils a six ans. ; Su hijo tiene seis años.
+la fille ; la hija, la chica ; nf ; Sa fille est étudiante. ; Su hija es estudiante.
+le mari ; el marido ; nm ; Son mari est gentil. ; Su marido es amable.
+la femme ; la mujer, la esposa ; nf ; Ma femme travaille ici. ; Mi mujer trabaja aquí.
+l'homme ; el hombre ; nm ; Cet homme est grand. ; Ese hombre es alto.
+le garçon ; el chico, el niño ; nm ; Le garçon joue au parc. ; El niño juega en el parque.
+l'enfant ; el niño, la niña ; n ; L'enfant dort. ; El niño duerme.
+le bébé ; el bebé ; nm ; Le bébé dort. ; El bebé duerme.
+l'ami(e) ; el amigo, la amiga ; n ; J'ai un ami français. ; Tengo un amigo francés.
+le grand-père ; el abuelo ; nm ; Mon grand-père habite à Madrid. ; Mi abuelo vive en Madrid.
+la grand-mère ; la abuela ; nf ; Ma grand-mère est gentille. ; Mi abuela es amable.
+le voisin ; el vecino ; nm ; Mon voisin travaille la nuit. ; Mi vecino trabaja de noche.
+monsieur ; señor ; nm ; Bonjour, monsieur. ; Buenos días, señor.
+madame ; señora ; nf ; Bonjour, madame. ; Buenos días, señora.
+
+# Food & drink
+le pain ; el pan ; nm ; Je mange du pain. ; Como pan.
+l'eau ; el agua ; nf ; Un verre d'eau, s'il vous plaît. ; Un vaso de agua, por favor.
+le lait ; la leche ; nm ; Je bois du lait le matin. ; Bebo leche por la mañana.
+le café ; el café ; nm ; Je voudrais un café. ; Quisiera un café.
+le thé ; el té ; nm ; Je bois du thé. ; Bebo té.
+le jus ; el zumo ; nm ; Un jus d'orange, s'il vous plaît. ; Un zumo de naranja, por favor.
+le vin ; el vino ; nm ; Le vin rouge est bon. ; El vino tinto está bueno.
+la bière ; la cerveza ; nf ; Une bière, s'il vous plaît. ; Una cerveza, por favor.
+le fromage ; el queso ; nm ; J'aime le fromage français. ; Me gusta el queso francés.
+le beurre ; la mantequilla ; nm ; Du pain et du beurre. ; Pan y mantequilla.
+l'œuf ; el huevo ; nm ; Je mange un œuf. ; Como un huevo.
+la viande ; la carne ; nf ; Je ne mange pas de viande. ; No como carne.
+le poulet ; el pollo ; nm ; Le poulet est chaud. ; El pollo está caliente.
+le poisson ; el pescado ; nm ; Le poisson est frais. ; El pescado está fresco.
+le riz ; el arroz ; nm ; Du riz et du poulet. ; Arroz con pollo.
+les pâtes ; la pasta ; npl ; J'aime les pâtes. ; Me gusta la pasta.
+le légume ; la verdura ; nm ; Je mange des légumes. ; Como verduras.
+le fruit ; la fruta ; nm ; Je mange un fruit. ; Como una fruta.
+la pomme ; la manzana ; nf ; Une pomme, s'il vous plaît. ; Una manzana, por favor.
+la banane ; el plátano, la banana ; nf ; La banane est jaune. ; El plátano es amarillo.
+la pomme de terre ; la patata ; nf ; Des pommes de terre et du poisson. ; Patatas y pescado.
+la tomate ; el tomate ; nf ; La salade de tomates. ; La ensalada de tomate.
+la salade ; la ensalada ; nf ; Une salade, s'il vous plaît. ; Una ensalada, por favor.
+la soupe ; la sopa ; nf ; La soupe est chaude. ; La sopa está caliente.
+le gâteau ; el pastel, la tarta ; nm ; Je mange un gâteau. ; Me como un pastel.
+la glace ; el helado ; nf ; Je mange une glace. ; Me como un helado.
+le chocolat ; el chocolate ; nm ; J'aime le chocolat. ; Me gusta el chocolate.
+le sandwich ; el bocadillo, el sándwich ; nm ; Je prends un sandwich. ; Tomo un bocadillo.
+le sucre ; el azúcar ; nm ; Un café sans sucre. ; Un café sin azúcar.
+le sel ; la sal ; nm ; Le sel et le sucre. ; La sal y el azúcar.
+le verre ; el vaso ; nm ; Un verre de vin. ; Un vaso de vino.
+le petit déjeuner ; el desayuno ; nm ; Le petit déjeuner est prêt. ; El desayuno está listo.
+le déjeuner ; el almuerzo, la comida ; nm ; Le déjeuner est à une heure. ; El almuerzo es a la una.
+le dîner ; la cena ; nm ; Le dîner est à huit heures. ; La cena es a las ocho.
+le repas ; la comida ; nm ; Le repas est bon. ; La comida está buena.
+le restaurant ; el restaurante ; nm ; Nous dînons au restaurant. ; Cenamos en el restaurante.
+le menu ; el menú ; nm ; Le menu, s'il vous plaît. ; El menú, por favor.
+l'addition ; la cuenta ; nf ; L'addition, s'il vous plaît. ; La cuenta, por favor.
+
+# Home & objects
+la maison ; la casa ; nf ; Ma maison est petite. ; Mi casa es pequeña.
+l'appartement ; el apartamento, el piso ; nm ; J'habite dans un appartement. ; Vivo en un piso.
+la chambre ; la habitación, el dormitorio ; nf ; Ma chambre est grande. ; Mi habitación es grande.
+la cuisine ; la cocina ; nf ; Je suis dans la cuisine. ; Estoy en la cocina.
+la salle de bains ; el baño, el cuarto de baño ; nf ; La salle de bains est petite. ; El baño es pequeño.
+le salon ; el salón ; nm ; Le salon est grand. ; El salón es grande.
+la porte ; la puerta ; nf ; Ferme la porte, s'il te plaît. ; Cierra la puerta, por favor.
+la fenêtre ; la ventana ; nf ; Ouvre la fenêtre. ; Abre la ventana.
+la table ; la mesa ; nf ; Le livre est sur la table. ; El libro está sobre la mesa.
+la chaise ; la silla ; nf ; Cette chaise est libre. ; Esta silla está libre.
+le lit ; la cama ; nm ; Je dors dans mon lit. ; Duermo en mi cama.
+la clé ; la llave ; nf ; Où est ma clé ? ; ¿Dónde está mi llave?
+le téléphone ; el teléfono, el móvil ; nm ; Mon téléphone est sur la table. ; Mi móvil está sobre la mesa.
+l'ordinateur ; el ordenador ; nm ; Je travaille sur mon ordinateur. ; Trabajo en mi ordenador.
+le livre ; el libro ; nm ; Je lis un livre dans le métro. ; Leo un libro en el metro.
+le stylo ; el bolígrafo ; nm ; J'ai un stylo noir. ; Tengo un bolígrafo negro.
+le sac ; el bolso, la bolsa, la mochila ; nm ; Mon sac est dans la voiture. ; Mi bolso está en el coche.
+la télévision ; la televisión ; nf ; Je regarde la télévision. ; Veo la televisión.
+le jardin ; el jardín ; nm ; Le jardin est petit. ; El jardín es pequeño.
+l'argent ; el dinero ; nm ; Je n'ai pas d'argent. ; No tengo dinero.
+le cadeau ; el regalo ; nm ; Un cadeau pour ma mère. ; Un regalo para mi madre.
+la lumière ; la luz ; nf ; J'aime la lumière. ; Me gusta la luz.
+
+# City & transport
+la ville ; la ciudad ; nf ; J'habite dans une grande ville. ; Vivo en una ciudad grande.
+la rue ; la calle ; nf ; J'habite dans cette rue. ; Vivo en esta calle.
+la gare ; la estación (de tren) ; nf ; La gare est près d'ici. ; La estación está cerca de aquí.
+le métro ; el metro ; nm ; Je prends le métro pour aller au travail. ; Cojo el metro para ir al trabajo.
+la station de métro ; la estación de metro ; nf ; La station de métro est fermée. ; La estación de metro está cerrada.
+l'arrêt ; la parada ; nm ; L'arrêt de bus est là. ; La parada de autobús está allí.
+le bus ; el autobús ; nm ; Je prends le bus. ; Cojo el autobús.
+le train ; el tren ; nm ; Le train de Paris arrive à huit heures. ; El tren de París llega a las ocho.
+la voiture ; el coche ; nf ; Ma voiture est blanche. ; Mi coche es blanco.
+le vélo ; la bicicleta ; nm ; J'aime le vélo. ; Me gusta la bicicleta.
+l'avion ; el avión ; nm ; L'avion part à neuf heures. ; El avión sale a las nueve.
+le taxi ; el taxi ; nm ; Un taxi, s'il vous plaît. ; Un taxi, por favor.
+le billet ; el billete ; nm ; Un billet, s'il vous plaît. ; Un billete, por favor.
+l'aéroport ; el aeropuerto ; nm ; L'aéroport est loin de la ville. ; El aeropuerto está lejos de la ciudad.
+le magasin ; la tienda ; nm ; Le magasin est près de la gare. ; La tienda está cerca de la estación.
+le supermarché ; el supermercado ; nm ; Je vais au supermarché. ; Voy al supermercado.
+la boulangerie ; la panadería ; nf ; Je vais à la boulangerie. ; Voy a la panadería.
+la pharmacie ; la farmacia ; nf ; La pharmacie est à côté de la banque. ; La farmacia está al lado del banco.
+la banque ; el banco ; nf ; La banque est fermée. ; El banco está cerrado.
+l'hôpital ; el hospital ; nm ; L'hôpital est grand. ; El hospital es grande.
+l'école ; la escuela, el colegio ; nf ; L'école est près de la maison. ; La escuela está cerca de casa.
+l'hôtel ; el hotel ; nm ; L'hôtel est cher. ; El hotel es caro.
+le cinéma ; el cine ; nm ; Nous allons au cinéma. ; Vamos al cine.
+le parc ; el parque ; nm ; Les enfants jouent dans le parc. ; Los niños juegan en el parque.
+la place ; la plaza ; nf ; Le café est sur la place. ; El café está en la plaza.
+
+# Body & health
+la tête ; la cabeza ; nf ; J'ai mal à la tête. ; Me duele la cabeza.
+la main ; la mano ; nf ; Donne-moi la main. ; Dame la mano.
+le pied ; el pie ; nm ; J'ai mal au pied. ; Me duele el pie.
+le bras ; el brazo ; nm ; Mon bras est fatigué. ; Mi brazo está cansado.
+la jambe ; la pierna ; nf ; J'ai mal à la jambe. ; Me duele la pierna.
+les yeux ; los ojos ; npl ; Elle a les yeux bleus. ; Tiene los ojos azules.
+la bouche ; la boca ; nf ; Ouvre la bouche. ; Abre la boca.
+le nez ; la nariz ; nm ; Il a le nez rouge. ; Tiene la nariz roja.
+le dos ; la espalda ; nm ; J'ai mal au dos. ; Me duele la espalda.
+le ventre ; el vientre, la barriga ; nm ; J'ai mal au ventre. ; Me duele la barriga.
+le cœur ; el corazón ; nm ; Mon cœur est triste. ; Mi corazón está triste.
+le médecin ; el médico ; nm ; Je vais chez le médecin. ; Voy al médico.
+
+# Clothes
+les vêtements ; la ropa ; npl ; J'achète des vêtements. ; Compro ropa.
+la chemise ; la camisa ; nf ; Ma chemise est blanche. ; Mi camisa es blanca.
+le pantalon ; el pantalón ; nm ; Le pantalon est noir. ; El pantalón es negro.
+la robe ; el vestido ; nf ; La robe est longue. ; El vestido es largo.
+la jupe ; la falda ; nf ; La jupe est courte. ; La falda es corta.
+les chaussures ; los zapatos ; npl ; Mes chaussures sont noires. ; Mis zapatos son negros.
+le manteau ; el abrigo ; nm ; Il fait froid, prends ton manteau. ; Hace frío, coge tu abrigo.
+le chapeau ; el sombrero ; nm ; Il a un chapeau noir. ; Lleva un sombrero negro.
+le pull ; el jersey ; nm ; Mon pull est bleu. ; Mi jersey es azul.
+le T-shirt ; la camiseta ; nm ; Mon T-shirt est blanc. ; Mi camiseta es blanca.
+les lunettes ; las gafas ; npl ; Où sont mes lunettes ? ; ¿Dónde están mis gafas?
+
+# Weather & nature
+le temps ; el tiempo ; nm ; Quel temps fait-il ? ; ¿Qué tiempo hace?
+le soleil ; el sol ; nm ; Il y a du soleil. ; Hay sol.
+la pluie ; la lluvia ; nf ; J'aime la pluie. ; Me gusta la lluvia.
+la neige ; la nieve ; nf ; La neige est blanche. ; La nieve es blanca.
+le vent ; el viento ; nm ; Il y a du vent. ; Hace viento.
+le nuage ; la nube ; nm ; Il y a un nuage. ; Hay una nube.
+la mer ; el mar ; nf ; La mer est bleue. ; El mar es azul.
+la montagne ; la montaña ; nf ; La montagne est haute. ; La montaña es alta.
+l'arbre ; el árbol ; nm ; L'arbre est grand. ; El árbol es grande.
+la fleur ; la flor ; nf ; La fleur est rose. ; La flor es rosa.
+
+# Animals
+le chat ; el gato ; nm ; Le chat dort sur le lit. ; El gato duerme en la cama.
+le chien ; el perro ; nm ; Le chien est dans le jardin. ; El perro está en el jardín.
+l'oiseau ; el pájaro ; nm ; L'oiseau est sur l'arbre. ; El pájaro está en el árbol.
+
+# Work & school
+le travail ; el trabajo ; nm ; Je vais au travail en métro. ; Voy al trabajo en metro.
+le bureau ; la oficina, el despacho ; nm ; Je suis au bureau. ; Estoy en la oficina.
+le collègue ; el compañero de trabajo, el colega ; n ; Mon collègue parle espagnol. ; Mi compañero habla español.
+le patron ; el jefe ; nm ; Le patron est dans son bureau. ; El jefe está en su despacho.
+la réunion ; la reunión ; nf ; La réunion commence à dix heures. ; La reunión empieza a las diez.
+l'entreprise ; la empresa ; nf ; Je travaille dans une grande entreprise. ; Trabajo en una empresa grande.
+le métier ; la profesión, el oficio ; nm ; Quel est votre métier ? ; ¿Cuál es su profesión?
+l'élève ; el alumno, la alumna ; n ; L'élève écoute le professeur. ; El alumno escucha al profesor.
+l'étudiant(e) ; el estudiante, la estudiante ; n ; L'étudiant est fatigué. ; El estudiante está cansado.
+le professeur ; el profesor, la profesora ; nm ; Mon professeur est gentil. ; Mi profesor es amable.
+le cours ; la clase, el curso ; nm ; J'ai cours de français le lundi. ; Tengo clase de francés los lunes.
+la langue ; la lengua, el idioma ; nf ; J'apprends une nouvelle langue. ; Aprendo un idioma nuevo.
+le français ; el francés ; nm ; J'étudie le français. ; Estudio francés.
+l'espagnol ; el español ; nm ; Il parle espagnol. ; Habla español.
+l'anglais ; el inglés ; nm ; Elle parle anglais. ; Habla inglés.
+le mot ; la palabra ; nm ; Ce mot est difficile. ; Esta palabra es difícil.
+la phrase ; la frase ; nf ; Cette phrase est facile. ; Esta frase es fácil.
+la question ; la pregunta ; nf ; J'ai une question. ; Tengo una pregunta.
+la réponse ; la respuesta ; nf ; La réponse est oui. ; La respuesta es sí.
+l'e-mail ; el correo electrónico, el email ; nm ; J'écris un e-mail. ; Escribo un correo electrónico.
+
+# Common verbs
+être ; ser, estar ; v ; Je suis fatigué. ; Estoy cansado.
+avoir ; tener, haber ; v ; J'ai deux frères. ; Tengo dos hermanos.
+aller ; ir ; v ; Je vais au travail. ; Voy al trabajo.
+faire ; hacer ; v ; Que fais-tu ? ; ¿Qué haces?
+venir ; venir ; v ; Tu viens avec nous ? ; ¿Vienes con nosotros?
+prendre ; coger, tomar ; v ; Je prends un café. ; Tomo un café.
+vouloir ; querer ; v ; Je veux un thé. ; Quiero un té.
+pouvoir ; poder ; v ; Je peux t'aider. ; Puedo ayudarte.
+devoir ; deber, tener que ; v ; Je dois partir. ; Tengo que irme.
+savoir ; saber ; v ; Je ne sais pas. ; No lo sé.
+voir ; ver ; v ; Je vois la mer. ; Veo el mar.
+dire ; decir ; v ; Que dites-vous ? ; ¿Qué dice usted?
+parler ; hablar ; v ; Je parle français. ; Hablo francés.
+manger ; comer ; v ; Nous mangeons à une heure. ; Comemos a la una.
+boire ; beber ; v ; Je bois de l'eau. ; Bebo agua.
+habiter ; vivir ; v ; J'habite à Madrid. ; Vivo en Madrid.
+travailler ; trabajar ; v ; Je travaille dans un bureau. ; Trabajo en una oficina.
+aimer ; gustar, querer ; v ; J'aime le café. ; Me gusta el café.
+regarder ; mirar, ver ; v ; Je regarde par la fenêtre. ; Miro por la ventana.
+écouter ; escuchar ; v ; J'écoute le professeur. ; Escucho al profesor.
+lire ; leer ; v ; Je lis dans le métro. ; Leo en el metro.
+écrire ; escribir ; v ; J'écris à mon frère. ; Escribo a mi hermano.
+comprendre ; entender, comprender ; v ; Je ne comprends pas. ; No entiendo.
+apprendre ; aprender ; v ; J'apprends le français. ; Aprendo francés.
+acheter ; comprar ; v ; J'achète du pain. ; Compro pan.
+donner ; dar ; v ; Donne-moi la clé. ; Dame la llave.
+trouver ; encontrar ; v ; Je trouve ma clé. ; Encuentro mi llave.
+chercher ; buscar ; v ; Je cherche la gare. ; Busco la estación.
+penser ; pensar ; v ; Je pense à ma famille. ; Pienso en mi familia.
+connaître ; conocer ; v ; Je connais ce restaurant. ; Conozco este restaurante.
+ouvrir ; abrir ; v ; J'ouvre la porte. ; Abro la puerta.
+fermer ; cerrar ; v ; Je ferme la fenêtre. ; Cierro la ventana.
+commencer ; empezar, comenzar ; v ; Le cours commence à neuf heures. ; La clase empieza a las nueve.
+finir ; terminar, acabar ; v ; Je finis à six heures. ; Termino a las seis.
+partir ; irse, salir, marcharse ; v ; Je pars demain. ; Me voy mañana.
+arriver ; llegar ; v ; J'arrive au bureau à neuf heures. ; Llego a la oficina a las nueve.
+entrer ; entrar ; v ; J'entre dans le magasin. ; Entro en la tienda.
+sortir ; salir ; v ; Je sors du bureau. ; Salgo de la oficina.
+rentrer ; volver a casa, regresar ; v ; Je rentre à six heures. ; Vuelvo a casa a las seis.
+rester ; quedarse ; v ; Je reste à la maison. ; Me quedo en casa.
+dormir ; dormir ; v ; Je dors huit heures. ; Duermo ocho horas.
+jouer ; jugar ; v ; Les enfants jouent dans le parc. ; Los niños juegan en el parque.
+marcher ; caminar, andar ; v ; Je marche dans la rue. ; Camino por la calle.
+attendre ; esperar ; v ; J'attends le bus. ; Espero el autobús.
+appeler ; llamar ; v ; J'appelle ma mère. ; Llamo a mi madre.
+répondre ; responder, contestar ; v ; Je réponds à la question. ; Respondo a la pregunta.
+demander ; preguntar, pedir ; v ; Je demande l'addition. ; Pido la cuenta.
+aider ; ayudar ; v ; Tu peux m'aider ? ; ¿Puedes ayudarme?
+payer ; pagar ; v ; Je paie le billet. ; Pago el billete.
+voyager ; viajar ; v ; J'aime voyager en train. ; Me gusta viajar en tren.
+se lever ; levantarse ; v ; Je me lève à sept heures. ; Me levanto a las siete.
+s'appeler ; llamarse ; v ; Je m'appelle Marie. ; Me llamo Marie.
+
+# Common adjectives
+grand / grande ; grande, alto, alta ; adj ; Mon frère est grand. ; Mi hermano es alto.
+petit / petite ; pequeño, pequeña ; adj ; La maison est petite. ; La casa es pequeña.
+bon / bonne ; bueno, buena ; adj ; Le café est bon. ; El café está bueno.
+mauvais / mauvaise ; malo, mala ; adj ; Il fait mauvais temps. ; Hace mal tiempo.
+beau / belle ; bonito, bonita, bello, guapo ; adj ; La ville est belle. ; La ciudad es bonita.
+joli / jolie ; bonito, bonita, lindo ; adj ; Quelle jolie fleur ! ; ¡Qué flor tan bonita!
+nouveau / nouvelle ; nuevo, nueva ; adj ; J'ai un nouveau téléphone. ; Tengo un móvil nuevo.
+vieux / vieille ; viejo, vieja ; adj ; Ma voiture est vieille. ; Mi coche es viejo.
+jeune ; joven ; adj ; Mon frère est jeune. ; Mi hermano es joven.
+content / contente ; contento, contenta ; adj ; Je suis content. ; Estoy contento.
+heureux / heureuse ; feliz ; adj ; Elle est heureuse. ; Ella es feliz.
+triste ; triste ; adj ; Il est triste aujourd'hui. ; Hoy está triste.
+fatigué / fatiguée ; cansado, cansada ; adj ; Je suis fatigué après le travail. ; Estoy cansado después del trabajo.
+malade ; enfermo, enferma ; adj ; Je suis malade. ; Estoy enfermo.
+facile ; fácil ; adj ; Ce mot est facile. ; Esta palabra es fácil.
+difficile ; difícil ; adj ; Cette phrase est difficile. ; Esta frase es difícil.
+cher / chère ; caro, cara ; adj ; Le billet est cher. ; El billete es caro.
+long / longue ; largo, larga ; adj ; La rue est longue. ; La calle es larga.
+court / courte ; corto, corta ; adj ; Le cours est court. ; La clase es corta.
+gentil / gentille ; amable, simpático, simpática ; adj ; Mon voisin est gentil. ; Mi vecino es amable.
+prêt / prête ; listo, lista ; adj ; Le dîner est prêt. ; La cena está lista.
+occupé / occupée ; ocupado, ocupada ; adj ; Je suis occupé aujourd'hui. ; Hoy estoy ocupado.
+libre ; libre ; adj ; Cette place est libre. ; Este sitio está libre.
+ouvert / ouverte ; abierto, abierta ; adj ; Le magasin est ouvert. ; La tienda está abierta.
+fermé / fermée ; cerrado, cerrada ; adj ; La banque est fermée. ; El banco está cerrado.
+plein / pleine ; lleno, llena ; adj ; Le métro est plein. ; El metro está lleno.
+vide ; vacío, vacía ; adj ; Le bus est vide. ; El autobús está vacío.
+chaud / chaude ; caliente, cálido ; adj ; Le café est chaud. ; El café está caliente.
+froid / froide ; frío, fría ; adj ; L'eau est froide. ; El agua está fría.
+important / importante ; importante ; adj ; C'est important. ; Es importante.
+rapide ; rápido, rápida ; adj ; Le train est rapide. ; El tren es rápido.
+lent / lente ; lento, lenta ; adj ; Le bus est lent. ; El autobús es lento.
+
+# Little words
+très ; muy ; adv ; Je suis très content. ; Estoy muy contento.
+trop ; demasiado ; adv ; C'est trop cher. ; Es demasiado caro.
+beaucoup ; mucho ; adv ; J'aime beaucoup ce livre. ; Me gusta mucho este libro.
+peu ; poco, un poco ; adv ; Je parle un peu français. ; Hablo un poco de francés.
+assez ; bastante ; adv ; Il est assez tard. ; Es bastante tarde.
+plus ; más ; adv ; Un peu plus, s'il vous plaît. ; Un poco más, por favor.
+moins ; menos ; adv ; Moins de sucre, s'il vous plaît. ; Menos azúcar, por favor.
+bien ; bien ; adv ; Je vais bien. ; Estoy bien.
+mal ; mal ; adv ; Je comprends mal. ; Entiendo mal.
+ici ; aquí ; adv ; Je travaille ici. ; Trabajo aquí.
+là ; allí, ahí ; adv ; La gare est là. ; La estación está allí.
+aussi ; también ; adv ; Moi aussi. ; Yo también.
+vite ; rápido, deprisa ; adv ; Il marche vite. ; Camina rápido.
+ensemble ; juntos, juntas ; adv ; Nous travaillons ensemble. ; Trabajamos juntos.
+seulement ; solo, solamente ; adv ; J'ai seulement dix euros. ; Solo tengo diez euros.
+tout ; todo ; pron ; Tout est prêt. ; Todo está listo.
+à ; a, en ; prep ; Je vais à Paris. ; Voy a París.
+de ; de, desde ; prep ; Je viens de Madrid. ; Vengo de Madrid.
+dans ; en, dentro de ; prep ; Le livre est dans le sac. ; El libro está en el bolso.
+sur ; sobre, en ; prep ; Les clés sont sur la table. ; Las llaves están sobre la mesa.
+sous ; debajo de, bajo ; prep ; Le chat est sous le lit. ; El gato está debajo de la cama.
+avec ; con ; prep ; Je travaille avec mon frère. ; Trabajo con mi hermano.
+sans ; sin ; prep ; Un café sans sucre. ; Un café sin azúcar.
+pour ; para, por ; prep ; Un cadeau pour ma mère. ; Un regalo para mi madre.
+chez ; en casa de ; prep ; Je vais chez mon ami. ; Voy a casa de mi amigo.
+entre ; entre ; prep ; La banque est entre la gare et l'école. ; El banco está entre la estación y la escuela.
+devant ; delante de ; prep ; Le bus est devant la gare. ; El autobús está delante de la estación.
+derrière ; detrás de ; prep ; Le parc est derrière l'école. ; El parque está detrás de la escuela.
+près de ; cerca de ; prep ; La banque est près de la gare. ; El banco está cerca de la estación.
+loin de ; lejos de ; prep ; L'aéroport est loin de la ville. ; El aeropuerto está lejos de la ciudad.
+à côté de ; al lado de ; prep ; La pharmacie est à côté de la banque. ; La farmacia está al lado del banco.
+avant ; antes de ; prep ; Avant le travail, je lis. ; Antes del trabajo, leo.
+après ; después de ; prep ; Après le travail, je rentre. ; Después del trabajo, vuelvo a casa.
+en ; en ; prep ; Je vais au travail en métro. ; Voy al trabajo en metro.
+et ; y ; conj ; Du pain et du fromage. ; Pan y queso.
+ou ; o ; conj ; Thé ou café ? ; ¿Té o café?
+mais ; pero ; conj ; Je comprends, mais je parle peu. ; Entiendo, pero hablo poco.
+donc ; así que, por lo tanto ; conj ; Il pleut, donc je prends le bus. ; Llueve, así que cojo el autobús.
+si ; si ; conj ; Si tu veux. ; Si quieres.
+le / la / les ; el, la, los, las ; det ; Le livre, la clé, les stylos. ; El libro, la llave, los bolígrafos.
+des ; unos, unas ; det ; Je mange des fruits. ; Como fruta.
+mon / ma / mes ; mi, mis ; det ; Ma sœur s'appelle Claire. ; Mi hermana se llama Claire.
+ton / ta / tes ; tu, tus ; det ; Où est ton sac ? ; ¿Dónde está tu bolso?
+son / sa / ses ; su, sus ; det ; Son père est médecin. ; Su padre es médico.
+notre / nos ; nuestro, nuestra, nuestros, nuestras ; det ; Notre maison est grande. ; Nuestra casa es grande.
+votre / vos ; vuestro, vuestra, su (de usted) ; det ; Votre café, monsieur. ; Su café, señor.
+leur / leurs ; su, sus (de ellos) ; det ; Leur fils est jeune. ; Su hijo es joven.
+ce / cette ; este, esta, ese, esa ; det ; Cette ville est belle. ; Esta ciudad es bonita.
+
+# Useful phrases
+ça va ? ; ¿qué tal?, ¿cómo estás? ; expr ; Ça va ? Oui, ça va bien. ; ¿Qué tal? Sí, bien.
+comment allez-vous ? ; ¿cómo está usted? ; expr ; Bonjour madame, comment allez-vous ? ; Buenos días, señora, ¿cómo está usted?
+je m'appelle… ; me llamo… ; expr ; Je m'appelle Ana. ; Me llamo Ana.
+je ne comprends pas ; no entiendo ; expr ; Pardon, je ne comprends pas. ; Perdón, no entiendo.
+je ne sais pas ; no lo sé, no sé ; expr ; Je ne sais pas où est la gare. ; No sé dónde está la estación.
+parlez-vous anglais ? ; ¿habla usted inglés? ; expr ; Excusez-moi, parlez-vous anglais ? ; Disculpe, ¿habla usted inglés?
+pouvez-vous répéter ? ; ¿puede repetir? ; expr ; Pardon, pouvez-vous répéter ? ; Perdón, ¿puede repetir?
+je voudrais… ; quisiera…, me gustaría… ; expr ; Je voudrais un billet. ; Quisiera un billete.
+combien ça coûte ? ; ¿cuánto cuesta? ; expr ; Combien ça coûte, le billet ? ; ¿Cuánto cuesta el billete?
+où est… ? ; ¿dónde está…? ; expr ; Où est la station de métro ? ; ¿Dónde está la estación de metro?
+il y a ; hay ; expr ; Il y a un bus à huit heures. ; Hay un autobús a las ocho.
+c'est ; es, esto es ; expr ; C'est facile. ; Es fácil.
+il fait chaud ; hace calor ; expr ; Aujourd'hui, il fait chaud. ; Hoy hace calor.
+il fait froid ; hace frío ; expr ; Demain, il fait froid. ; Mañana hace frío.
+il pleut ; llueve ; expr ; Il pleut, prends ton manteau. ; Llueve, coge tu abrigo.
+j'ai faim ; tengo hambre ; expr ; J'ai faim, je mange un sandwich. ; Tengo hambre, me como un bocadillo.
+j'ai soif ; tengo sed ; expr ; J'ai soif, je bois de l'eau. ; Tengo sed, bebo agua.
+à quelle heure ? ; ¿a qué hora? ; expr ; À quelle heure part le train ? ; ¿A qué hora sale el tren?
+je suis en retard ; llego tarde, voy con retraso ; expr ; Excusez-moi, je suis en retard. ; Disculpe, llego tarde.
+bon appétit ; buen provecho ; expr ; Bon appétit ! ; ¡Buen provecho!
+bonne chance ; buena suerte ; expr ; Bonne chance pour demain ! ; ¡Buena suerte para mañana!</script>
+<script>
+(function(){
+'use strict';
+
+/* ───────── helpers ───────── */
+const $=(s,r)=>(r||document).querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>(window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+const DAY=864e5, INT=[0,1,3,7,14,30], MAX_DUE=40, KEY='mots-du-metro.v1';
+const A1TEXT=document.getElementById('a1pack').textContent;
+
+const TYPES={
+  noun:{label:'Noun',abbr:'n'}, verb:{label:'Verb',abbr:'v'}, adjective:{label:'Adjective',abbr:'adj'},
+  adverb:{label:'Adverb',abbr:'adv'}, preposition:{label:'Preposition',abbr:'prep'}, pronoun:{label:'Pronoun',abbr:'pron'},
+  conjunction:{label:'Conjunction',abbr:'conj'}, determiner:{label:'Determiner',abbr:'det'}, number:{label:'Number',abbr:'num'},
+  expression:{label:'Expression',abbr:'exp'}, other:{label:'Other',abbr:'•'}
+};
+const ALIASES={
+  n:'noun',nom:'noun',noun:'noun',sustantivo:'noun',sust:'noun',substantif:'noun',nm:'noun',nf:'noun',npl:'noun',
+  v:'verb',vb:'verb',verb:'verb',verbe:'verb',verbo:'verb',
+  adj:'adjective',adjective:'adjective',adjectif:'adjective',adjetivo:'adjective',
+  adv:'adverb',adverb:'adverb',adverbe:'adverb',adverbio:'adverb',
+  prep:'preposition',preposition:'preposition',preposicion:'preposition',
+  pron:'pronoun',pronoun:'pronoun',pronom:'pronoun',pronombre:'pronoun',
+  conj:'conjunction',conjunction:'conjunction',conjonction:'conjunction',conjuncion:'conjunction',
+  det:'determiner',art:'determiner',article:'determiner',determiner:'determiner',determinant:'determiner',determinante:'determiner',articulo:'determiner',
+  num:'number',number:'number',numero:'number',numeral:'number',chiffre:'number',
+  expr:'expression',exp:'expression',expression:'expression',expresion:'expression',phrase:'expression',frase:'expression',loc:'expression',locution:'expression',interj:'expression',
+  other:'other',otro:'other',autre:'other'
+};
+const GENDER_LABEL={m:'masculine',f:'feminine',pl:'plural'};
+
+const IC={
+  close:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  speak:'<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11"/></svg>',
+  search:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>',
+  study:'<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12" rx="2.5"/><path d="M7 3.5h10"/></svg>',
+  words:'<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9.5 6.5H20M9.5 12H20M9.5 17.5H20"/><circle cx="4.8" cy="6.5" r=".6"/><circle cx="4.8" cy="12" r=".6"/><circle cx="4.8" cy="17.5" r=".6"/></svg>',
+  add:'<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>',
+  more:'<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h9M19 7h1M4 17h1M11 17h9"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></svg>'
+};
+
+/* ───────── text normalisation, duplicates, parsing ───────── */
+function norm(s){
+  return String(s==null?'':s).toLowerCase()
+    .replace(/[’‘`´]/g,"'").replace(/œ/g,'oe').replace(/æ/g,'ae').replace(/ñ/g,'ny')
+    .normalize('NFD').replace(/[̀-ͯ]/g,'');
+}
+/* Repeated-word key: ignores case, article, "(e)" endings and the feminine form after "/".
+   Accents are kept, so ou / où and a / à stay different words. looseKey also ignores accents, to warn about near repeats. */
+function baseKey(fr,keepAccents){
+  let s=String(fr==null?'':fr).toLowerCase().replace(/[’‘`´]/g,"'").replace(/œ/g,'oe').replace(/æ/g,'ae').normalize('NFC');
+  if(!keepAccents) s=s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  s=s.replace(/\([^)]*\)/g,' ').split('/')[0];
+  s=s.replace(/[.,;:!?…"“”«»]/g,' ').replace(/\s+/g,' ').trim();
+  s=s.replace(/^(?:l'|(?:le|la|les|un|une|des)\s+)/,'').trim();
+  return s;
+}
+const dupKey=fr=>baseKey(fr,true)||String(fr||'').trim().toLowerCase();
+const looseKey=fr=>baseKey(fr,false)||norm(fr).trim();
+function normEs(s){
+  let t=norm(s).replace(/\([^)]*\)/g,' ').replace(/[¿?¡!.,;:"“”«»]/g,' ').replace(/\s+/g,' ').trim();
+  return t.replace(/^(?:el|la|los|las|un|una|unos|unas)\s+/,'').trim();
+}
+function lev(a,b){
+  const m=a.length,n=b.length; if(!m)return n; if(!n)return m;
+  let prev=Array.from({length:n+1},(_,i)=>i);
+  for(let i=1;i<=m;i++){
+    const cur=[i];
+    for(let j=1;j<=n;j++) cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+    prev=cur;
+  }
+  return prev[n];
+}
+const cleanFr=s=>String(s||'').replace(/[’‘`´]/g,"'").replace(/\s+/g,' ').trim();
+const splitEs=v=>(Array.isArray(v)?v:String(v||'').split(/\s*[,/|]\s*/)).map(x=>String(x).replace(/\s+/g,' ').trim()).filter(Boolean);
+function parseType(raw){
+  const s=norm(raw).replace(/[.()\[\],]/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return {type:null,gender:null};
+  let type=null,gender=null;
+  for(const tok of s.split(' ')){
+    if(ALIASES[tok]&&!type) type=ALIASES[tok];
+    if(tok==='nm') gender='m'; else if(tok==='nf') gender='f'; else if(tok==='npl') gender='pl';
+    else if(['m','masc','masculin','masculino','masculine'].includes(tok)) gender='m';
+    else if(['f','fem','feminin','femenino','feminine'].includes(tok)) gender='f';
+    else if(['pl','plural'].includes(tok)) gender='pl';
+  }
+  if(gender&&!type) type='noun';
+  return {type,gender};
+}
+function inferGender(fr){
+  const s=norm(fr);
+  if(/^(le|un)\s/.test(s)) return 'm';
+  if(/^(la|une)\s/.test(s)) return 'f';
+  if(/^(les|des)\s/.test(s)) return 'pl';
+  return null;
+}
+function guessType(fr,es){
+  const f=norm(fr);
+  if(/^(le|la|les|un|une)\s/.test(f)||/^l'/.test(f)) return 'noun';
+  if(es.length&&/^(el|la|los|las)\s/.test(norm(es[0]))) return 'noun';
+  if(/^(se\s|s')/.test(f)) return 'verb';
+  const first=f.split(/\s+/)[0]; const e=es.length?norm(es[0]):'';
+  if(/(er|ir|re|oir)$/.test(f)&&!/\s/.test(f)&&/(ar|er|ir|arse|erse|irse)$/.test(e)) return 'verb';
+  return 'other';
+}
+function build(o){
+  const fr=cleanFr(o.fr), es=splitEs(o.es);
+  let type=o.type&&TYPES[o.type]?o.type:guessType(fr,es);
+  let gender=o.gender||null;
+  if(type==='noun'&&!gender) gender=inferGender(fr);
+  if(type!=='noun') gender=null;
+  return {id:uid(),fr,es,type,gender,cat:String(o.cat||'').trim()||'My words',ex:String(o.ex||'').trim(),exEs:String(o.exEs||'').trim(),
+          src:o.src||'mine',lvl:0,due:0,seen:0,ok:0,ko:0,t:Date.now()};
+}
+
+/* ───────── state + storage ───────── */
+let S=null, storageOK=true;
+const ui={tab:'study',session:null,q:'',wtopic:'',addMode:'quick',prefill:null,lastTopic:''};
+function testStorage(){try{localStorage.setItem(KEY+'.t','1');localStorage.removeItem(KEY+'.t');return true;}catch(e){return false;}}
+function save(){ if(!storageOK) return; try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){storageOK=false;} }
+function sanitize(d){
+  const words=(d.words||[]).filter(w=>w&&typeof w.fr==='string'&&w.fr.trim()).map(w=>({
+    id:String(w.id||uid()),fr:cleanFr(w.fr),es:splitEs(w.es),type:TYPES[w.type]?w.type:'other',gender:['m','f','pl'].includes(w.gender)?w.gender:null,
+    cat:String(w.cat||'My words'),ex:String(w.ex||''),exEs:String(w.exEs||''),src:w.src==='a1'?'a1':'mine',
+    lvl:Math.max(0,Math.min(5,parseInt(w.lvl,10)||0)),due:Number(w.due)||0,seen:w.seen?1:0,ok:Number(w.ok)||0,ko:Number(w.ko)||0,t:Number(w.t)||Date.now()
+  })).filter(w=>w.es.length);
+  const st=d.settings||{};
+  return {v:1,words,settings:{mode:st.mode==='type'?'type':'reveal',perSession:[5,10,20,30,50].includes(st.perSession)?st.perSession:10},
+          filter:{topic:(d.filter&&d.filter.topic)||'',type:(d.filter&&d.filter.type)||''}};
+}
+function load(){
+  if(!storageOK) return null;
+  try{const raw=localStorage.getItem(KEY); if(raw){const d=JSON.parse(raw); if(d&&Array.isArray(d.words)) return sanitize(d);}}catch(e){}
+  return null;
+}
+function freshState(){return {v:1,words:[],settings:{mode:'reveal',perSession:10},filter:{topic:'',type:''}};}
+const byId=id=>S.words.find(w=>w.id===id);
+const findDup=(fr,exceptId)=>{const k=dupKey(fr); return S.words.find(w=>w.id!==exceptId&&dupKey(w.fr)===k)||null;};
+const findSimilar=(fr,exceptId)=>{const k=dupKey(fr),l=looseKey(fr); return S.words.find(w=>w.id!==exceptId&&dupKey(w.fr)!==k&&looseKey(w.fr)===l)||null;};
+
+/* bulk text → items (new / dup / err) */
+function analyze(text,defCat){
+  const items=[],idx=new Map(),batch=new Map();
+  S.words.forEach(w=>idx.set(dupKey(w.fr),w));
+  let cat=defCat||'My words';
+  String(text||'').split(/\r?\n/).forEach(line=>{
+    let raw=line.trim(); if(!raw) return;
+    const h=raw.match(/^#{1,6}\s*(.+?)\s*#*$/); if(h){cat=h[1];return;}
+    raw=raw.replace(/^(?:[-*•]\s+|\d+[.)]\s+)/,'');
+    let parts=null;
+    if(raw.indexOf(';')>=0) parts=raw.split(';');
+    else if(raw.indexOf('\t')>=0) parts=raw.split('\t');
+    else{
+      const m=raw.split(/\s+(?:=|-|–|—|→|->|:)\s+/);
+      if(m.length>1) parts=[m[0],m.slice(1).join(' - ')];
+      else if(raw.indexOf('|')>=0) parts=raw.split('|');
+    }
+    if(!parts){items.push({status:'err',line:raw,why:'No Spanish part. Use “french ; spanish”.'});return;}
+    parts=parts.map(p=>p.trim());
+    const fr=parts[0],es=parts[1];
+    if(!items.length&&/^(french|frances|francais)$/.test(norm(fr))&&/^(spanish|espanyol)$/.test(norm(es||''))) return;
+    if(!fr||!es){items.push({status:'err',line:raw,why:'French or Spanish part is empty.'});return;}
+    const pt=parseType(parts[2]||'');
+    const w=build({fr,es,type:pt.type,gender:pt.gender,cat,ex:parts[3]||'',exEs:parts[4]||''});
+    const k=dupKey(w.fr);
+    if(idx.has(k)) items.push({status:'dup',w,existing:idx.get(k)});
+    else if(batch.has(k)) items.push({status:'dup',w,existing:batch.get(k),inBatch:true});
+    else{batch.set(k,w);items.push({status:'new',w,similar:findSimilar(w.fr)});}
+  });
+  return items;
+}
+function commit(items,src){
+  let n=0;
+  items.forEach(i=>{ if(i.status==='new'){ i.w.src=src; S.words.push(i.w); n++; } });
+  if(n) save();
+  return n;
+}
+
+/* ───────── derived data ───────── */
+const K=new WeakMap();
+const keyOf=w=>{let k=K.get(w); if(!k){k=norm(w.fr+' '+w.es.join(' ')+' '+w.cat); K.set(w,k);} return k;};
+function topicList(){
+  const m=new Map(); S.words.forEach(w=>m.set(w.cat,(m.get(w.cat)||0)+1));
+  return Array.from(m,([name,n])=>({name,n}));
+}
+function typeList(){
+  const set=new Set(S.words.map(w=>w.type));
+  return Object.keys(TYPES).filter(t=>set.has(t));
+}
+function filteredWords(){
+  const f=S.filter;
+  return S.words.filter(w=>(!f.topic||w.cat===f.topic)&&(!f.type||w.type===f.type));
+}
+function searchWords(q,topic){
+  const toks=norm(q).split(/\s+/).filter(Boolean);
+  const list=S.words.filter(w=>!topic||w.cat===topic);
+  if(!toks.length) return list;
+  const qq=toks.join(' '),out=[];
+  for(const w of list){
+    const k=keyOf(w);
+    if(toks.every(t=>k.indexOf(t)>=0)){
+      const f=dupKey(w.fr); let sc=3;
+      if(f===qq) sc=0; else if(f.indexOf(qq)===0) sc=1; else if(w.es.some(e=>normEs(e).indexOf(qq)===0)) sc=2;
+      out.push([sc,w]);
+    }
+  }
+  out.sort((a,b)=>a[0]-b[0]);
+  return out.map(x=>x[1]);
+}
+function refreshTopics(){
+  $('#topics').innerHTML=topicList().map(t=>'<option value="'+esc(t.name)+'"></option>').join('');
+}
+
+/* ───────── small UI helpers ───────── */
+let toastT=0;
+function toast(msg){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2400);
+}
+function openSheet(html){const p=$('#sheet-panel'); p.innerHTML=html; $('#sheet').hidden=false; p.scrollTop=0;}
+function closeSheet(){$('#sheet').hidden=true; $('#sheet-panel').innerHTML='';}
+function confirmSheet(title,body,okLabel,onOk){
+  confirmSheet.fn=onOk;
+  openSheet('<h2 class="sheet-h">'+esc(title)+'</h2><p class="sub" style="margin:8px 0 0">'+esc(body)+'</p><div class="stack"><button class="btn danger" data-act="confirm-ok">'+esc(okLabel)+'</button><button class="btn ghost" data-act="closesheet">Cancel</button></div>');
+}
+function roundel(type){const t=TYPES[type]||TYPES.other; return '<span class="roundel t-'+(TYPES[type]?type:'other')+'" title="'+esc(t.label)+'">'+esc(t.abbr)+'</span>';}
+function pips(l,seen){let s='<span class="pips" aria-label="Level '+l+' of 5">'; for(let i=1;i<=5;i++) s+='<i'+(seen&&i<=l?' class="on"':'')+'></i>'; return s+'</span>';}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function speakText(w){return w.fr.split('/')[0].replace(/\(.*?\)/g,'').replace(/…/g,'').trim();}
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='fr-FR';u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+const canSpeak='speechSynthesis' in window;
+async function copyText(t){
+  try{await navigator.clipboard.writeText(t);return true;}catch(e){}
+  try{const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();return ok;}catch(e){return false;}
+}
+
+/* ───────── rendering ───────── */
+const view=$('#view'), tabsEl=$('#tabs');
+function renderTabs(){
+  const items=[['study','Study',IC.study],['words','Words',IC.words],['add','Add',IC.add],['more','Settings',IC.more]];
+  tabsEl.innerHTML=items.map(([id,l,ic])=>'<button data-act="tab" data-tab="'+id+'"'+(ui.tab===id?' aria-current="page"':'')+'>'+ic+'<span>'+l+'</span></button>').join('');
+}
+function render(){
+  document.body.classList.toggle('in-session',!!ui.session);
+  if(ui.session){tabsEl.hidden=true;renderSession();return;}
+  tabsEl.hidden=false;
+  ({study:renderStudy,words:renderWords,add:renderAdd,more:renderMore})[ui.tab]();
+  renderTabs();
+}
+function setTab(t){ui.tab=t;render();view.scrollTop=0;}
+
+function topicOptions(sel,allLabel){
+  return '<option value="">'+esc(allLabel)+'</option>'+topicList().map(t=>'<option value="'+esc(t.name)+'"'+(t.name===sel?' selected':'')+'>'+esc(t.name)+' ('+t.n+')</option>').join('');
+}
+
+/* ── Study home ── */
+function renderStudy(){
+  if(S.filter.topic&&!topicList().some(t=>t.name===S.filter.topic)) S.filter.topic='';
+  if(S.filter.type&&!typeList().includes(S.filter.type)) S.filter.type='';
+  const f=filteredWords(),now=Date.now();
+  const due=f.filter(w=>w.seen&&w.due<=now).length;
+  const unseen=f.filter(w=>!w.seen).length;
+  const dueN=Math.min(due,MAX_DUE), fresh=Math.min(unseen,S.settings.perSession), ready=dueN+fresh;
+  const lv={n:0,l:0,f:0,k:0};
+  f.forEach(w=>{ if(!w.seen) lv.n++; else if(w.lvl<=2) lv.l++; else if(w.lvl<=4) lv.f++; else lv.k++; });
+  const tot=f.length||1, pct=x=>(x/tot*100).toFixed(2)+'%';
+  let h=(storageOK?'':'<div class="banner">Preview mode: progress is not saved here. Open the installed app to keep your words.</div>');
+  h+='<header class="head"><div><h1>Mots du métro</h1><p class="sub">French → Spanish · '+S.words.length+' words</p></div></header>';
+  if(!S.words.length){
+    h+='<div class="empty"><h2>No words yet</h2><p>Add your first words, or bring back the A1 starter pack.</p><button class="btn primary" data-act="tab" data-tab="add">Add words</button><button class="btn ghost" data-act="restore-a1">Load A1 starter pack</button></div>';
+    view.innerHTML=h;return;
+  }
+  h+='<section class="ticket" aria-label="Session"><div class="ticket-top"><div class="big-n">'+ready+'</div><div><div class="t-label">cards ready</div><div class="t-sub">'+dueN+(due>dueN?'+':'')+' to review · '+fresh+' new</div></div></div><div class="ticket-cut" aria-hidden="true"></div><div class="ticket-bot">'
+    +'<button class="btn primary wide" data-act="start"'+(ready?'':' disabled')+'>'+(ready?'Start':'All caught up')+'</button>'
+    +'<button class="btn ghost wide" data-act="practice"'+(f.length?'':' disabled')+'>Practice 10 random words</button></div></section>';
+  h+='<section class="sect"><h2>Choose words</h2><div class="two-col"><div><label for="ftopic" style="margin-top:0">Topic</label><select id="ftopic">'+topicOptions(S.filter.topic,'All topics')+'</select></div>'
+    +'<div><label for="ftype" style="margin-top:0">Type</label><select id="ftype"><option value="">All types</option>'+typeList().map(t=>'<option value="'+t+'"'+(S.filter.type===t?' selected':'')+'>'+TYPES[t].label+'</option>').join('')+'</select></div></div></section>';
+  h+='<section class="sect"><h2>Progress</h2><div class="lvlbar" role="img" aria-label="New '+lv.n+', learning '+lv.l+', familiar '+lv.f+', known '+lv.k+'">'
+    +'<i style="width:'+pct(lv.n)+';background:var(--c-new)"></i><i style="width:'+pct(lv.l)+';background:var(--c-learn)"></i><i style="width:'+pct(lv.f)+';background:var(--c-fam)"></i><i style="width:'+pct(lv.k)+';background:var(--c-known)"></i></div>'
+    +'<div class="legend"><span><i style="background:var(--c-new)"></i>New <b>'+lv.n+'</b></span><span><i style="background:var(--c-learn)"></i>Learning <b>'+lv.l+'</b></span><span><i style="background:var(--c-fam)"></i>Familiar <b>'+lv.f+'</b></span><span><i style="background:var(--c-known)"></i>Known <b>'+lv.k+'</b></span></div></section>';
+  view.innerHTML=h;
+}
+
+/* ── Session ── */
+function startSession(practice){
+  const now=Date.now(),f=filteredWords();
+  let ids;
+  if(practice) ids=shuffle(f.slice()).slice(0,10).map(w=>w.id);
+  else{
+    /* most overdue reviews first (capped), new words picked at random, then everything mixed together */
+    const due=f.filter(w=>w.seen&&w.due<=now).sort((a,b)=>a.due-b.due).slice(0,MAX_DUE);
+    const fresh=shuffle(f.filter(w=>!w.seen)).slice(0,S.settings.perSession);
+    ids=shuffle(due.concat(fresh)).map(w=>w.id);
+  }
+  if(!ids.length){toast('Nothing to study with these filters');return;}
+  ui.session={queue:ids.slice(),total:ids.length,i:0,revealed:false,result:null,attempted:new Set(),right:0,wrong:[],practice:!!practice,mode:S.settings.mode};
+  render();
+}
+function frSize(t){const n=t.length; return n<=9?60:n<=15?48:n<=24?38:31;}
+function renderSession(){
+  const s=ui.session;
+  if(s.i>=s.queue.length){renderSummary();return;}
+  const w=byId(s.queue[s.i]);
+  if(!w){s.i++;renderSession();return;}
+  const done=s.attempted.size,pct=Math.round(done/s.total*100);
+  const isType=s.mode==='type';
+  let h='<div class="sess"><div class="sess-top"><button class="icon-btn" data-act="end" aria-label="End session">'+IC.close+'</button><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="'+s.total+'" aria-valuenow="'+done+'"><i style="width:'+pct+'%"></i></div><span class="count">'+Math.min(done+1,s.total)+' / '+s.total+'</span></div>';
+  h+='<div class="sess-body"><article class="plate" style="--fr-size:'+frSize(w.fr)+'px"><div class="plate-top">'+roundel(w.type)
+    +(w.gender?'<span class="tag">'+GENDER_LABEL[w.gender]+'</span>':'')+(!w.seen&&!s.practice?'<span class="tag new">new</span>':'')+'<span class="grow"></span>'
+    +(canSpeak?'<button class="icon-btn light" data-act="speak" aria-label="Pronounce">'+IC.speak+'</button>':'')+'</div>'
+    +'<h2 class="fr" lang="fr">'+esc(w.fr)+'</h2><div class="plate-foot">'+esc(w.cat)+'</div></article>';
+  if(s.revealed){
+    h+='<section class="answer">';
+    if(s.result&&isType){
+      const r=s.result;
+      h+=r.ok?'<div class="verdict ok">Correct'+(r.close?' <small>check the spelling</small>':'')+'</div>':'<div class="verdict no">'+(r.skipped?'Answer':'Not quite')+(r.ans?' <small>you wrote “'+esc(r.ans)+'”</small>':'')+'</div>';
+    }
+    h+='<p class="es" lang="es">'+w.es.map(esc).join(' · ')+'</p>';
+    if(w.ex) h+='<div class="ex"><span lang="fr">'+esc(w.ex)+'</span>'+(w.exEs?'<span lang="es">'+esc(w.exEs)+'</span>':'')+'</div>';
+    h+='</section>';
+  }else if(!isType){
+    h+='<p class="prompt">Say it in Spanish, then check.</p>';
+  }
+  h+='</div><div class="sess-actions">';
+  if(!isType){
+    h+=s.revealed?'<div class="two"><button class="btn again" data-act="again">Again</button><button class="btn good" data-act="good">Got it</button></div>'
+                 :'<button class="btn primary wide" data-act="reveal">Show answer</button>';
+  }else if(!s.revealed){
+    h+='<form id="tform" autocomplete="off"><input id="typed" type="text" lang="es" placeholder="Type the Spanish" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Spanish translation"><div class="two" style="margin-top:10px"><button type="button" class="btn ghost" data-act="skip">I don’t know</button><button type="submit" class="btn primary">Check</button></div></form>';
+  }else{
+    h+=(s.result&&!s.result.ok?'<button class="link" data-act="override">I was right, count it as correct</button>':'')+'<button class="btn primary wide" data-act="next">Next</button>';
+  }
+  h+='</div></div>';
+  view.innerHTML=h;
+  if(isType&&!s.revealed){const t=$('#typed'); if(t) setTimeout(()=>t.focus(),30);}
+}
+function checkTyped(w,raw){
+  const parts=String(raw).split(/\s*[,/]\s*/).map(normEs).filter(Boolean);
+  if(!parts.length) return {ok:false,ans:''};
+  const vars=w.es.map(normEs).filter(Boolean);
+  const res=parts.map(p=>vars.includes(p)?1:(p.length>=5&&vars.some(v=>v.length>=5&&lev(p,v)<=1)?2:0));
+  return {ok:res.every(r=>r>0),close:res.some(r=>r===2),ans:String(raw).trim()};
+}
+function answer(correct){
+  const s=ui.session,id=s.queue[s.i],w=byId(id),now=Date.now();
+  const first=!s.attempted.has(id);
+  s.attempted.add(id);
+  if(!s.practice&&w){
+    if(first){
+      if(correct){w.lvl=Math.min(5,w.lvl+1);w.due=now+INT[w.lvl]*DAY;w.ok++;}
+      else{w.lvl=Math.max(0,w.lvl-2);w.due=now;w.ko++;}
+      w.seen=1;
+    }else if(correct){w.due=now+INT[w.lvl]*DAY;}
+    save();
+  }
+  if(first){ if(correct) s.right++; else s.wrong.push(id); }
+  if(!correct) s.queue.splice(Math.min(s.queue.length,s.i+4),0,id);
+  s.i++;s.revealed=false;s.result=null;
+  render();
+}
+function renderSummary(){
+  const s=ui.session,n=s.attempted.size,missed=s.wrong.map(byId).filter(Boolean);
+  let h='<div class="sum"><h1>'+(s.practice?'Practice done':'Session done')+'</h1><p class="big">'+s.right+'<span>/'+n+'</span></p><p class="sub">right on the first try</p>';
+  if(missed.length){
+    h+='<section class="sect"><h2>To review</h2><div class="list">'+missed.map(w=>'<div class="row" style="cursor:default">'+roundel(w.type)+'<span class="row-main"><b lang="fr">'+esc(w.fr)+'</b><span>'+esc(w.es.join(' · '))+'</span></span></div>').join('')+'</div></section>';
+  }
+  h+='<div class="stack"><button class="btn primary wide" data-act="more-session">Study more</button><button class="btn ghost wide" data-act="end">Back to study</button></div></div>';
+  view.innerHTML=h;view.scrollTop=0;
+}
+
+/* ── Words (search + list) ── */
+function renderWords(){
+  const total=S.words.length;
+  view.innerHTML='<header class="head"><h1>Words</h1><span class="count" id="wcount"></span></header>'
+   +'<div class="searchbar"><div class="field">'+IC.search+'<input id="wq" type="search" placeholder="Search French or Spanish" value="'+esc(ui.q)+'" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" aria-label="Search words">'
+   +'<button class="icon-btn clear" data-act="clearq" aria-label="Clear search"'+(ui.q?'':' hidden')+'>'+IC.close+'</button></div>'
+   +'<select id="wtopic" style="margin-top:10px" aria-label="Topic">'+topicOptions(ui.wtopic,'All topics')+'</select></div><div id="wlist"></div>';
+  if(!total){ $('#wlist').innerHTML='<div class="empty"><h2>No words yet</h2><button class="btn primary" data-act="tab" data-tab="add">Add words</button></div>'; return; }
+  updateWordList();
+}
+function wordRow(w){
+  return '<button class="row" data-act="edit" data-id="'+w.id+'">'+roundel(w.type)+'<span class="row-main"><b lang="fr">'+esc(w.fr)+'</b><span>'+esc(w.es.join(' · '))+'</span></span>'+pips(w.lvl,w.seen)+'</button>';
+}
+function updateWordList(){
+  const box=$('#wlist'); if(!box) return;
+  if(ui.wtopic&&!topicList().some(t=>t.name===ui.wtopic)) ui.wtopic='';
+  const res=searchWords(ui.q,ui.wtopic);
+  $('#wcount').textContent=res.length+(res.length===1?' word':' words');
+  const clr=$('.searchbar .clear'); if(clr) clr.hidden=!ui.q;
+  if(!res.length){
+    const q=ui.q.trim();
+    box.innerHTML='<div class="empty"><h2>No match</h2><p>'+(q?'“'+esc(q)+'” is not in your list.':'Nothing here yet.')+'</p>'+(q?'<button class="btn primary" data-act="add-from-search">Add “'+esc(q)+'”</button>':'')+'</div>';
+    return;
+  }
+  if(ui.q.trim()){ box.innerHTML='<div class="list">'+res.slice(0,300).map(wordRow).join('')+'</div>'+(res.length>300?'<p class="sub" style="padding:12px 2px">Showing the first 300. Type more to narrow down.</p>':''); return; }
+  const groups=new Map(); res.forEach(w=>{ if(!groups.has(w.cat)) groups.set(w.cat,[]); groups.get(w.cat).push(w); });
+  let h=''; groups.forEach((list,cat)=>{ h+='<div class="grp">'+esc(cat)+' · '+list.length+'</div><div class="list">'+list.map(wordRow).join('')+'</div>'; });
+  box.innerHTML=h;
+}
+
+/* ── Word form (shared by Add and Edit) ── */
+function formHTML(p,w,isEdit){
+  w=w||{};
+  const type=w.type||(isEdit?'other':'auto');
+  const opts=(isEdit?[]:['auto']).concat(Object.keys(TYPES));
+  return '<label for="'+p+'-fr">French</label><input id="'+p+'-fr" type="text" lang="fr" value="'+esc(w.fr||'')+'" placeholder="le chat" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="next">'
+   +'<div id="'+p+'-dup"></div>'
+   +'<label for="'+p+'-es">Spanish <span class="hint">several meanings: separate with commas</span></label><input id="'+p+'-es" type="text" lang="es" value="'+esc((w.es||[]).join(', '))+'" placeholder="el gato" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="next">'
+   +'<div class="two-col"><div><label for="'+p+'-type">Type</label><select id="'+p+'-type">'+opts.map(t=>'<option value="'+t+'"'+(t===type?' selected':'')+'>'+(t==='auto'?'Detect for me':TYPES[t].label)+'</option>').join('')+'</select></div>'
+   +'<div id="'+p+'-gwrap"><label for="'+p+'-gender">Gender</label><select id="'+p+'-gender"><option value="auto">Automatic</option><option value="m">Masculine</option><option value="f">Feminine</option><option value="pl">Plural</option></select></div></div>'
+   +'<label for="'+p+'-cat">Topic or lesson</label><input id="'+p+'-cat" type="text" list="topics" value="'+esc(w.cat||(isEdit?'':ui.lastTopic)||'')+'" placeholder="Lesson 4" autocomplete="off" enterkeyhint="next">'
+   +'<label for="'+p+'-ex">Example sentence <span class="hint">optional</span></label><input id="'+p+'-ex" type="text" lang="fr" value="'+esc(w.ex||'')+'" autocapitalize="none" autocomplete="off" spellcheck="false" enterkeyhint="next">'
+   +'<label for="'+p+'-exEs">Example translation <span class="hint">optional</span></label><input id="'+p+'-exEs" type="text" lang="es" value="'+esc(w.exEs||'')+'" autocapitalize="none" autocomplete="off" spellcheck="false" enterkeyhint="done">';
+}
+function initForm(p,w){
+  const g=$('#'+p+'-gender'); if(g) g.value=(w&&w.gender)||'auto';
+  syncGender(p);
+}
+function syncGender(p){
+  const t=$('#'+p+'-type'),wrap=$('#'+p+'-gwrap'); if(!t||!wrap) return;
+  wrap.style.visibility=(t.value==='noun')?'visible':'hidden';
+}
+function readForm(p){const g=k=>{const el=$('#'+p+'-'+k);return el?el.value:'';};return {fr:g('fr'),es:g('es'),type:g('type'),gender:g('gender'),cat:g('cat'),ex:g('ex'),exEs:g('exEs')};}
+function refreshDup(p,exceptId){
+  const box=$('#'+p+'-dup'); if(!box) return null;
+  const fr=cleanFr(($('#'+p+'-fr')||{}).value);
+  const d=fr?findDup(fr,exceptId):null;
+  const btn=$('#'+p+'-save');
+  if(!d){
+    const sim=fr?findSimilar(fr,exceptId):null;
+    box.innerHTML=sim?'<div class="note"><b>Similar word in your list</b> <span lang="fr">'+esc(sim.fr)+'</span> → '+esc(sim.es.join(' · '))+'. Add yours only if it is a different word.</div>':'';
+    if(btn)btn.disabled=false;return null;
+  }
+  const es=splitEs(($('#'+p+'-es')||{}).value);
+  const fresh=es.filter(e=>!d.es.some(x=>normEs(x)===normEs(e)));
+  box.innerHTML='<div class="dup" role="alert"><b>Already in your list</b><div class="dup-w"><span lang="fr">'+esc(d.fr)+'</span> → '+esc(d.es.join(' · '))+'</div><small>'+esc(d.cat)+'</small><div class="dup-actions">'
+    +(p==='q'?'<button type="button" class="btn small ghost" data-act="dup-edit" data-id="'+d.id+'">Open it</button>':'')
+    +(p==='q'&&fresh.length?'<button type="button" class="btn small ghost" data-act="dup-merge" data-id="'+d.id+'">Add “'+esc(fresh.join(', '))+'” to it</button>':'')+'</div></div>';
+  if(btn) btn.disabled=true;
+  return d;
+}
+
+/* ── Add ── */
+const AI_PROMPT='Convert the French vocabulary below into one line per word, in exactly this format:\nfrench ; spanish ; type ; example sentence in French (optional) ; its Spanish translation (optional)\n\nRules:\n- Nouns include the article (le/la/l\'/les) and use type nm or nf.\n- Verbs use the infinitive and type v.\n- Adjectives are written masculine / feminine and use type adj.\n- Other types: adv, prep, pron, conj, det, num, expr.\n- Spanish is from Spain. Separate several meanings with commas. Nouns include el/la.\n- Output only the lines, with no heading and no explanation.\n\nVocabulary:\n';
+function renderAdd(){
+  const pre=ui.prefill; ui.prefill=null;
+  let h='<header class="head"><h1>Add words</h1></header><div class="seg" role="group" aria-label="Add mode"><button data-act="addmode" data-v="quick" aria-pressed="'+(ui.addMode==='quick')+'">One word</button><button data-act="addmode" data-v="paste" aria-pressed="'+(ui.addMode==='paste')+'">Paste a list</button></div>';
+  if(ui.addMode==='quick'){
+    h+=formHTML('q',pre||{})+'<div class="stack"><button class="btn primary wide" id="q-save" data-act="q-save">Add word</button></div>';
+    view.innerHTML=h; initForm('q',null); refreshDup('q');
+    if(pre&&pre.fr){const el=$('#q-es'); if(el) el.focus();}
+  }else{
+    h+='<label for="bulk">Paste your words <span class="hint">one per line: french ; spanish ; type</span></label>'
+      +'<textarea id="bulk" placeholder="le chat ; el gato ; nm&#10;manger ; comer ; v&#10;rouge ; rojo ; adj" autocapitalize="none" autocorrect="off" spellcheck="false"></textarea>'
+      +'<label for="bulk-cat">Topic or lesson for these words</label><input id="bulk-cat" type="text" list="topics" value="'+esc(ui.lastTopic||'')+'" placeholder="Lesson 4" autocomplete="off">'
+      +'<div id="bulkprev"></div><div class="stack"><button class="btn primary wide" id="bulk-add" data-act="bulk-add" disabled>Add words</button><button class="btn ghost wide" data-act="copy-prompt">Copy a prompt for an AI</button></div>'
+      +'<details><summary>Accepted formats</summary><p class="mono">french ; spanish ; type ; example ; example translation\nfrench = spanish\nfrench - spanish\nfrench[TAB]spanish\n\n# Lesson 4   (a heading sets the topic for the lines below)</p><p class="sub" style="padding-bottom:12px">Types: nm, nf, n, v, adj, adv, prep, pron, conj, det, num, expr. Leave it out and the app guesses.</p></details>';
+    view.innerHTML=h; refreshBulk();
+  }
+}
+function submitQuick(){
+  const f=readForm('q'),fr=cleanFr(f.fr),es=splitEs(f.es);
+  if(!fr){toast('Type the French word first');$('#q-fr').focus();return;}
+  if(!es.length){toast('Add the Spanish translation');$('#q-es').focus();return;}
+  if(refreshDup('q')){toast('Already in your list');return;}
+  const w=build({fr,es,type:f.type==='auto'?null:f.type,gender:f.gender==='auto'?null:f.gender,cat:f.cat,ex:f.ex,exEs:f.exEs});
+  S.words.push(w); ui.lastTopic=w.cat; save(); refreshTopics();
+  toast('Added: '+w.fr);
+  ['fr','es','ex','exEs'].forEach(k=>{$('#q-'+k).value='';});
+  $('#q-dup').innerHTML=''; $('#q-save').disabled=false; $('#q-fr').focus();
+}
+function refreshBulk(){
+  const ta=$('#bulk'); if(!ta) return;
+  const cat=($('#bulk-cat').value||'').trim()||'My words';
+  const box=$('#bulkprev'),btn=$('#bulk-add');
+  if(!ta.value.trim()){box.innerHTML='';btn.disabled=true;btn.textContent='Add words';ui.bulk=null;return;}
+  const items=analyze(ta.value,cat); ui.bulk=items;
+  const nw=items.filter(i=>i.status==='new'),dp=items.filter(i=>i.status==='dup'),er=items.filter(i=>i.status==='err');
+  let h='<div class="chips"><span class="chip ok">'+nw.length+' new</span><span class="chip">'+dp.length+' already in your list</span>'+(er.length?'<span class="chip err">'+er.length+' can’t read</span>':'')+'</div>';
+  if(nw.length) h+='<details'+(nw.length<=6?' open':'')+'><summary>New words</summary><ul>'+nw.slice(0,200).map(i=>'<li><span lang="fr">'+esc(i.w.fr)+'</span><span>'+esc(i.w.es.join(' · '))+(i.similar?' · similar to '+esc(i.similar.fr):'')+'</span></li>').join('')+'</ul></details>';
+  if(dp.length) h+='<details><summary>Skipped, already there</summary><ul>'+dp.slice(0,200).map(i=>'<li><span lang="fr">'+esc(i.w.fr)+'</span><span>'+(i.inBatch?'repeated in this list':esc(i.existing.es.join(' · ')))+'</span></li>').join('')+'</ul></details>';
+  if(er.length) h+='<details open><summary>Lines to fix</summary><ul>'+er.map(i=>'<li><span>'+esc(i.line)+'</span><span>'+esc(i.why)+'</span></li>').join('')+'</ul></details>';
+  box.innerHTML=h;
+  btn.disabled=!nw.length;
+  btn.textContent=nw.length?('Add '+nw.length+' word'+(nw.length>1?'s':'')):'Nothing new to add';
+}
+function submitBulk(){
+  if(!ui.bulk) return;
+  const cat=($('#bulk-cat').value||'').trim()||'My words';
+  const skipped=ui.bulk.filter(i=>i.status==='dup').length;
+  const n=commit(ui.bulk,'mine');
+  ui.lastTopic=cat; refreshTopics();
+  $('#bulk').value=''; refreshBulk();
+  toast('Added '+n+' word'+(n===1?'':'s')+(skipped?' · skipped '+skipped+' repeated':''));
+}
+
+/* ── Edit sheet ── */
+function openEdit(id){
+  const w=byId(id); if(!w) return;
+  openSheet('<h2 class="sheet-h">Edit word</h2>'+formHTML('e',w,true)
+    +'<p class="edit-meta">Level '+w.lvl+' of 5 · '+w.ok+' right · '+w.ko+' missed'+(w.seen&&w.lvl?' · next review '+(w.due<=Date.now()?'now':'in '+Math.max(1,Math.round((w.due-Date.now())/DAY))+' d'):'')+'</p>'
+    +'<div class="stack"><button class="btn primary" id="e-save" data-act="e-save" data-id="'+w.id+'">Save</button><button class="btn ghost" data-act="reset-word" data-id="'+w.id+'">Reset progress for this word</button><button class="btn ghost" data-act="closesheet">Cancel</button><button class="btn danger" data-act="e-del" data-id="'+w.id+'">Delete word</button></div>');
+  initForm('e',w); ui.editId=id; refreshDup('e',id);
+}
+function saveEdit(id){
+  const w=byId(id); if(!w) return;
+  const f=readForm('e'),fr=cleanFr(f.fr),es=splitEs(f.es);
+  if(!fr||!es.length){toast('French and Spanish are both needed');return;}
+  if(findDup(fr,id)){refreshDup('e',id);toast('That French word is already in your list');return;}
+  w.fr=fr;w.es=es;w.type=TYPES[f.type]?f.type:'other';
+  w.gender=w.type==='noun'?(f.gender==='auto'?inferGender(fr):f.gender):null;
+  w.cat=String(f.cat).trim()||'My words';w.ex=f.ex.trim();w.exEs=f.exEs.trim();
+  K.delete(w);save();refreshTopics();closeSheet();
+  if(ui.tab==='words') updateWordList(); else render();
+  toast('Saved');
+}
+
+/* ── Settings ── */
+function renderMore(){
+  const a1=analyze(A1TEXT,'A1'),a1total=a1.length,miss=a1.filter(i=>i.status==='new').length;
+  view.innerHTML=(storageOK?'':'<div class="banner">Preview mode: this view cannot store data. Words you add here will be lost when you close it.</div>')
+   +'<header class="head"><h1>Settings</h1></header>'
+   +'<section class="card"><h2>Answering</h2><div class="seg" role="group" aria-label="Answer mode"><button data-act="mode" data-v="reveal" aria-pressed="'+(S.settings.mode==='reveal')+'">Think and reveal</button><button data-act="mode" data-v="type" aria-pressed="'+(S.settings.mode==='type')+'">Type the answer</button></div>'
+   +'<label for="perSession">New words per session</label><select id="perSession">'+[5,10,20,30,50].map(n=>'<option value="'+n+'"'+(S.settings.perSession===n?' selected':'')+'>'+n+'</option>').join('')+'</select></section>'
+   +'<section class="card"><h2>A1 starter pack</h2><p>'+(a1total-miss)+' of '+a1total+' starter words are in your list.</p><button class="btn ghost wide" data-act="restore-a1"'+(miss?'':' disabled')+'>'+(miss?'Add the '+miss+' missing words':'Nothing missing')+'</button></section>'
+   +'<section class="card"><h2>Backup</h2><p>Your words and progress live on this phone. Keep a copy now and then.</p><button class="btn ghost wide" data-act="backup-file">Download backup file</button><button class="btn ghost wide" data-act="backup-copy">Copy backup text</button>'
+   +'<label for="restore-file">Restore from a backup file</label><input id="restore-file" type="file" accept=".json,application/json">'
+   +'<label for="restore-text">…or paste backup text</label><textarea id="restore-text" style="min-height:90px" spellcheck="false"></textarea><button class="btn ghost wide" data-act="restore-text">Restore</button></section>'
+   +'<section class="card"><h2>Reset</h2><button class="btn danger wide" data-act="reset-progress">Reset all progress</button><button class="btn danger wide" data-act="delete-all">Delete all words</button></section>'
+   +'<p class="sub" style="padding:18px 2px">Mots du métro · '+S.words.length+' words · stored on this device only.</p>';
+}
+function restoreFrom(text){
+  let d; try{d=JSON.parse(text);}catch(e){toast('That is not a valid backup');return;}
+  d=d&&d.data?d.data:d;
+  if(!d||!Array.isArray(d.words)){toast('No words found in that backup');return;}
+  const next=sanitize(d);
+  confirmSheet('Replace your words?','This backup has '+next.words.length+' words. It replaces the '+S.words.length+' words on this phone.','Replace',()=>{S=next;save();refreshTopics();closeSheet();render();toast('Backup restored');});
+}
+function exportJSON(){return JSON.stringify({app:'mots-du-metro',v:1,exported:new Date().toISOString(),data:S});}
+
+/* ───────── events ───────── */
+document.addEventListener('click',async e=>{
+  const el=e.target.closest('[data-act]'); if(!el) return;
+  const act=el.dataset.act,id=el.dataset.id,s=ui.session;
+  switch(act){
+    case 'tab': setTab(el.dataset.tab); break;
+    case 'start': startSession(false); break;
+    case 'practice': startSession(true); break;
+    case 'more-session': ui.session=null; startSession(!!(s&&s.practice)); break;
+    case 'end': ui.session=null; render(); break;
+    case 'speak': { const w=byId(s.queue[s.i]); if(w) speak(speakText(w)); break; }
+    case 'reveal': s.revealed=true; render(); break;
+    case 'again': answer(false); break;
+    case 'good': answer(true); break;
+    case 'skip': s.revealed=true; s.result={ok:false,ans:'',skipped:true}; render(); break;
+    case 'override': s.result.ok=true; s.result.close=false; render(); break;
+    case 'next': answer(!!(s.result?s.result.ok:true)); break;
+    case 'clearq': ui.q=''; { const q=$('#wq'); if(q){q.value='';q.focus();} } updateWordList(); break;
+    case 'edit': openEdit(id); break;
+    case 'add-from-search': ui.prefill={fr:ui.q.trim()}; ui.addMode='quick'; setTab('add'); break;
+    case 'addmode': ui.addMode=el.dataset.v; renderAdd(); break;
+    case 'q-save': submitQuick(); break;
+    case 'bulk-add': submitBulk(); break;
+    case 'copy-prompt': toast((await copyText(AI_PROMPT))?'Prompt copied. Paste it into any AI chat, then add your course text.':'Could not copy here'); break;
+    case 'dup-edit': openEdit(id); break;
+    case 'dup-merge': {
+      const d=byId(id),es=splitEs(($('#q-es')||{}).value); if(!d) break;
+      es.forEach(x=>{ if(!d.es.some(y=>normEs(y)===normEs(x))) d.es.push(x); });
+      K.delete(d); save(); toast('Translation added to '+d.fr);
+      ['fr','es','ex','exEs'].forEach(k=>{$('#q-'+k).value='';}); refreshDup('q'); $('#q-fr').focus(); break;
+    }
+    case 'e-save': saveEdit(id); break;
+    case 'e-del': {
+      const w=byId(id); if(!w) break;
+      confirmSheet('Delete “'+w.fr+'”?','This removes the word and its progress.','Delete',()=>{S.words=S.words.filter(x=>x.id!==id);save();refreshTopics();closeSheet();if(ui.tab==='words')updateWordList();else render();toast('Deleted');});
+      break;
+    }
+    case 'reset-word': { const w=byId(id); if(w){w.lvl=0;w.due=0;w.seen=0;w.ok=0;w.ko=0;save();closeSheet();if(ui.tab==='words')updateWordList();toast('Progress reset');} break; }
+    case 'closesheet': closeSheet(); break;
+    case 'confirm-ok': { const fn=confirmSheet.fn; confirmSheet.fn=null; closeSheet(); if(fn) fn(); break; }
+    case 'mode': S.settings.mode=el.dataset.v; save(); renderMore(); break;
+    case 'restore-a1': {
+      const n=commit(analyze(A1TEXT,'A1'),'a1'); refreshTopics(); toast(n?('Added '+n+' starter words'):'Nothing missing'); render(); break;
+    }
+    case 'backup-file': {
+      try{const b=new Blob([exportJSON()],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mots-du-metro-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);toast('Backup downloaded');}
+      catch(err){toast('Download is not available here. Use Copy backup text.');}
+      break;
+    }
+    case 'backup-copy': toast((await copyText(exportJSON()))?'Backup copied':'Could not copy here'); break;
+    case 'restore-text': { const t=($('#restore-text')||{}).value||''; if(!t.trim()){toast('Paste the backup text first');break;} restoreFrom(t); break; }
+    case 'reset-progress': confirmSheet('Reset all progress?','Every word goes back to new. Your words stay.','Reset',()=>{S.words.forEach(w=>{w.lvl=0;w.due=0;w.seen=0;w.ok=0;w.ko=0;});save();render();toast('Progress reset');}); break;
+    case 'delete-all': confirmSheet('Delete all words?','This removes all '+S.words.length+' words and your progress. You can bring the A1 pack back from Settings.','Delete everything',()=>{S.words=[];save();refreshTopics();render();toast('All words deleted');}); break;
+  }
+});
+document.addEventListener('input',e=>{
+  const t=e.target,id=t.id||'';
+  if(id==='wq'){ui.q=t.value;updateWordList();}
+  else if(/^(q|e)-(fr|es)$/.test(id)){refreshDup(id[0],id[0]==='e'?ui.editId:undefined);}
+  else if(/^(q|e)-type$/.test(id)){syncGender(id[0]);}
+  else if(id==='bulk'||id==='bulk-cat'){refreshBulk();}
+});
+document.addEventListener('change',e=>{
+  const t=e.target,id=t.id||'';
+  if(id==='wtopic'){ui.wtopic=t.value;updateWordList();}
+  else if(id==='ftopic'){S.filter.topic=t.value;save();renderStudy();}
+  else if(id==='ftype'){S.filter.type=t.value;save();renderStudy();}
+  else if(id==='perSession'){S.settings.perSession=parseInt(t.value,10)||10;save();}
+  else if(id==='restore-file'&&t.files&&t.files[0]){const r=new FileReader();r.onload=()=>restoreFrom(String(r.result));r.readAsText(t.files[0]);}
+});
+document.addEventListener('submit',e=>{
+  if(e.target.id!=='tform') return;
+  e.preventDefault();
+  const s=ui.session; if(!s) return;
+  const w=byId(s.queue[s.i]); if(!w) return;
+  const v=($('#typed')||{}).value||'';
+  if(!v.trim()){toast('Type your answer, or tap I don’t know');return;}
+  s.result=checkTyped(w,v); s.revealed=true; render();
+});
+document.addEventListener('keydown',e=>{
+  const s=ui.session;
+  if(e.key==='Escape'&&!$('#sheet').hidden){closeSheet();return;}
+  if(!s||e.key!=='Enter'||e.target.tagName==='INPUT'||e.target.tagName==='BUTTON') return;
+  if(s.mode==='type'){ if(s.revealed) answer(!!(s.result&&s.result.ok)); }
+  else if(!s.revealed){s.revealed=true;render();}
+  else answer(true);
+});
+/* Enter in the quick-add fields moves on, and saves from the last one */
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter') return;
+  const id=e.target.id||'';
+  if(id==='q-fr'){e.preventDefault();$('#q-es').focus();}
+  else if(id==='q-es'){e.preventDefault();submitQuick();}
+  else if(id==='e-es'||id==='e-exEs'){e.preventDefault();saveEdit(ui.editId);}
+});
+
+/* ───────── start ───────── */
+storageOK=testStorage();
+S=load();
+if(!S){
+  S=freshState();
+  commit(analyze(A1TEXT,'A1'),'a1');
+  save();
+}
+refreshTopics();
+render();
+try{ if(navigator.storage&&navigator.storage.persist) navigator.storage.persist(); }catch(e){}
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+}
+
+})();
+</script>
+</body>
+</html>
