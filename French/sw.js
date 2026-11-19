@@ -1,5 +1,5 @@
 /* Offline cache: serve from cache first, refresh in the background. Bump CACHE when you change the app files. */
-const CACHE = 'mots-du-metro-v2';
+const CACHE = 'mots-du-metro-v4';
 const ASSETS = [
   './', 'index.html', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png',

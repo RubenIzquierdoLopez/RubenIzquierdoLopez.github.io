@@ -1,5 +1,10 @@
 Mots du métro: put it on your Android phone (about 3 minutes)
 
+What is inside: two sections, switched at the top of the screen.
+  Vocabulary: study cards, word list with search, adding words, A1 starter pack.
+  Reviewing grammar: 53 short A1 lessons (explanations in English with Spanish
+  translations), search, "reviewed" marks, and it remembers where you stopped.
+
 1. On a computer, open https://netlify.com/drop
 2. Drag the zip file (or this unzipped folder) onto the page.
    You get an address like https://something.netlify.app
@@ -10,5 +15,6 @@ Mots du métro: put it on your Android phone (about 3 minutes)
 5. Open the app once with internet on. After that it works offline.
 
 Updating the app later: drag the new folder onto the same site in Netlify.
-Keep the same address: your words are stored per address.
+Keep the same address: your words and grammar progress are stored per address.
+After an update, close and reopen the app once or twice; the new version loads in the background.
 Before you ever change address, use Settings > Backup in the app.
